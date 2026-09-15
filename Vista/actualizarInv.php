@@ -23,7 +23,7 @@
             
             <button id="btnBuscar">Buscar</button>
         </section>
-         
+        <h1>Esta es una prueba</h1>
         <div>
             <table id="tabla">
                 <thead>
