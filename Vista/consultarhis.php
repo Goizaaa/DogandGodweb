@@ -24,6 +24,7 @@
     </header>
 
     <main>
+
     <aside>
     <!--nav bar laterial-->
     <ul class="nav flex-column">
@@ -46,7 +47,7 @@
     <a class="nav-link" onclick="location.href='modificarhist.php'">Modificar</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" onclick="location.href='eliminarhist.html'">Eliminar</a>
+    <a class="nav-link" onclick="location.href='eliminarhist.php'">Eliminar</a>
   </li>
 </ul>
 </aside>

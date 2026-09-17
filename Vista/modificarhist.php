@@ -3,58 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <title>Modificar historial</title>
     <link rel="stylesheet" href="../vista/modificar.css">
     <script src="../Controlador/modificarHistorial.js"></script>
 </head>
 <body>
+
 <header>
-    <h1>Modificar historial</h1>
-    <nav>
-        <button class="botonEncabezado" onclick="location.href='HomeVet.html'">Inicio</button>
-        <button class="botonEncabezado" onclick="location.href='consultartutores.html'">Tutores</button>
-        <button class="botonEncabezado" onclick="location.href='consultarhis.html'">Historiales</button>
-        <button class="botonEncabezado" onclick="location.href='SolicitarCita.html'">Citas</button>
-        <button class="botonEncabezado" onclick="location.href='respaldo.html'">Inventario</button>
-        <button class="botonEncabezado" onclick="location.href='respaldo.html'">Configuración</button>
-    </nav>
-</header>
+    
+        <!--encabezado-->
+        <?php include_once("include/header.php") ?>
+        <!--fin encabezado-->
+
+    </header>
+
     <main>
-        <aside>
-            <nav>
-                <ul>
-                    <li><button id="btnGeneral" class="botonaside">Informacion General</button></li>
-                    <li><button id="btnConsultas" class="botonaside">Consultas realizadas</button></li>
-                    <li><button id="btnProcedimientos" class="botonaside">Procedimientos</button></li>
-                    <li><button id="btnLaboratorio" class="botonaside">Resultados de laboratorio</button></li>
-                    <li><button id="btnRadiografias" class="botonaside">Radiografías</button></li>
-                    <li><button onclick="location.href='modificarhist.html'" class="botonaside">Modificar</button></li>
-                    <li><button onclick="location.href='eliminarhist.html'" class="botonaside">Eliminar</button></li>
-                </ul>
-            </nav>
-        </aside>
-        <section>
-            <article>
-   <form id="modificar" class="register-form">
-    <label>Peso:</label>
-    <input type="text" id="peso" name="peso_inicial"> 
-    <br><br>
-    
-    <label>Esterilizado:</label>
-    <select id="esterilizado" name="esterilizado">
+    <aside>
+    <!--nav bar laterial-->
+    <ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page"  id="btnGeneral">Informacion General</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnConsultas">Consultas realizadas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnProcedimientos">Procedimientos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnLaboratorio">Resultados de laboratorio</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnRadiografias">Radiografías</a>
+  </li>
+  <li class="nav-item" >
+    <a class="nav-link" onclick="location.href='modificarhist.php'">Modificar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="location.href='eliminarhist.php'">Eliminar</a>
+  </li>
+</ul>
+</aside>
+<!-- terrmina nav bar laterial-->
+ 
+ 
+
+<!-- formulario -->
+
+
+<form class="row g-3" id="modificar">
+  <div class="col-md-4">
+    <label for="validationServer01" class="form-label">Peso:</label>
+    <input type="text" id="peso" name="peso_inicial" class="form-control is-valid" required>
+  </div>
+
+  <div class="col-md-3">
+    <label for="validationServer04" class="form-label">Esterilizado:</label>
+    <select class="form-select is-invalid" id="esterilizado" name="esterilizado" aria-describedby="validationServer04Feedback" required>
         <option value="1">Si</option>
-        <option value="0">No</option>
-    </select>
-    
-    <!-- CORRECCIÓN CRÍTICA: Debe tener id Y name obligatoriamente -->
-    <input type="hidden" id="id_mascota" name="id_mascota">
-    
-    <br><br>
-    <button id="btnModificar">Aceptar</button> 
+        <option value="0">No</option>    </select>
+    <div id="validationServer04Feedback" class="invalid-feedback">
+      Por favor seleccione una opción.
+    </div>
+  </div>
+
+
+  <div class="col-12">
+    <button id="btnModificar" class="btn btn-primary" type="submit">Aceptar</button>
+  </div>
 </form>
-
-</article>
-
             
             <!-- Tu campo hidden indispensable -->
             <input type="hidden" id="id_mascota" name="id_mascota">

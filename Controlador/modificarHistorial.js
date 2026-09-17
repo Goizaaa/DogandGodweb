@@ -41,7 +41,7 @@ valores.append("id_mascota", idMascota);
             if (data.success) {
                 alert("Actualizado correctamente");
                 
-                window.location.href = "consultarhis.html?id_mascota=" + idMascota;
+                window.location.href = "consultarhis.php?id_mascota=" + idMascota;
             } else {
                 alert("Error al actualizar");
             }
