@@ -1,0 +1,210 @@
+header {
+    text-align: center;
+    background-color: #0CA7DA;
+    padding: 3%;
+    border-radius: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    
+}
+button {
+    
+    background-color: #DCF6F4;
+    color: #0CA7DA;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 80px;
+    font-size: 20px;
+    margin-top: 30px;
+    font-weight: bold;
+
+}
+.botones-inventario {
+    
+display: flex;           
+    justify-content: center; 
+    gap: 20px;              
+    margin-top: 30px;       
+    flex-wrap: wrap;
+
+}
+.botones-editar-agregar{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.boton-editar{
+    background-color: #ffffff;
+    color: #0CA7DA;
+    border: 2px solid #0CA7DA;
+    padding: 10px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    height: 50px;
+}
+.boton-agregar{
+    background-color: #0CA7DA;
+    color: #ffffff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    height: 50px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+form{
+    padding: 20px 40px;
+    border-radius: 20px;
+    background-color: #0CA7DA;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.boton-buscar{
+    background-color: #ffffff;
+    color: #0CA7DA;
+    border: 2px solid #17262b;
+    padding: 06px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    height: 40px;
+    margin-top: 0;
+
+}
+
+/* Nuevo producto */   
+
+.botones-editar{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 05px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.boton-editarE{
+    background-color: #ffffff;
+    color: #0CA7DA;
+    border: 2px solid #0CA7DA;
+    padding: 10px 50px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    height: 30px;
+}
+.boton-agregarE{
+    background-color: #0CA7DA;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    height: 30px;
+
+    
+}
+.AgregarProducto{
+    opacity: 0.9;
+    padding: 40px 70px;
+    border-radius: 20px;
+    background-color: #83d1cb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 29px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+.AgregarProducto input[type="text"] {
+    width: 40%;           
+    height: 30px;          
+    font-size: 18px;       
+    padding: 5px 15px;      
+    border-radius: 10px;   
+    border: none;          
+    outline: none;         
+}
+select{
+    width: 45%;           
+    height: 40px;          
+    font-size: 18px;       
+    padding: 5px 15px;      
+    border-radius: 10px;   
+    border: none;          
+    outline: none;  
+
+}
+.input-moneda {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 45%; 
+}
+
+
+.input-moneda span {
+    position: absolute;
+    left: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555555;
+    pointer-events: none; 
+}
+
+
+.input-moneda input[type="number"] {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    padding: 5px 15px 5px 30px; 
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+
+.input-moneda input[type="number"]::-webkit-outer-spin-button,
+.input-moneda input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.input-moneda input[type="number"] {
+    appearance: none;
+    -moz-appearance: none;
+}
+

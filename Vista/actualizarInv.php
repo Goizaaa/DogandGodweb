@@ -1,50 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Actualizar Inventario</title>
-    <link rel="stylesheet" href="../Vista/modificar.css">
-    <script src="../Controlador/cntrl.js"></script>
-</head>
-
+    <title>Inventario home</title>
+    <link rel="stylesheet" href="../css/Inventario.css">
+<script src="../controlador/cntrlInv.js"></script></head>
 <body>
 
 
-    <main class="buscar">
-        <section class="buscador">
-            <label>Tipo:</label>
-            <input type="text" name="buscarMascota" id="buscarMascota" placeholder="Buscar mascota">
+<header>
+    
+        <!--encabezado-->
+        <?php include_once("include/header.php") ?>
+        <!--fin encabezado-->
 
-            <label>Nombre tutor:</label>
-            <input type="text" name="buscarTutor" id="buscarTutor" placeholder="Buscar tutor">
-            
-            <button id="btnBuscar">Buscar</button>
-        </section>
-        <h1>Esta es una prueba</h1>
-        <div>
-            <table id="tabla">
-                <thead>
-                    <tr>
-                        <th>ID Mascota</th>
-                        <th>Nombre Mascota</th>
-                        <th>Especie</th>
-                        <th>Raza</th>
-                        <th>Fecha Adopcion</th>
-                        <th>Sexo</th>
-                        <th>Esterilizado</th>
-                        <th>Nombre Tutor</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </main>
+    </header>
 
+
+    <!-- Agrega onsubmit="return false;" -->
+<form id="BuscarProducto" onsubmit="return false;">
+    <label for="BusProducto"> Nombre del producto: </label>
+    <input type="text" name="BusProducto" id="BusProducto">
+    
+    <!-- Agrega type="button" -->
+    <button type="button" class="boton-buscar" id="boton-buscar">Buscar</button>
+</form>
+
+    <div class="botones-editar-agregar">
+        <button class="boton-editar">Editar producto</button>
+        <button class="boton-agregar">Agregar producto</button>
+    </div>
+
+    <div class="botones-inventario">
+        <button>Total de productos</button>
+        <button>Valor del inventario</button>
+    </div>
+
+    <table id="tabla-inventario" class="tabla-inventario">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre del Producto</th>
+                <th>Precio</th>
+                <th>Marca</th>
+                <th>Cantidad</th>
+                <th>Costo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Datos dinámicos -->
+        </tbody>
+    </table>
+
+    <footer>
+        <p>&copy; 2023 Inventario. Todos los derechos reservados.</p>
+    </footer>
 </body>
-
 </html>
