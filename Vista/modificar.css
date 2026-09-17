@@ -1,8 +1,4 @@
 
-body {
-    background-color: antiquewhite;
-}
-
 form {
     width: 60%;
     margin-left: 30%;
@@ -17,13 +13,8 @@ form {
 
 aside {
     align-items: center;
-    width: 320px;
-    height: 550px;
     padding: 10px;
     margin: 1;
-    background-color: antiquewhite;
-    border-radius: 4%;
-    box-shadow: 3px 5px rgba(134, 125, 125, 0.842);
 
 }
 

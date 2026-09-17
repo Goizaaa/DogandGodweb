@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 btnVer.style.cursor = "pointer";
                 btnVer.onclick = function() {
                     localStorage.setItem("id_mascota_editar", obj.id_mascota);
-                    window.location.href = "consultarhis.html?id_mascota=" + obj.id_mascota;
+                    window.location.href = "consultarhis.php?id_mascota=" + obj.id_mascota;
                 };
                 celdaBoton.appendChild(btnVer);
                 fila.appendChild(celdaBoton);

@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Consultar historial </title>
+    <link rel="stylesheet" href="../Vista/modificar.css">
+-
     <script src="../controlador/consultarHistorial.js"></script>
 </head>
 
@@ -22,19 +24,35 @@
     </header>
 
     <main>
-        <aside>
-            <nav>
-                <ul>
-                    <li><button id="btnGeneral" class="botonaside">Informacion General</button></li>
-                    <li><button id="btnConsultas" class="botonaside">Consultas realizadas</button></li>
-                    <li><button id="btnProcedimientos" class="botonaside">Procedimientos</button></li>
-                    <li><button id="btnLaboratorio" class="botonaside">Resultados de laboratorio</button></li>
-                    <li><button id="btnRadiografias" class="botonaside">Radiografías</button></li>
-                    <li><button onclick="location.href='modificarhist.html'" class="botonaside">Modificar</button></li>
-                    <li><button onclick="location.href='eliminarhist.html'" class="botonaside">Eliminar</button></li>
-                </ul>
-            </nav>
-        </aside>
+
+    <aside>
+    <!--nav bar laterial-->
+    <ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page"  id="btnGeneral">Informacion General</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnConsultas">Consultas realizadas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnProcedimientos">Procedimientos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnLaboratorio">Resultados de laboratorio</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="btnRadiografias">Radiografías</a>
+  </li>
+  <li class="nav-item" >
+    <a class="nav-link" onclick="location.href='modificarhist.php'">Modificar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="location.href='eliminarhist.php'">Eliminar</a>
+  </li>
+</ul>
+</aside>
+<!-- terrmina nav bar laterial-->
+      
 
         <section>
             <article id="informacionGeneral">
