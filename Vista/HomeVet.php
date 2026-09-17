@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Carousel Template · Bootstrap v5.1</title>
+    <title> hOME</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
@@ -36,7 +36,7 @@
         z-index: 10;
       }
       .carousel-item {
-        height: 32rem;
+        height: 36rem;
         background-color: #777;
       }
       .carousel-item > img {
@@ -44,7 +44,7 @@
         top: 0;
         left: 0;
         min-width: 100%;
-        height: 32rem;
+        height: 36rem;
         object-fit: cover;
       }
       .marketing .col-lg-4 {
@@ -100,46 +100,46 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
+        <img src="../recursos/citbann.png" alt="Expediente" width="800" height="800">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Citas para hoy.</h1>
-            <p>Revisa tus citas programadas para el día de hoy.</p>
+            <h1 style="color: black; background-color: rgba(121, 104, 104, 0.29);">Citas para hoy.</h1>
+            <p style="color: black; background-color: rgba(121, 104, 104, 0.29);">Revisa tus citas programadas para el día de hoy.</p>
             <p><a class="btn btn-lg btn-primary" href="#">Entrar</a></p>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
+        <img src="../recursos/invbann.png" alt="Inventario" width="800" height="800">
         <div class="container">
           <div class="carousel-caption">
             <h1>Revisa tu inventario.</h1>
             <p>Consulta el estado de tu inventario de medicamentos y productos.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#">Mirar</a></p>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <img src="../recursos/bann1.png" alt="Expediente" width="800" height="800">
+        
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            
+            <h1>Expedientes</h1>
+            <p>Aqui consulta los expedientes de tus pacientes.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Explorar</a></p>
           </div>
         </div>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+      <span class="visually-hidden">Anterior</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+      <span class="visually-hidden">Siguiente</span>
     </button>
   </div>
 
@@ -153,7 +153,7 @@
         Hola Veterinario
       </h2>
       <div class="my-3">
-        <button class="btn btn-outline-dark">¿ QUE HACER?</button>
+        <h3>¿ QUE HACER?</h3>
       </div>
       
       <div class="my-3">
@@ -164,70 +164,48 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2>Heading</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <img class="rounded-circle" src="../recursos/icon1.jpg" alt="Inventario" width="140" height="140" style="object-fit: cover;">
+        <h2>Inventario</h2>
+        <p>Revisa en cada instante como esta tu inventario.</p>
+        <p><a class="btn btn-secondary" href="actualizar_inventario.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2>Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <img class="rounded-circle" src="../recursos/icon2.jpg" alt="Tutores" width="140" height="140" style="object-fit: cover;">
+        <h2>Tutores</h2>
+        <p>Administra la información de los tutores de tus pequeños pacientes.</p>
+        <p><a class="btn btn-secondary" href="Usuarios.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <img class="rounded-circle" src="../recursos/icon3.jpg" alt="Mascota" width="140" height="140" style="object-fit: cover;">
 
-        <h2>Heading</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <h2>Mascota</h2>
+        <p>Administra la información de tus pequeños pacientes.</p>
+        <p><a class="btn btn-secondary" href="Mascota.php">View details &raquo;</a></p>
+      </div>
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="../recursos/icon4.jpg" alt="Expedientes" width="140" height="140" style="object-fit: cover;">
+
+        <h2>Expedientes</h2>
+        <p>Puedes gestionar los expedientes de tus pacientes de manera eficiente.</p>
+        <p><a class="btn btn-secondary" href="consultarhis.php">View details &raquo;</a></p>
+      </div>
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="../recursos/icon5.jpg" alt="Registrar Cita" width="140" height="140" style="object-fit: cover;">
+
+        <h2>Registrar Cita</h2>
+        <p>Revisa cuando tienes que ver a tus pacientes.</p>
+        <p><a class="btn btn-secondary" href="ConsultarCita.php">View details &raquo;</a></p>
+      </div>
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="../recursos/icon6.jpg" alt="Buscar Historial" width="140" height="140" style="object-fit: cover;">
+
+        <h2>Buscar Historial</h2>
+        <p>Busca y consulta el historial médico de tus pacientes.</p>
+        <p><a class="btn btn-secondary" href="buscarhist.php">View details &raquo;</a></p>
       </div>
     </div>
 
 
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
 
   </div>
 
