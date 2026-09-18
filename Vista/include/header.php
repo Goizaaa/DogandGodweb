@@ -28,7 +28,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="consultarhis.php">Historiales</a>
+          <a class="nav-link active" aria-current="page" href="buscarhist.php">Historiales</a>
         </li>
 
         <li class="nav-item">
