@@ -1,59 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cancelar cita</title>
-    <link rel="stylesheet" href="../css/CancelarC.css">
+    <title>Consultar Citas</title>
+    <link rel="stylesheet" href="../Vista/modificar.css">
+    <script src="../Controlador/cntrolCita.js"></script>
 </head>
+
 <body>
-    
-    <h1>
-       
-    </h1>
-    <h2>Cancelar cita</h2>
+    <header>
+        <!--encabezado-->
+        <?php include_once("include/header.php") ?>
+        <!--fin encabezado-->
+    </header>
 
-    <div id="contenedor">
-    <section id="formulario">
-          <form>
-
-                    <label>Fecha</label>
-                    <input type="date" id="fecha">                   
-                    <label>Hora</label>
-                    <input type="time" id="hora">
-                    <label>Servicio:</label>
-                    <select id="servicio">
-                        <option value="cita">Cita medica</option>
-                        <option value="estetica">Estetica</option>
-                        <option value="revisin">Revisión</option>
-                        <option value="vacuna">Vacunación</option>
-                        <option value="otro">Otro</option>
-                    </select>
-
-
-                    <label>Mascota:</label>
-                    <select id="mascota">
-                        <option value="gato">Kira</option>
-                        <option value="perro">Nick</option>
-
-
-                    </select>
-      
-            </form>
-         <input type="submit" value="agendar cita">
-         <input type="submit" value="editar">
-         <input type="submit" value="eliminar">
+    <main class="buscar">
+        <section class="buscador">
+            <label>Citas registradas:</label>
+            <a href="AgregarCita.php" style="text-decoration: none;">
+                <button type="button" id="btnAgregarCita" style="padding: 8px 16px; cursor: pointer;">+ Agregar Cita</button>
+            </a>
         </section>
-
-        <div id="eliminacion">
-            <label for="">¿Esta seguro de cancelar esta cita?</label>
-            
-
-            <input type="submit" value="eliminar">
-            <input type="submit" value="cancelar">
-
+         
+        <div>
+            <table class="table table-hover" id="tablaCitas">
+                <thead>
+                    <tr>
+                        <th>ID Cita</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Procedimiento</th>
+                        <th>Correo Tutor</th>
+                        <th>Correo Veterinario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
+    </main>
 
-    </div>
 </body>
+
 </html>
