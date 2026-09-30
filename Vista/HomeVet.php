@@ -115,7 +115,7 @@
           <div class="carousel-caption">
             <h1>Revisa tu inventario.</h1>
             <p>Consulta el estado de tu inventario de medicamentos y productos.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Mirar</a></p>
+            <p><a class="btn btn-lg btn-primary" href="actualizarInv.php">Mirar</a></p>
           </div>
         </div>
       </div>

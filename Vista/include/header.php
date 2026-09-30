@@ -32,7 +32,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="SolicitarCita.php">Citas</a>
+          <a class="nav-link active" aria-current="page" href="ConsultarCita.php">Citas</a>
         </li>
 
         <li class="nav-item">

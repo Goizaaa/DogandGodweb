@@ -8,9 +8,13 @@
 </head>
 <body>
     
-    <h1>
-       
-    </h1>
+<header>
+    
+    <!--encabezado-->
+    <?php include_once("include/header.php") ?>
+    <!--fin encabezado-->
+
+</header>
     <h2>Consultar cita</h2>
 
     <div id="contenedor">
