@@ -6,3 +6,11 @@
 5 Agregar todas las interfaces (En espera de funcionalidades)
 6 Juntar todos los CSS
 7 Juntar codigos del mismo modulo
+
+
+
+--------------------------------------------------------------Cosas hechas----------------------------------------------------------------
+
+1 Css unificado
+2 Creacion de lobby y mejoras de Inicio Sesion
+3

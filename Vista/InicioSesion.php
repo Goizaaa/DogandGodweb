@@ -9,28 +9,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS del Formulario Signin -->
-    <link rel="stylesheet" href="../css/signin.css">
+    <link rel="stylesheet" href="../css/CssGlobal.css">
 
     <script src="../Controlador/InicioSes.js"></script>
 </head>
 
-<body class="text-center">
+<body class="text-center vista-inicio-sesion">
+
+
 
 <!-- Inicio Sesion -->
 
+
     <section id="inicio" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" id="registro">
+            <form action="" id="registro" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 fw-normal">Inicio Sesión</h1>
 
-                <div class="form-floating">
+                <div class="form-floating" style="background-color: #8b8a8a;">
                     <input type="email" class="form-control" name="usuarioU" id="correoU" placeholder="nombre@ejemplo.com">
                     <label for="correoU">Ingresa tu correo</label>
                     
                 </div>
 
-                <div class="form-floating">
+                <div class="form-floating" >
                     <input type="password" class="form-control" name="contraseñaU" id="contraU" placeholder="Contraseña">
                     <label for="contraU">Ingresa tu contraseña</label>
                     <div id="passwordHelpBlock" class="form-text">
@@ -41,10 +44,9 @@
                 <div class="mensaje mb-2"></div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit" id="iniciosesion">Iniciar sesión</button>
-                <p class="mt-5 mb-3 text-muted">&copy; Derechos reservados a Veterinaria Dog&God</p>
-                 </form>
+                <p class="mt-5 mb-3 text-muted">&copy; Derechos reservados a Veterinaria Dog&God</p>         
                   
-    </form>
+
      <p>
         <a id="abrerecuperar" href="#abrerecuperar">¿Olvidaste tu contraseña?</a>
     </p>
@@ -59,32 +61,24 @@
 
 
     <section id="recuperar" class="w-100">
-        <main class="form-signin m-auto">
-            <form action="">
+        <main class="form-signin m-auto" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <h1 class="h3 mb-2 fw-normal">Recuperar de cuenta</h1>
                 <p class="text-muted mb-3">Ingresa tu correo de confirmación</p>
 
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-3" >
                     <input type="email" class="form-control" name="usuarioD" id="usuarioD" placeholder="nombre@ejemplo.com">
                     <label for="usuarioD">Ingresa tu correo</label>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary mb-3" type="button" id="CONFIRMAR">Confirmar</button>
+                <button class="w-100 btn btn-lg btn-primary mb-3" type="button" id="CONFIRMAR" >Confirmar</button>
             </form>
         </main>
     </section>
     
-    </form>
-
-
-    <footer>
-       
-    </footer>
-    </section>
-
     <!-- Dos pasos -->
     <section id="dospasos" class="w-100">
         <main class="form-signin m-auto">
-            <form action="">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                     <h3><img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt=""></h3>
                     <h1 class="h3 mb-2 fw-normal">Confirmacion de dos pasos</h1>
                     <p class="text-muted mb-3">Ingresa el codigo de dos pasos para confirmar que eres tu</p>
@@ -99,7 +93,7 @@
 <!-- Restablecer -->
     <section id="restablecer" class="w-100">
         <main class="form-signin m-auto">
-            <form action="">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-2 fw-normal">Restablecer contraseña</h1>
                 <p class="text-muted mb-3">Ingresa tu nueva contraseña</p>
@@ -116,13 +110,13 @@
                 <button class="w-100 btn btn-lg btn-primary mb-3" type="button" id="Restabtn">Confirmar</button>
             </form>
         </main>
-        </div>
+
     </section>
 
 <!-- crear cuenta -->
     <section id="crear" class="w-100">
         <main class="form-signin m-auto" style="max-width: 440px;">
-            <form action="">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-2 fw-normal">Crea tu cuenta</h1>
                 <p class="text-muted mb-3">Ingresa tus datos para registrarte</p>

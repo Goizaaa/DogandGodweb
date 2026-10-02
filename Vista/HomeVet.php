@@ -83,7 +83,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="vista-carrousel">
     
 <header>
     <!-- Encabezado Dog&God -->
@@ -157,7 +157,7 @@
       </div>
       
       <div class="my-3">
-        <button class="btn btn-outline-dark" onclick="location.href='respaldo.html'">respaldo</button>
+        <button class="btn btn-outline-dark" onclick="location.href='respaldo.php'">respaldo</button>
       </div>
     </div>
 

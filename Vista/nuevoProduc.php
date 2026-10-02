@@ -6,6 +6,7 @@
     <title>Editar Producto</title>
     <link rel="stylesheet" href="../css/Inventario.css">
 </head>
+<body class="vista-inventario">
 
 <header>
     
@@ -59,7 +60,7 @@
     <p> </p>
 </footer>
 
-<body>
+
     
 </body>
 </html>
