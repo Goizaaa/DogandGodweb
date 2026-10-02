@@ -258,7 +258,7 @@ const $form = document.getElementById('registro');
     alert(datos.mensaje);
     if (datos.status) {
         localStorage.setItem("correo_tutor", datos.correo);
-        window.location.href = "../Vista/HomeVet.html";  // Redirige a HomeVet
+        window.location.href = "../Vista/HomeVet.php";  // Redirige a HomeVet
     }
 })
                 .catch(function (error) {
