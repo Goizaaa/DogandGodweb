@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,12 @@
     <script src="../Controlador/Usuari.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 <body>
+<header>
+    <?php include_once("include/header.php") ?>
+</header>
     <section id="Tabusuarios">
         <h1>Tabla de Usuarios</h1>
         <h2>Listado de Usuarios</h2>
@@ -35,3 +39,4 @@
     
 </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -7,6 +7,7 @@
     <title>Agregar Cita</title>
     <link rel="stylesheet" href="../Vista/modificar.css">
     <script src="../Controlador/cntrolCita.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 
 <body>
@@ -55,8 +56,8 @@
                 </div>
 
                 <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    <button type="submit" id="btnGuardarCita" style="padding: 10px 20px; cursor: pointer;">Agendar Cita</button>
-                    <a href="ConsultarCita.php" style="padding: 10px 20px; text-decoration: none; background-color: #ccc; color: black; border-radius: 3px;">Volver</a>
+                    <button type="submit" id="btnGuardarCita">Agendar Cita</button>
+                    <a class="btn btn-secondary" href="ConsultarCita.php">Volver</a>
                 </div>
             </form>
         </div>
@@ -65,3 +66,5 @@
 </body>
 
 </html>
+
+

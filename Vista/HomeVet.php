@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -82,7 +82,8 @@
         }
       }
     </style>
-  </head>
+      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+</head>
   <body class="vista-carrousel">
     
 <header>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <title>Modificar historial</title>
     <link rel="stylesheet" href="../vista/modificar.css">
     <script src="../Controlador/modificarHistorial.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 <body>
 
@@ -84,7 +85,7 @@
         <h3>¿Confirmar cambios?</h3>
         <p>¿Estás seguro de que deseas actualizar el peso y estado de esterilización?</p>
         <button id="btnCancelarModal">Cancelar</button>
-        <button id="btnAceptarModal" style="background-color: #4CAF50; color: white;">Sí, Guardar</button>
+        <button id="btnAceptarModal">Sí, Guardar</button>
     </dialog>
 
     <dialog id="modalExito" style="padding: 20px; border-radius: 8px; border: 1px solid #ccc; text-align: center;">
@@ -94,3 +95,5 @@
     </dialog>
 </body>
 </html>
+
+

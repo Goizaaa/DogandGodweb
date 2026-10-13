@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -7,6 +7,7 @@
     <title>Consultar Citas</title>
     <link rel="stylesheet" href="../Vista/modificar.css">
     <script src="../Controlador/cntrolCita.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
         <section class="buscador">
             <label>Citas registradas:</label>
             <a href="AgregarCita.php" style="text-decoration: none;">
-                <button type="button" id="btnAgregarCita" style="padding: 8px 16px; cursor: pointer;">+ Agregar Cita</button>
+                <button type="button" id="btnAgregarCita">+ Agregar Cita</button>
             </a>
         </section>
          
@@ -46,3 +47,4 @@
 </body>
 
 </html>
+
