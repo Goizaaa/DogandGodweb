@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +6,13 @@
     <title>Consultar Cita Veterinario</title>
     <link rel="stylesheet" href="../css/RegistrarConVet.css">
     <script src="../controlador/CitasVet.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 
 <body>
+<header>
+    <?php include_once("include/header.php") ?>
+</header>
     
     <h1>
        
@@ -44,3 +48,4 @@
     </div>
 </body>
 </html>
+

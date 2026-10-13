@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../Vista/modificar.css">
 -
     <script src="../controlador/consultarHistorial.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 
 <body>
@@ -143,3 +144,4 @@
 </body>
 
 </html>
+

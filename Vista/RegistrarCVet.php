@@ -1,12 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Cita</title>
     <link rel="stylesheet" href="../css/RegistrarConVet.css">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 <body>
+<header>
+    <?php include_once("include/header.php") ?>
+</header>
     
     <h1>
        
@@ -51,3 +55,4 @@
     </div>
 </body>
 </html>
+

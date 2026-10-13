@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,18 +6,11 @@
     <title>Registrar Tutor</title>
     <link rel="stylesheet" href="../vista/modificar.css">
     <script src="../Controlador/cntrolTutor.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 <body>
 <header>
-    <h1>Registrar Tutor</h1>
-    <nav>
-        <button class="botonEncabezado" onclick="location.href='HomeVet.html'">Inicio</button>
-        <button class="botonEncabezado" onclick="location.href='consultartutores.html'">Tutores</button>
-        <button class="botonEncabezado" onclick="location.href='consultarhis.html'">Historiales</button>
-        <button class="botonEncabezado" onclick="location.href='SolicitarCita.html'">Citas</button>
-        <button class="botonEncabezado" onclick="location.href='respaldo.html'">Inventario</button>
-        <button class="botonEncabezado" onclick="location.href='respaldo.html'">Configuración</button>
-    </nav>
+    <?php include_once("include/header.php") ?>
 </header>
     <main>
         <form class="register-form" id="register-tutor-form">
@@ -51,3 +44,4 @@
     </main>
 </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +7,7 @@
     <title>Buscar historial</title>
     <link rel="stylesheet" href="../Vista/modificar.css">
     <script src="../Controlador/cntrl.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 
 <body>

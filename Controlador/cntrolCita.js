@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
     const tablaCitas = document.querySelector("#tablaCitas tbody");
     const frmAgregarCita = document.querySelector("#frmAgregarCita");
     const monthYearEl = document.getElementById("month-year");
@@ -220,4 +220,3 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCalendar();
     cargarCitas();
 });
-

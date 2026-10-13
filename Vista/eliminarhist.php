@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <title>Eliminar historial</title>
     <link rel="stylesheet" href="../vista/modificar.css">
     <script src="../Controlador/eliminarHistorial.js"></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
 <body>
 <header>
@@ -31,3 +32,4 @@
     </main>
 </body>
 </html>
+

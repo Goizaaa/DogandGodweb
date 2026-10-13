@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    1. INICIO DE SESIÓN (Fusión de InicioSesion.css y signin.css)
    ========================================================================== */
 body.vista-inicio-sesion {
@@ -175,4 +175,190 @@ body.vista-inicio-sesion {
 #recibidor .nav-masthead .active {
   color: #fff;
   border-bottom-color: #fff;
+}
+/* ==========================================================================
+   7. CONSULTAR CITAS (calendario)
+   ========================================================================== */
+.vista-consultar-cita {
+  --cita-primary: #4a6bdf;
+  --cita-secondary: #6c5ce7;
+  --cita-accent: #00aaa5;
+  --cita-dark: #2d3436;
+  --cita-text: #636e72;
+  --cita-today: #fd79a8;
+  --cita-selected: #8175df;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0 0 32px;
+  color: var(--cita-dark);
+  background: linear-gradient(135deg, #f5f7fa 0%, #dfe6e9 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.vista-consultar-cita .consultar-cita-main { width: min(1100px, calc(100% - 32px)); margin: 28px auto; }
+.vista-consultar-cita .consultar-cita-titulo { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
+.vista-consultar-cita .consultar-cita-titulo h1 { margin: 0; color: var(--cita-dark); font-size: clamp(1.5rem, 3vw, 2rem); }
+.vista-consultar-cita .consultar-cita-agregar { display: inline-flex; align-items: center; gap: 8px; padding: 11px 17px; border-radius: 10px; color: #fff; background: var(--cita-primary); text-decoration: none; font-weight: 600; }
+.vista-consultar-cita .consultar-cita-agregar:hover { background: #3858c6; }
+.vista-consultar-cita .calendario-layout { display: flex; flex-direction: column; align-items: stretch; gap: 20px; }
+.vista-consultar-cita .calendar-container, .vista-consultar-cita .event-panel { width: 100%; overflow: hidden; border-radius: 18px; background: #fff; box-shadow: 0 10px 30px rgba(0, 0, 0, .1); }
+.vista-consultar-cita .calendar-container { max-width: 500px; transition: transform .25s ease, box-shadow .25s ease; }
+.vista-consultar-cita .calendar-container:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 0, 0, .14); }
+.vista-consultar-cita .calendar-header { position: relative; padding: 22px 60px; color: #fff; text-align: center; background: linear-gradient(135deg, var(--cita-primary), var(--cita-secondary)); }
+.vista-consultar-cita .month-year { position: relative; font-size: 1.35rem; font-weight: 700; }
+.vista-consultar-cita .nav-buttons { position: absolute; inset: 0 12px; display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
+.vista-consultar-cita .nav-btn { display: grid; width: 36px; height: 36px; place-items: center; border: 0; border-radius: 50%; color: #fff; background: rgba(255, 255, 255, .2); cursor: pointer; pointer-events: auto; transition: background .2s ease, transform .2s ease; }
+.vista-consultar-cita .nav-btn:hover { transform: scale(1.08); background: rgba(255, 255, 255, .32); }
+.vista-consultar-cita .weekdays, .vista-consultar-cita .days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.vista-consultar-cita .weekdays { padding: 8px 12px; color: var(--cita-primary); background: #f0f3ff; font-weight: 700; }
+.vista-consultar-cita .weekday { padding: 8px 0; text-align: center; font-size: .85rem; }
+.vista-consultar-cita .days { gap: 4px; padding: 12px; }
+.vista-consultar-cita .day { position: relative; display: grid; min-width: 0; aspect-ratio: 1; place-items: center; border-radius: 50%; color: var(--cita-dark); cursor: pointer; font-weight: 500; transition: background .2s ease, transform .2s ease; }
+.vista-consultar-cita .day:hover { transform: scale(1.06); background: #eef0ff; }
+.vista-consultar-cita .day.today { color: #fff; background: var(--cita-today); font-weight: 700; }
+.vista-consultar-cita .day.selected { color: #fff; background: var(--cita-selected); font-weight: 700; }
+.vista-consultar-cita .day.other-month { color: var(--cita-text); opacity: .45; }
+.vista-consultar-cita .day.has-events::after { position: absolute; bottom: 5px; width: 5px; height: 5px; border-radius: 50%; background: var(--cita-accent); content: ''; }
+.vista-consultar-cita .day.today.has-events::after, .vista-consultar-cita .day.selected.has-events::after { background: #fff; }
+.vista-consultar-cita .calendar-footer { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-top: 1px solid #e8eaf0; }
+.vista-consultar-cita .today-btn { padding: 9px 15px; border: 0; border-radius: 50px; color: #fff; background: linear-gradient(135deg, var(--cita-accent), #00b894); cursor: pointer; font-weight: 600; }
+.vista-consultar-cita .event-indicator { display: flex; align-items: center; gap: 7px; color: var(--cita-accent); font-size: .85rem; }
+.vista-consultar-cita .event-indicator i { font-size: .55rem; }
+.vista-consultar-cita .event-panel { max-width: 600px; height: fit-content; padding: 22px; }
+.vista-consultar-cita .event-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 2px solid #e5e9fb; }
+.vista-consultar-cita .event-date { color: var(--cita-primary); font-size: 1.35rem; font-weight: 700; }
+.vista-consultar-cita .event-icon { color: var(--cita-accent); font-size: 1.2rem; }
+.vista-consultar-cita .event-list { max-height: 350px; overflow-y: auto; }
+.vista-consultar-cita .event-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; padding: 14px; border-radius: 12px; background: #f5f7fa; box-shadow: 0 3px 10px rgba(0, 0, 0, .05); }
+.vista-consultar-cita .event-color { width: 12px; height: 12px; flex: 0 0 12px; border-radius: 50%; background: var(--cita-accent); }
+.vista-consultar-cita .event-time { min-width: 72px; color: var(--cita-primary); font-weight: 700; }
+.vista-consultar-cita .event-text { min-width: 0; flex: 1; }
+.vista-consultar-cita .no-events { padding: 28px 12px; color: var(--cita-text); text-align: center; }
+.vista-consultar-cita .citas-registradas { margin-top: 28px; padding: 20px; border-radius: 18px; background: #fff; box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
+.vista-consultar-cita .citas-registradas h2 { margin: 0 0 14px; color: var(--cita-primary); font-size: 1.25rem; }
+.vista-consultar-cita .tabla-citas-contenedor { overflow-x: auto; }
+.vista-consultar-cita #tablaCitas { width: 100%; border-collapse: collapse; }
+.vista-consultar-cita #tablaCitas th, .vista-consultar-cita #tablaCitas td { padding: 10px 12px; border-bottom: 1px solid #e8eaf0; text-align: left; white-space: nowrap; }
+.vista-consultar-cita #tablaCitas th { color: #344275; background: #f0f3ff; }
+@media (min-width: 800px) {
+  .vista-consultar-cita .calendario-layout { flex-direction: row; align-items: flex-start; }
+  .vista-consultar-cita .calendar-container { flex: 0 0 46%; }
+  .vista-consultar-cita .event-panel { flex: 1; }
+}
+@media (max-width: 520px) {
+  .vista-consultar-cita .consultar-cita-main { width: min(100% - 20px, 1100px); margin-top: 18px; }
+  .vista-consultar-cita .consultar-cita-titulo { align-items: flex-start; flex-direction: column; }
+  .vista-consultar-cita .event-panel, .vista-consultar-cita .citas-registradas { padding: 16px; }
+  .vista-consultar-cita .event-date { font-size: 1.15rem; }
+}
+
+/* Ajustes de navegación, calendario y tabla de la vista Consultar citas */
+.vista-consultar-cita { padding: 0 0 36px; }
+.vista-consultar-cita .cita-navbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 6%; min-height: 62px; color: #fff; background: #1769aa; box-shadow: 0 3px 12px rgba(20, 45, 75, .15); }
+.vista-consultar-cita .cita-navbar-brand { color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 700; white-space: nowrap; }
+.vista-consultar-cita .cita-navbar-links { display: flex; align-items: center; gap: 6px; }
+.vista-consultar-cita .cita-navbar-links a { padding: 10px 12px; border-radius: 7px; color: rgba(255,255,255,.9); text-decoration: none; font-size: .95rem; }
+.vista-consultar-cita .cita-navbar-links a:hover, .vista-consultar-cita .cita-navbar-links a.activo { color: #fff; background: rgba(255,255,255,.17); }
+.vista-consultar-cita .consultar-cita-main { width: min(1120px, calc(100% - 40px)); margin: 34px auto; }
+.vista-consultar-cita .consultar-cita-titulo, .vista-consultar-cita .citas-registradas-heading { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+.vista-consultar-cita .consultar-cita-eyebrow { margin: 0 0 5px; color: #65758b; font-size: .72rem; font-weight: 700; letter-spacing: .12em; }
+.vista-consultar-cita .consultar-cita-titulo h1, .vista-consultar-cita .citas-registradas h2 { margin: 0; color: #26364b; }
+.vista-consultar-cita .consultar-cita-agregar { border-radius: 9px; background: #1769aa; }
+.vista-consultar-cita .consultar-cita-agregar:hover { color: #fff; background: #10568e; }
+.vista-consultar-cita .calendario-layout { gap: 22px; margin-top: 22px; }
+.vista-consultar-cita .calendar-container, .vista-consultar-cita .event-panel { border: 1px solid #e7ebf2; border-radius: 14px; box-shadow: 0 8px 26px rgba(34, 54, 82, .08); }
+.vista-consultar-cita .calendar-header { padding: 20px 58px; background: linear-gradient(120deg, #1769aa, #5369c8); }
+.vista-consultar-cita .days { gap: 5px; }
+.vista-consultar-cita .day { width: 100%; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: .95rem; }
+.vista-consultar-cita .day:focus-visible, .vista-consultar-cita .nav-btn:focus-visible, .vista-consultar-cita .today-btn:focus-visible { outline: 3px solid #f2a93b; outline-offset: 2px; }
+.vista-consultar-cita .day.today { background: #1769aa; }
+.vista-consultar-cita .day.selected { background: #6c5ce7; }
+.vista-consultar-cita .day.today.selected { background: #6c5ce7; box-shadow: inset 0 0 0 2px #1769aa; }
+.vista-consultar-cita .event-panel { min-height: 255px; }
+.vista-consultar-cita .event-text { display: flex; flex-direction: column; gap: 4px; }
+.vista-consultar-cita .event-text strong { color: #26364b; }
+.vista-consultar-cita .event-text small { color: #68778a; overflow-wrap: anywhere; }
+.vista-consultar-cita .citas-registradas { margin-top: 24px; border: 1px solid #e7ebf2; box-shadow: 0 8px 26px rgba(34, 54, 82, .07); }
+.vista-consultar-cita .citas-registradas h2 { font-size: 1.25rem; }
+.vista-consultar-cita #tablaCitas th { color: #344275; background: #f0f3ff; }
+.vista-consultar-cita .cita-cancelar-btn { padding: 7px 11px; border: 0; border-radius: 7px; color: #fff; background: #c94a58; cursor: pointer; }
+.vista-consultar-cita .cita-cancelar-btn:hover { background: #a93643; }
+@media (max-width: 720px) {
+  .vista-consultar-cita .cita-navbar { align-items: flex-start; flex-direction: column; gap: 4px; padding: 12px 18px; }
+  .vista-consultar-cita .cita-navbar-links { width: 100%; overflow-x: auto; }
+  .vista-consultar-cita .cita-navbar-links a { padding: 8px 10px; white-space: nowrap; }
+  .vista-consultar-cita .consultar-cita-main { width: calc(100% - 24px); margin: 24px auto; }
+  .vista-consultar-cita .consultar-cita-titulo { align-items: flex-start; }
+  .vista-consultar-cita .weekday { font-size: .75rem; }
+}
+@media (max-width: 430px) {
+  .vista-consultar-cita .consultar-cita-titulo { flex-direction: column; }
+  .vista-consultar-cita .calendar-header { padding-right: 54px; padding-left: 54px; }
+  .vista-consultar-cita .month-year { font-size: 1.1rem; }
+  .vista-consultar-cita .days { gap: 1px; padding: 8px; }
+  .vista-consultar-cita .event-panel, .vista-consultar-cita .citas-registradas { padding: 15px; }
+}
+
+/* ==========================================================================
+   8. SISTEMA COMÚN DE BOTONES
+   ========================================================================== */
+body :is(button:not(.nav-btn):not(.today-btn):not(.carousel-control-prev):not(.carousel-control-next):not([data-bs-slide-to]):not(.navbar-toggler):not(.day), input[type="button"], input[type="submit"], input[type="reset"], a.btn, [role="button"]) {
+  display: inline-flex;
+  min-height: 42px;
+  height: auto;
+  margin-top: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: #fff;
+  background: #1769aa;
+  box-shadow: 0 2px 5px rgba(23, 105, 170, .16);
+  font-family: inherit;
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+body :is(button:not(.nav-btn):not(.today-btn):not(.carousel-control-prev):not(.carousel-control-next):not([data-bs-slide-to]):not(.navbar-toggler):not(.day), input[type="button"], input[type="submit"], input[type="reset"], a.btn, [role="button"]):hover:not(:disabled) {
+  color: #fff;
+  background: #10568e;
+  box-shadow: 0 4px 10px rgba(23, 105, 170, .22);
+  transform: translateY(-1px);
+}
+body :is(button, input[type="button"], input[type="submit"], input[type="reset"], a.btn, [role="button"]):focus-visible {
+  outline: 3px solid rgba(242, 169, 59, .75);
+  outline-offset: 2px;
+}
+body :is(button, input[type="button"], input[type="submit"], input[type="reset"]):disabled {
+  opacity: .55;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+body :is(#btnSi, .btn-danger, .eliminar, .cita-cancelar-btn) { color: #fff; background: #c94a58; }
+body :is(#btnSi, .btn-danger, .eliminar, .cita-cancelar-btn):hover:not(:disabled) { color: #fff; background: #a93643; }
+body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark) { color: #344256; border-color: #d4dce7; background: #eef2f7; box-shadow: none; }
+body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not(:disabled) { color: #26364b; border-color: #c4cfdd; background: #e0e7ef; box-shadow: none; }
+@media (max-width: 520px) {
+  body :is(button:not(.nav-btn):not(.today-btn):not(.carousel-control-prev):not(.carousel-control-next):not([data-bs-slide-to]):not(.navbar-toggler):not(.day), input[type="button"], input[type="submit"], input[type="reset"], a.btn, [role="button"]) { min-height: 40px; padding: 9px 13px; }
+}
+
+
+
+
+/* Navegación compartida incluida en las vistas PHP */
+.main-navbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 62px; padding: 8px clamp(16px, 5vw, 64px); color: #fff; background: #1769aa; box-shadow: 0 3px 12px rgba(20, 45, 75, .14); }
+.main-navbar-brand { flex: 0 0 auto; color: #fff; font-size: 1.15rem; font-weight: 700; text-decoration: none; }
+.main-navbar-links { display: flex; align-items: center; justify-content: flex-end; gap: 5px; flex-wrap: wrap; }
+.main-navbar-links a { padding: 9px 11px; border-radius: 7px; color: rgba(255,255,255,.92); font-size: .92rem; text-decoration: none; transition: background-color .18s ease, color .18s ease; }
+.main-navbar-links a:hover, .main-navbar-links a:focus-visible { color: #fff; background: rgba(255,255,255,.17); }
+@media (max-width: 720px) {
+  .main-navbar { align-items: flex-start; flex-direction: column; gap: 5px; padding: 12px 16px; }
+  .main-navbar-links { justify-content: flex-start; width: 100%; gap: 2px; }
+  .main-navbar-links a { padding: 8px 9px; }
 }
