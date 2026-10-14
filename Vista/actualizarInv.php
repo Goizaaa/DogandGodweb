@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario home</title>
-    <link rel="stylesheet" href="../css/Inventario.css">
-<script src="../controlador/cntrlInv.js"></script>    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css">
+<script src="../controlador/cntrlInv.js"></script>    
 </head>
-<body>
+<body class="vista-inventario">
 
 
 <header>
