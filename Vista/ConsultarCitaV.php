@@ -6,7 +6,7 @@
     <title>Consultar citas | Dog&God</title>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261013-4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../Controlador/cntrolCita.js?v=20261013-4" defer></script>
+    <script src="../Controlador/cntrolCita.js?v=20261013-5" defer></script>
 </head>
 <body class="vista-consultar-cita">
     <header>

@@ -4,29 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultar Citas</title>
-    <link rel="stylesheet" href="../Vista/modificar.css">
-    <script src="../Controlador/cntrolCita.js"></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <title>Citas registradas | Dog&amp;God</title>
+    <script src="../Controlador/citasRegistradas.js?v=20261013-1" defer></script>
+    <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261013-7">
 </head>
 
-<body>
+<body class="vista-tablas">
     <header>
         <!--encabezado-->
         <?php include_once("include/header.php") ?>
         <!--fin encabezado-->
     </header>
 
-    <main class="buscar">
-        <section class="buscador">
-            <label>Citas registradas:</label>
-            <a href="AgregarCita.php" style="text-decoration: none;">
-                <button type="button" id="btnAgregarCita">+ Agregar Cita</button>
-            </a>
+    <main class="tabla-pagina-main">
+        <section class="tabla-pagina-cabecera">
+            <div>
+                <p class="tabla-pagina-eyebrow">AGENDA VETERINARIA</p>
+                <h1>Citas registradas</h1>
+                <p>Consulta y administra las citas agendadas.</p>
+            </div>
+            <div class="tabla-pagina-acciones">
+                <a class="btn-nuevo" href="ConsultarCitaV.php">+ Agregar cita</a>
+            </div>
         </section>
-         
-        <div>
-            <table class="table table-hover" id="tablaCitas">
+        <div class="tabla-contenedor">
+            <table class="tabla-datos" id="tablaCitas">
                 <thead>
                     <tr>
                         <th>ID Cita</th>

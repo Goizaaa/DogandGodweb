@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
     <title>Consultar Tutores</title>
-    <script src="../Controlador/cntrolTutor.js"></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <script src="../Controlador/cntrolTutor.js" defer></script>
+    <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261013-7">
 </head>
-<body>
+<body class="vista-tablas">
 
 <header>
     
@@ -20,15 +19,20 @@
 
     </header>
 
-    <main class="listatut">
-<section>
-                <h2>Lista de Tutores</h2>
-            <button class="btn-nuevo" onclick="location.href='registrartutor.html'">+ Nuevo Tutor</button>
-                            <button class="btn-nuevo" onclick="location.href='asignarTutor.html'">Relacionar Mascota con Tutor</button>
-</section>
-
-
-                <table class="table table-hover" id="tablaTutores">
+    <main class="tabla-pagina-main">
+        <section class="tabla-pagina-cabecera">
+            <div>
+                <p class="tabla-pagina-eyebrow">DIRECTORIO</p>
+                <h1>Lista de tutores</h1>
+                <p>Consulta y administra la información de los tutores registrados.</p>
+            </div>
+            <div class="tabla-pagina-acciones">
+                <a class="btn-nuevo" href="registrartutor.php">+ Nuevo tutor</a>
+                <a class="btn-nuevo btn-secundario" href="asignarTutor.php">Relacionar mascota con tutor</a>
+            </div>
+        </section>
+        <div class="tabla-contenedor">
+            <table class="tabla-datos" id="tablaTutores">
                     <thead>
                         <tr>
                             <th>Correo</th>
@@ -43,8 +47,8 @@
                     </thead>
                     <tbody id="cuerpo-tabla">
                     </tbody>
-                </table>
-
+            </table>
+        </div>
     </main>
 </body>
 </html>

@@ -73,6 +73,20 @@ try {
             echo json_encode($citas ? $citas : array());
             break;
 
+        case "disponibilidad":
+            $citas = $db->read("cita", "1 ORDER BY fecha ASC, hora ASC");
+            $horariosOcupados = array();
+            if ($citas) {
+                foreach ($citas as $cita) {
+                    $horariosOcupados[] = array(
+                        "fecha" => $cita["fecha"],
+                        "hora" => $cita["hora"]
+                    );
+                }
+            }
+            echo json_encode($horariosOcupados);
+            break;
+
         case "delete":
             $id_cita = isset($_POST['id_cita']) ? trim($_POST['id_cita']) : '';
             if ($id_cita === '' || !preg_match('/^[A-Za-z0-9_-]+$/', $id_cita)) {
