@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar citas | Dog&God</title>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261013-4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../Controlador/cntrolCita.js?v=20261012-4" defer></script>
+    <script src="../Controlador/cntrolCita.js?v=20261013-4" defer></script>
 </head>
 <body class="vista-consultar-cita">
     <header>
@@ -16,7 +16,7 @@
     <main class="consultar-cita-main">
         <div class="consultar-cita-titulo">
             <div><p class="consultar-cita-eyebrow">AGENDA VETERINARIA</p><h1>Consultar citas</h1></div>
-            <a class="consultar-cita-agregar btn" href="AgregarCita.php"><i class="fas fa-plus" aria-hidden="true"></i> Agregar cita</a>
+            <button class="consultar-cita-agregar btn" id="abrir-modal-cita" type="button"><i class="fas fa-plus" aria-hidden="true"></i> Agregar cita</button>
         </div>
 
         <div class="calendario-layout">
@@ -50,17 +50,47 @@
             </section>
         </div>
 
-        <section class="citas-registradas" aria-labelledby="titulo-citas-registradas">
-            <div class="citas-registradas-heading">
-                <div><p class="consultar-cita-eyebrow">ADMINISTRACIÓN</p><h2 id="titulo-citas-registradas">Todas las citas</h2></div>
+        <dialog class="modal-agregar-cita" id="modal-agregar-cita" aria-labelledby="titulo-modal-cita">
+            <div class="modal-agregar-cita-heading">
+                <div><p class="consultar-cita-eyebrow">AGENDA VETERINARIA</p><h2 id="titulo-modal-cita">Agregar nueva cita</h2></div>
+                <button class="modal-cita-cerrar" id="cerrar-modal-cita" type="button" aria-label="Cerrar ventana">&times;</button>
             </div>
-            <div class="tabla-citas-contenedor">
-                <table class="table table-hover" id="tablaCitas">
-                    <thead><tr><th>ID cita</th><th>Fecha</th><th>Hora</th><th>Procedimiento</th><th>Correo tutor</th><th>Correo veterinario</th><th>Acciones</th></tr></thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </section>
+            <form id="frmAgregarCita" class="formulario-agregar-cita">
+                <div class="campo-agregar-cita">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="campo-agregar-cita">
+                    <label for="hora">Hora:</label>
+                    <select class="selector-horario-cita" id="hora" name="hora" required>
+                        <option value="">Selecciona un horario</option>
+                    </select>
+                    <small class="horario-ayuda">Atención de 09:00 a 15:40, con turnos cada 40 minutos.</small>
+                </div>
+                <div class="campo-agregar-cita">
+                    <label for="procedimiento">Procedimiento / Servicio:</label>
+                    <select id="procedimiento" name="procedimiento" required>
+                        <option value="Consulta Médica">Consulta Médica</option>
+                        <option value="Estética">Estética</option>
+                        <option value="Revisión">Revisión</option>
+                        <option value="Vacunación">Vacunación</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="campo-agregar-cita">
+                    <label for="correo_tutor">Correo del Tutor:</label>
+                    <input type="email" id="correo_tutor" name="correo_tutor" placeholder="ejemplo@tutor.com" required>
+                </div>
+                <div class="campo-agregar-cita">
+                    <label for="correo_veterinario">Correo del Veterinario:</label>
+                    <input type="email" id="correo_veterinario" name="correo_veterinario" placeholder="ejemplo@vet.com" required>
+                </div>
+                <div class="modal-agregar-cita-acciones">
+                    <button class="consultar-cita-agregar btn" type="submit" id="btnGuardarCita">Agendar cita</button>
+                    <button class="modal-cita-cancelar" id="cancelar-modal-cita" type="button">Cerrar</button>
+                </div>
+            </form>
+        </dialog>
     </main>
 </body>
 </html>

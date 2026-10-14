@@ -1,5 +1,4 @@
 ﻿document.addEventListener("DOMContentLoaded", () => {
-    const tablaCitas = document.querySelector("#tablaCitas tbody");
     const frmAgregarCita = document.querySelector("#frmAgregarCita");
     const monthYearEl = document.getElementById("month-year");
     const daysEl = document.getElementById("days");
@@ -8,6 +7,12 @@
     const todayBtn = document.getElementById("today-btn");
     const eventDateEl = document.getElementById("event-date");
     const eventListEl = document.getElementById("event-list");
+    const fechaCitaInput = document.getElementById("fecha");
+    const horaCitaSelect = document.getElementById("hora");
+    const modalAgregarCita = document.getElementById("modal-agregar-cita");
+    const abrirModalCitaBtn = document.getElementById("abrir-modal-cita");
+    const cerrarModalCitaBtn = document.getElementById("cerrar-modal-cita");
+    const cancelarModalCitaBtn = document.getElementById("cancelar-modal-cita");
 
     let citas = [];
     let currentDate = new Date();
@@ -15,6 +20,13 @@
     let selectedDate = null;
     const formatoFecha = new Intl.DateTimeFormat("es-MX", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
     const formatoMes = new Intl.DateTimeFormat("es-MX", { month: "long", year: "numeric" });
+
+    const horariosAtencion = [];
+    for (let minutos = 9 * 60; minutos <= 15 * 60 + 40; minutos += 40) {
+        const hora = String(Math.floor(minutos / 60)).padStart(2, "0");
+        const minuto = String(minutos % 60).padStart(2, "0");
+        horariosAtencion.push(`${hora}:${minuto}`);
+    }
 
     function claveFecha(date) {
         const year = date.getFullYear();
@@ -27,6 +39,35 @@
         const coincidencia = String(fecha || "").match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
         if (!coincidencia) return null;
         return new Date(Number(coincidencia[1]), Number(coincidencia[2]) - 1, Number(coincidencia[3]));
+    }
+
+    function actualizarHorariosDisponibles() {
+        if (!horaCitaSelect) return;
+        const fechaSeleccionada = fechaCitaInput ? fechaCitaInput.value : "";
+        const seleccionAnterior = horaCitaSelect.value;
+        const ocupadas = new Set(citas
+            .filter(cita => {
+                const fecha = fechaDeCita(cita.fecha);
+                return fecha && claveFecha(fecha) === fechaSeleccionada;
+            })
+            .map(cita => String(cita.hora || "").slice(0, 5)));
+
+        horaCitaSelect.replaceChildren();
+        const indicacion = document.createElement("option");
+        indicacion.value = "";
+        indicacion.textContent = "Selecciona un horario";
+        horaCitaSelect.appendChild(indicacion);
+
+        horariosAtencion.forEach(hora => {
+            const opcion = document.createElement("option");
+            opcion.value = hora;
+            opcion.disabled = ocupadas.has(hora);
+            opcion.textContent = opcion.disabled ? `${hora} · Ocupado` : hora;
+            horaCitaSelect.appendChild(opcion);
+        });
+
+        if (seleccionAnterior && !ocupadas.has(seleccionAnterior)) horaCitaSelect.value = seleccionAnterior;
+        else horaCitaSelect.value = "";
     }
 
     function citasPorFecha() {
@@ -58,22 +99,45 @@
             return;
         }
         delDia.forEach(cita => {
-            const item = document.createElement("article");
+            const item = document.createElement("details");
             item.className = "event-item";
+            const resumen = document.createElement("summary");
+            resumen.className = "event-summary";
             const punto = document.createElement("span");
             punto.className = "event-color";
             punto.setAttribute("aria-hidden", "true");
             const hora = document.createElement("span");
             hora.className = "event-time";
             hora.textContent = cita.hora || "Sin hora";
-            const detalle = document.createElement("div");
-            detalle.className = "event-text";
             const procedimiento = document.createElement("strong");
+            procedimiento.className = "event-procedure";
             procedimiento.textContent = cita.procedimiento || "Cita veterinaria";
-            const veterinario = document.createElement("small");
-            veterinario.textContent = cita.correo_veterinario || "";
-            detalle.append(procedimiento, veterinario);
-            item.append(punto, hora, detalle);
+            resumen.append(punto, hora, procedimiento);
+
+            const detalle = document.createElement("div");
+            detalle.className = "event-details";
+            [
+                ["ID cita", cita.id_cita],
+                ["Fecha", cita.fecha],
+                ["Hora", cita.hora],
+                ["Procedimiento", cita.procedimiento],
+                ["Correo tutor", cita.correo_tutor],
+                ["Correo veterinario", cita.correo_veterinario]
+            ].forEach(([etiqueta, valor]) => {
+                const campo = document.createElement("p");
+                const nombre = document.createElement("strong");
+                nombre.textContent = `${etiqueta}: `;
+                campo.append(nombre, document.createTextNode(valor || "—"));
+                detalle.appendChild(campo);
+            });
+
+            const cancelar = document.createElement("button");
+            cancelar.type = "button";
+            cancelar.className = "cita-cancelar-btn";
+            cancelar.textContent = "Cancelar cita";
+            cancelar.addEventListener("click", () => cancelarCita(cita.id_cita, cancelar));
+            detalle.appendChild(cancelar);
+            item.append(resumen, detalle);
             eventListEl.appendChild(item);
         });
     }
@@ -130,47 +194,49 @@
                 } else {
                     throw new Error("El servidor devolvió un formato inesperado: " + JSON.stringify(datos));
                 }
-                if (tablaCitas) {
-                    tablaCitas.replaceChildren();
-                    citas.forEach(cita => {
-                        const fila = document.createElement("tr");
-                        [cita.id_cita, cita.fecha, cita.hora, cita.procedimiento, cita.correo_tutor, cita.correo_veterinario].forEach(valor => {
-                            const celda = document.createElement("td");
-                            celda.textContent = valor || "—";
-                            fila.appendChild(celda);
-                        });
-                        const acciones = document.createElement("td");
-                        const cancelar = document.createElement("button");
-                        cancelar.type = "button";
-                        cancelar.className = "cita-cancelar-btn";
-                        cancelar.textContent = "Cancelar";
-                        cancelar.addEventListener("click", () => redirigirCancelar(cita.id_cita));
-                        acciones.appendChild(cancelar);
-                        fila.appendChild(acciones);
-                        tablaCitas.appendChild(fila);
-                    });
-                }
+                actualizarHorariosDisponibles();
                 renderCalendar();
                 if (selectedDate) mostrarCitas(selectedDate);
             })
             .catch(error => {
                 console.error("Error al cargar citas:", error);
-                if (tablaCitas) {
-                    const fila = document.createElement("tr");
-                    const celda = document.createElement("td");
-                    celda.colSpan = 7;
-                    celda.textContent = "No fue posible cargar las citas: " + error.message;
-                    fila.appendChild(celda);
-                    tablaCitas.replaceChildren(fila);
-                }
                 limpiarEventos("Error al cargar las citas: " + error.message);
                 renderCalendar();
             });
     }
 
-    window.redirigirCancelar = idCita => {
-        window.location.href = `CancelarCita.php?id_cita=${encodeURIComponent(idCita)}`;
-    };
+    function cancelarCita(idCita, boton) {
+        if (!window.confirm(`¿Deseas cancelar la cita ${idCita}? Esta acción no se puede deshacer.`)) return;
+
+        boton.disabled = true;
+        boton.textContent = "Cancelando...";
+        const valores = new FormData();
+        valores.append("opc", "delete");
+        valores.append("id_cita", idCita);
+
+        fetch("../Controlador/ControladorCita.php", { method: "POST", body: valores })
+            .then(async respuesta => {
+                const texto = await respuesta.text();
+                let datos;
+                try { datos = JSON.parse(texto); }
+                catch { throw new Error("El servidor devolvió una respuesta inesperada."); }
+                if (!respuesta.ok || !datos.success) throw new Error(datos.message || "No se pudo cancelar la cita.");
+                return datos;
+            })
+            .then(datos => {
+                citas = citas.filter(cita => String(cita.id_cita) !== String(idCita));
+                actualizarHorariosDisponibles();
+                renderCalendar();
+                if (selectedDate) mostrarCitas(selectedDate);
+                alert(datos.message || "Cita cancelada correctamente.");
+            })
+            .catch(error => {
+                boton.disabled = false;
+                boton.textContent = "Cancelar cita";
+                alert(error.message || "Ocurrió un error al cancelar la cita.");
+                console.error("Error al cancelar cita:", error);
+            });
+    }
 
     if (prevMonthBtn) prevMonthBtn.addEventListener("click", () => {
         currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
@@ -194,9 +260,19 @@
         mostrarCitas(hoy);
     });
 
+    if (modalAgregarCita && abrirModalCitaBtn) abrirModalCitaBtn.addEventListener("click", () => modalAgregarCita.showModal());
+    if (fechaCitaInput) fechaCitaInput.addEventListener("change", actualizarHorariosDisponibles);
+    [cerrarModalCitaBtn, cancelarModalCitaBtn].forEach(boton => {
+        if (boton && modalAgregarCita) boton.addEventListener("click", () => modalAgregarCita.close());
+    });
+    if (modalAgregarCita) modalAgregarCita.addEventListener("click", evento => {
+        if (evento.target === modalAgregarCita) modalAgregarCita.close();
+    });
+
     if (frmAgregarCita) frmAgregarCita.addEventListener("submit", evento => {
         evento.preventDefault();
         const valores = new FormData(frmAgregarCita);
+        const fechaAgendada = fechaDeCita(valores.get("fecha"));
         valores.append("opc", "create");
         fetch("../Controlador/ControladorCita.php", { method: "POST", body: valores })
             .then(async respuesta => {
@@ -208,8 +284,20 @@
                 return datos;
             })
             .then(datos => {
-                alert(datos.message);
-                if (datos.success) window.location.href = "ConsultarCita.php";
+                if (!datos.success) throw new Error(datos.message || "No se pudo registrar la cita.");
+                if (!modalAgregarCita) {
+                    alert(datos.message || "Cita agendada correctamente.");
+                    window.location.href = "ConsultarCita.php";
+                    return;
+                }
+                modalAgregarCita.close();
+                frmAgregarCita.reset();
+                if (fechaAgendada) {
+                    selectedDate = fechaAgendada;
+                    currentDate = new Date(fechaAgendada.getFullYear(), fechaAgendada.getMonth(), 1);
+                }
+                cargarCitas();
+                alert(datos.message || "Cita agendada correctamente.");
             })
             .catch(error => {
                 alert(error.message || "Ocurrió un error al procesar la solicitud.");

@@ -253,17 +253,20 @@ body.vista-inicio-sesion {
 .vista-consultar-cita .event-date { color: var(--cita-primary); font-size: 1.35rem; font-weight: 700; }
 .vista-consultar-cita .event-icon { color: var(--cita-accent); font-size: 1.2rem; }
 .vista-consultar-cita .event-list { max-height: 350px; overflow-y: auto; }
-.vista-consultar-cita .event-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; padding: 14px; border-radius: 12px; background: #f5f7fa; box-shadow: 0 3px 10px rgba(0, 0, 0, .05); }
+.vista-consultar-cita .event-item { margin-bottom: 10px; border: 1px solid #e5e9f2; border-radius: 12px; background: #f5f7fa; box-shadow: 0 3px 10px rgba(0, 0, 0, .05); transition: background .2s ease, box-shadow .2s ease; }
+.vista-consultar-cita .event-item[open] { background: #fff; box-shadow: 0 8px 20px rgba(34, 54, 82, .12); }
+.vista-consultar-cita .event-summary { display: flex; align-items: center; gap: 12px; padding: 14px; cursor: pointer; list-style: none; }
+.vista-consultar-cita .event-summary::-webkit-details-marker { display: none; }
+.vista-consultar-cita .event-summary::after { margin-left: auto; color: #1769aa; content: '+'; font-size: 1.25rem; font-weight: 700; }
+.vista-consultar-cita .event-item[open] .event-summary::after { content: '−'; }
 .vista-consultar-cita .event-color { width: 12px; height: 12px; flex: 0 0 12px; border-radius: 50%; background: var(--cita-accent); }
 .vista-consultar-cita .event-time { min-width: 72px; color: var(--cita-primary); font-weight: 700; }
-.vista-consultar-cita .event-text { min-width: 0; flex: 1; }
+.vista-consultar-cita .event-procedure { min-width: 0; color: #26364b; overflow-wrap: anywhere; }
+.vista-consultar-cita .event-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; padding: 0 16px 16px 38px; }
+.vista-consultar-cita .event-details p { margin: 0; color: #526174; overflow-wrap: anywhere; }
+.vista-consultar-cita .event-details p strong { color: #26364b; }
+.vista-consultar-cita .event-details .cita-cancelar-btn { grid-column: 1 / -1; justify-self: start; }
 .vista-consultar-cita .no-events { padding: 28px 12px; color: var(--cita-text); text-align: center; }
-.vista-consultar-cita .citas-registradas { margin-top: 28px; padding: 20px; border-radius: 18px; background: #fff; box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
-.vista-consultar-cita .citas-registradas h2 { margin: 0 0 14px; color: var(--cita-primary); font-size: 1.25rem; }
-.vista-consultar-cita .tabla-citas-contenedor { overflow-x: auto; }
-.vista-consultar-cita #tablaCitas { width: 100%; border-collapse: collapse; }
-.vista-consultar-cita #tablaCitas th, .vista-consultar-cita #tablaCitas td { padding: 10px 12px; border-bottom: 1px solid #e8eaf0; text-align: left; white-space: nowrap; }
-.vista-consultar-cita #tablaCitas th { color: #344275; background: #f0f3ff; }
 @media (min-width: 800px) {
   .vista-consultar-cita .calendario-layout { flex-direction: row; align-items: flex-start; }
   .vista-consultar-cita .calendar-container { flex: 0 0 46%; }
@@ -272,11 +275,11 @@ body.vista-inicio-sesion {
 @media (max-width: 520px) {
   .vista-consultar-cita .consultar-cita-main { width: min(100% - 20px, 1100px); margin-top: 18px; }
   .vista-consultar-cita .consultar-cita-titulo { align-items: flex-start; flex-direction: column; }
-  .vista-consultar-cita .event-panel, .vista-consultar-cita .citas-registradas { padding: 16px; }
+  .vista-consultar-cita .event-panel { padding: 16px; }
   .vista-consultar-cita .event-date { font-size: 1.15rem; }
 }
 
-/* Ajustes de navegación, calendario y tabla de la vista Consultar citas */
+/* Ajustes de navegación y calendario de la vista Consultar citas */
 .vista-consultar-cita { padding: 0 0 36px; }
 .vista-consultar-cita .cita-navbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 6%; min-height: 62px; color: #fff; background: #1769aa; box-shadow: 0 3px 12px rgba(20, 45, 75, .15); }
 .vista-consultar-cita .cita-navbar-brand { color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: 700; white-space: nowrap; }
@@ -284,9 +287,9 @@ body.vista-inicio-sesion {
 .vista-consultar-cita .cita-navbar-links a { padding: 10px 12px; border-radius: 7px; color: rgba(255,255,255,.9); text-decoration: none; font-size: .95rem; }
 .vista-consultar-cita .cita-navbar-links a:hover, .vista-consultar-cita .cita-navbar-links a.activo { color: #fff; background: rgba(255,255,255,.17); }
 .vista-consultar-cita .consultar-cita-main { width: min(1120px, calc(100% - 40px)); margin: 34px auto; }
-.vista-consultar-cita .consultar-cita-titulo, .vista-consultar-cita .citas-registradas-heading { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+.vista-consultar-cita .consultar-cita-titulo { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
 .vista-consultar-cita .consultar-cita-eyebrow { margin: 0 0 5px; color: #65758b; font-size: .72rem; font-weight: 700; letter-spacing: .12em; }
-.vista-consultar-cita .consultar-cita-titulo h1, .vista-consultar-cita .citas-registradas h2 { margin: 0; color: #26364b; }
+.vista-consultar-cita .consultar-cita-titulo h1 { margin: 0; color: #26364b; }
 .vista-consultar-cita .consultar-cita-agregar { border-radius: 9px; background: #1769aa; }
 .vista-consultar-cita .consultar-cita-agregar:hover { color: #fff; background: #10568e; }
 .vista-consultar-cita .calendario-layout { gap: 22px; margin-top: 22px; }
@@ -299,14 +302,24 @@ body.vista-inicio-sesion {
 .vista-consultar-cita .day.selected { background: #6c5ce7; }
 .vista-consultar-cita .day.today.selected { background: #6c5ce7; box-shadow: inset 0 0 0 2px #1769aa; }
 .vista-consultar-cita .event-panel { min-height: 255px; }
-.vista-consultar-cita .event-text { display: flex; flex-direction: column; gap: 4px; }
-.vista-consultar-cita .event-text strong { color: #26364b; }
-.vista-consultar-cita .event-text small { color: #68778a; overflow-wrap: anywhere; }
-.vista-consultar-cita .citas-registradas { margin-top: 24px; border: 1px solid #e7ebf2; box-shadow: 0 8px 26px rgba(34, 54, 82, .07); }
-.vista-consultar-cita .citas-registradas h2 { font-size: 1.25rem; }
-.vista-consultar-cita #tablaCitas th { color: #344275; background: #f0f3ff; }
 .vista-consultar-cita .cita-cancelar-btn { padding: 7px 11px; border: 0; border-radius: 7px; color: #fff; background: #c94a58; cursor: pointer; }
 .vista-consultar-cita .cita-cancelar-btn:hover { background: #a93643; }
+.vista-consultar-cita .modal-agregar-cita { width: min(560px, calc(100% - 32px)); max-width: none; max-height: min(90vh, 760px); margin: auto; padding: 26px; overflow-y: auto; border: 1px solid #e0e6ef; border-radius: 16px; color: #26364b; background: #fff; box-shadow: 0 24px 70px rgba(18, 36, 60, .28); }
+.vista-consultar-cita .modal-agregar-cita::backdrop { background: rgba(18, 36, 60, .56); backdrop-filter: blur(2px); }
+.vista-consultar-cita .modal-agregar-cita-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid #e7ebf2; }
+.vista-consultar-cita .modal-agregar-cita-heading h2 { margin: 0; color: #26364b; font-size: 1.35rem; }
+.vista-consultar-cita .modal-cita-cerrar { width: 38px; min-height: 38px; padding: 0; border: 0; border-radius: 50%; color: #526174; background: #f0f3f7; cursor: pointer; font-size: 1.5rem; line-height: 1; }
+.vista-consultar-cita .formulario-agregar-cita { display: flex; flex-direction: column; gap: 16px; }
+.vista-consultar-cita .campo-agregar-cita { display: flex; flex-direction: column; gap: 6px; }
+.vista-consultar-cita .campo-agregar-cita label { color: #34465d; font-weight: 600; }
+.vista-consultar-cita .campo-agregar-cita input, .vista-consultar-cita .campo-agregar-cita select { width: 100%; min-height: 44px; margin: 0; padding: 9px 11px; border: 1px solid #cfd8e5; border-radius: 8px; color: #26364b; background: #fff; font: inherit; }
+.vista-consultar-cita .campo-agregar-cita input:focus, .vista-consultar-cita .campo-agregar-cita select:focus { border-color: #1769aa; outline: 3px solid rgba(23, 105, 170, .15); }
+.selector-horario-cita { border: 1px solid #cfd8e5; border-radius: 8px; color: #26364b; background: #fff; font: inherit; }
+.selector-horario-cita option:disabled { color: #a1aab7; background: #f0f2f5; }
+.horario-ayuda { display: block; margin-top: 6px; color: #68778a; font-size: .84rem; }
+.vista-consultar-cita .modal-agregar-cita-acciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.vista-consultar-cita .modal-cita-cancelar { padding: 8px 16px; border: 1px solid #ccd5e0; border-radius: 9px; color: #34465d; background: #fff; cursor: pointer; }
+.vista-consultar-cita .modal-cita-cancelar:hover { background: #f1f4f8; }
 @media (max-width: 720px) {
   .vista-consultar-cita .cita-navbar { align-items: flex-start; flex-direction: column; gap: 4px; padding: 12px 18px; }
   .vista-consultar-cita .cita-navbar-links { width: 100%; overflow-x: auto; }
@@ -320,7 +333,12 @@ body.vista-inicio-sesion {
   .vista-consultar-cita .calendar-header { padding-right: 54px; padding-left: 54px; }
   .vista-consultar-cita .month-year { font-size: 1.1rem; }
   .vista-consultar-cita .days { gap: 1px; padding: 8px; }
-  .vista-consultar-cita .event-panel, .vista-consultar-cita .citas-registradas { padding: 15px; }
+  .vista-consultar-cita .event-panel { padding: 15px; }
+}
+
+@media (max-width: 520px) {
+  .vista-consultar-cita .event-details { grid-template-columns: 1fr; padding-left: 16px; }
+  .vista-consultar-cita .modal-agregar-cita { padding: 20px; }
 }
 
 /* ==========================================================================

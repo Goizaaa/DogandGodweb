@@ -14,6 +14,33 @@ try {
     switch ($opc) {
         case "create":
         case "add":
+            $fecha = isset($_POST['fecha']) ? trim($_POST['fecha']) : '';
+            $hora = isset($_POST['hora']) ? trim($_POST['hora']) : '';
+            $fechaValida = DateTime::createFromFormat('!Y-m-d', $fecha);
+            $horariosAtencion = array();
+            for ($minutos = 9 * 60; $minutos <= 15 * 60 + 40; $minutos += 40) {
+                $horariosAtencion[] = sprintf('%02d:%02d', intdiv($minutos, 60), $minutos % 60);
+            }
+
+            if (!$fechaValida || $fechaValida->format('Y-m-d') !== $fecha || !in_array($hora, $horariosAtencion, true)) {
+                http_response_code(400);
+                echo json_encode(array(
+                    "success" => false,
+                    "message" => "Selecciona una fecha y un horario válido entre las 09:00 y las 15:40."
+                ));
+                break;
+            }
+
+            $citaExistente = $db->read("cita", "fecha = '$fecha' AND hora LIKE '$hora%'");
+            if ($citaExistente && count($citaExistente) > 0) {
+                http_response_code(409);
+                echo json_encode(array(
+                    "success" => false,
+                    "message" => "Ese horario ya está ocupado. Elige otro turno."
+                ));
+                break;
+            }
+
             // Generar autoincrementable C001, C002...
             $datos = $db->read("cita", "1 ORDER BY id_cita DESC LIMIT 1");
 
@@ -27,8 +54,8 @@ try {
 
             $res = $db->create("cita", array(
                 "id_cita"            => $nuevoId,
-                "fecha"              => $_POST['fecha'],
-                "hora"               => $_POST['hora'],
+                "fecha"              => $fecha,
+                "hora"               => $hora,
                 "procedimiento"      => $_POST['procedimiento'],
                 "correo_tutor"       => $_POST['correo_tutor'],
                 "correo_veterinario" => $_POST['correo_veterinario']
@@ -47,7 +74,24 @@ try {
             break;
 
         case "delete":
-            $id_cita = isset($_POST['id_cita']) ? $_POST['id_cita'] : '';
+            $id_cita = isset($_POST['id_cita']) ? trim($_POST['id_cita']) : '';
+            if ($id_cita === '' || !preg_match('/^[A-Za-z0-9_-]+$/', $id_cita)) {
+                echo json_encode(array(
+                    "success" => false,
+                    "message" => "El ID de la cita no es válido."
+                ));
+                break;
+            }
+
+            $existente = $db->read("cita", "id_cita = '$id_cita'");
+            if (!$existente || count($existente) === 0) {
+                echo json_encode(array(
+                    "success" => false,
+                    "message" => "La cita ya no existe o fue cancelada anteriormente."
+                ));
+                break;
+            }
+
             $res = $db->delete("cita", "id_cita = '$id_cita'");
 
             echo json_encode(array(
