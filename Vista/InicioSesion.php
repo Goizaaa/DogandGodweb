@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS del Formulario Signin -->
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-1">
 
     <script src="../Controlador/InicioSes.js?v=20261012-4"></script>
 </head>
@@ -24,11 +24,11 @@
 
     <section id="inicio" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" id="registro" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+            <form action="" id="registro" class="login-card">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 fw-normal">Inicio Sesión</h1>
 
-                <div class="form-floating" style="background-color: #8b8a8a;">
+                <div class="form-floating">
                     <input type="email" class="form-control" name="usuarioU" id="correoU" placeholder="nombre@ejemplo.com">
                     <label for="correoU">Ingresa tu correo</label>
                     
@@ -38,7 +38,7 @@
                     <input type="password" class="form-control" name="contraseñaU" id="contraU" placeholder="Contraseña">
                     <label for="contraU">Ingresa tu contraseña</label>
                     <div id="passwordHelpBlock" class="form-text">
-  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+  La contraseña debe tener entre 8 y 20 caracteres, incluir letras y números, y no tener espacios ni caracteres especiales o emojis.
 </div>
                 </div>
 
@@ -54,7 +54,7 @@
     <p>
         <a id="abrecrear" href="#abrecrear">¿No tienes cuenta?</a>
     </p>
-                 
+            </form>
         </main>
     </section>
 
@@ -62,8 +62,8 @@
 
 
     <section id="recuperar" class="w-100">
-        <main class="form-signin m-auto" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
-            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+        <main class="form-signin m-auto">
+            <form action="" class="login-card">
                 <h1 class="h3 mb-2 fw-normal">Recuperar de cuenta</h1>
                 <p class="text-muted mb-3">Ingresa tu correo de confirmación</p>
 
@@ -79,7 +79,7 @@
     <!-- Dos pasos -->
     <section id="dospasos" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+            <form action="" class="login-card">
                     <h3><img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt=""></h3>
                     <h1 class="h3 mb-2 fw-normal">Confirmacion de dos pasos</h1>
                     <p class="text-muted mb-3">Ingresa el codigo de dos pasos para confirmar que eres tu</p>
@@ -94,7 +94,7 @@
 <!-- Restablecer -->
     <section id="restablecer" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+            <form action="" class="login-card">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-2 fw-normal">Restablecer contraseña</h1>
                 <p class="text-muted mb-3">Ingresa tu nueva contraseña</p>
@@ -116,8 +116,8 @@
 
 <!-- crear cuenta -->
     <section id="crear" class="w-100">
-        <main class="form-signin m-auto" style="max-width: 440px;">
-            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+        <main class="form-signin m-auto">
+            <form action="" class="login-card">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-2 fw-normal">Crea tu cuenta</h1>
                 <p class="text-muted mb-3">Ingresa tus datos para registrarte</p>
@@ -163,5 +163,3 @@
 
 </body>
 </html>
-
-

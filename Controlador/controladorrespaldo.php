@@ -14,10 +14,10 @@ class controladorrespaldo {
         
         if ($ruta && file_exists($ruta)) {
             // Solo mostrar alerta y redirigir. NADA de header('Content-Type...')
-            echo '<script>alert("Respaldo guardado en el escritorio (carpeta RespaldoVeterinaria)."); window.location.href = "../Vista/HomeVet.html";</script>';
+            echo '<script>alert("Respaldo guardado en el escritorio (carpeta RespaldoVeterinaria)."); window.location.href = "../Vista/HomeVet.php";</script>';
             exit;
         } else {
-            echo '<script>alert("Error al generar respaldo. Revisa la ruta de mysqldump."); window.location.href = "../Vista/respaldo.html";</script>';
+            echo '<script>alert("Error al generar respaldo. Revisa la ruta de mysqldump."); window.location.href = "../Vista/HomeVet.php";</script>';
             exit;
         }
     }

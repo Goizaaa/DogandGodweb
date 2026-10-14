@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en" class="h-100">
+<html lang="es" class="h-100">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +34,7 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="../css/CssGlobal.css?v=20261012-4" rel="stylesheet">
+    <link href="../css/CssGlobal.css?v=20261014-1" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark" id="recibidor">
     
@@ -45,7 +45,7 @@
     <h1>Entra a Dog & God</h1>
     <p class="lead">Descubre la mejor experiencia para ti y tu mascota.</p>
     <p class="lead">
-      <a href="InicioSesion.php" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Entrar</a>
+      <a href="InicioSesion.php" class="btn btn-lg btn-secondary fw-bold">Entrar</a>
     </p>
   </main>
 
@@ -58,6 +58,4 @@
     
   </body>
 </html>
-
-
 

@@ -2,18 +2,18 @@
    1. INICIO DE SESIÓN (Fusión de InicioSesion.css y signin.css)
    ========================================================================== */
 body.vista-inicio-sesion {
-  display: block;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  min-height: 100vh;
+  height: auto;
+  padding: 24px 16px;
   background-color: #f5f5f5;
-  background-image: url('../recursos/homeweb.png');
+  background-image: linear-gradient(135deg, rgba(11, 48, 72, .58), rgba(10, 116, 134, .42)), url('../recursos/homeweb.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100vh;
   margin: 0;
 }
 
@@ -23,13 +23,74 @@ body.vista-inicio-sesion {
 /* 1. Centramos simétricamente TODO el contenedor (Logos, Títulos, Botones, Links) */
 .vista-inicio-sesion .form-signin { 
   width: 100%; 
-  max-width: 330px; 
-  padding: 15px; 
+  max-width: 440px;
+  padding: 0;
   margin: auto; 
   text-align: center; 
 }
 .vista-inicio-sesion #crear .form-signin { 
-  max-width: 440px; 
+  max-width: 520px;
+}
+.vista-inicio-sesion .login-card {
+  width: 100%;
+  padding: clamp(24px, 5vw, 38px);
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .95);
+  box-shadow: 0 20px 55px rgba(8, 35, 54, .28);
+  color: #20394d;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.vista-inicio-sesion .login-card > img {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 8px rgba(18, 86, 105, .2));
+}
+.vista-inicio-sesion .login-card h1 {
+  color: #173d55;
+  font-size: clamp(1.55rem, 4vw, 1.9rem);
+  font-weight: 700;
+}
+.vista-inicio-sesion .login-card p,
+.vista-inicio-sesion .login-card .form-text {
+  color: #5b6d7b !important;
+}
+.vista-inicio-sesion .login-card .form-control {
+  min-height: 52px;
+  border-color: #d1dce4;
+  background-color: #fff;
+}
+.vista-inicio-sesion .login-card .form-control:focus {
+  border-color: #168aa0;
+  box-shadow: 0 0 0 .2rem rgba(22, 138, 160, .18);
+}
+.vista-inicio-sesion .login-card .btn-primary {
+  margin-top: 8px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--dg-btn-primary), var(--dg-btn-secondary));
+  box-shadow: 0 10px 20px var(--dg-btn-shadow);
+  font-weight: 700;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.vista-inicio-sesion .login-card .btn-primary:hover,
+.vista-inicio-sesion .login-card .btn-primary:focus {
+  background: linear-gradient(135deg, var(--dg-btn-hover), #5448d6);
+  box-shadow: 0 14px 26px rgba(74, 107, 223, .3);
+  transform: translateY(-1px);
+}
+.vista-inicio-sesion .login-card a {
+  color: var(--dg-btn-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.vista-inicio-sesion .login-card a:hover,
+.vista-inicio-sesion .login-card a:focus {
+  color: var(--dg-btn-hover);
+  text-decoration: underline;
 }
 .vista-inicio-sesion .form-floating { 
   text-align: left; 
@@ -138,23 +199,64 @@ body.vista-inicio-sesion {
    ========================================================================== */
 
 #recibidor {
-
-  background-image: url('../recursos/fondrec.jpg'); 
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, .42), rgba(0, 0, 0, .42)), url('../recursos/fondrec.jpg');
   background-size: cover;          
   background-position: center;     
   background-repeat: no-repeat;    
   background-attachment: fixed;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .9);
+  box-shadow: inset 0 0 7rem rgba(0, 0, 0, .72);
 }
 #recibidor .btn-secondary,
 #recibidor .btn-secondary:hover,
 #recibidor .btn-secondary:focus {
-  color: #333;
+  color: #fff;
   text-shadow: none;
 }
 #recibidor .cover-container {
   max-width: 42em;
+  min-height: 100vh;
+}
+#recibidor main {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#recibidor h1 {
+  color: #fff;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, .95);
+}
+#recibidor .lead {
+  color: #fff;
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .95);
+}
+#recibidor .btn-secondary {
+  padding: .7rem 2rem;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, #087f96, #075e78);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+  font-size: 1.2rem;
+  transition: background-color .2s ease, transform .2s ease;
+}
+#recibidor .btn-secondary:hover,
+#recibidor .btn-secondary:focus {
+  color: #fff;
+  background: linear-gradient(135deg, #06677a, #064c64);
+  transform: translateY(-2px);
+}
+#recibidor footer {
+  color: rgba(255, 255, 255, .9) !important;
 }
 #recibidor .nav-masthead .nav-link {
   padding: .25rem 0;
@@ -175,6 +277,28 @@ body.vista-inicio-sesion {
   color: #fff;
   border-bottom-color: #fff;
 }
+
+.vista-carrousel #myCarousel {
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(19, 39, 65, .2);
+}
+.vista-carrousel #myCarousel .carousel-item > img {
+  filter: brightness(.68);
+}
+.vista-carrousel #myCarousel .carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, .95), 0 0 14px rgba(0, 0, 0, .8);
+}
+.vista-carrousel #myCarousel .carousel-caption h1,
+.vista-carrousel #myCarousel .carousel-caption p {
+  color: #fff;
+  background: transparent;
+  text-shadow: inherit;
+}
+
 /* ==========================================================================
    7. CONSULTAR CITAS (calendario)
    ========================================================================== */

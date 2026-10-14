@@ -66,7 +66,7 @@
         line-height: 1;
         letter-spacing: -.05rem;
       }
-      @media (min-width: 40em) {
+      @media (min-width: 60em) {
         .carousel-caption p {
           margin-bottom: 1.25rem;
           font-size: 1.25rem;
@@ -82,7 +82,7 @@
         }
       }
     </style>
-      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-2">
 </head>
   <body class="vista-carrousel">
     
@@ -104,9 +104,9 @@
         <img src="../recursos/citbann.png" alt="Expediente" width="800" height="800">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1 style="color: black; background-color: rgba(121, 104, 104, 0.29);">Citas para hoy.</h1>
-            <p style="color: black; background-color: rgba(121, 104, 104, 0.29);">Revisa tus citas programadas para el día de hoy.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Entrar</a></p>
+            <h1>Citas para hoy.</h1>
+            <p>Revisa tus citas programadas para el día de hoy.</p>
+            <p><a class="btn btn-lg btn-primary" href="ConsultarCitaV.php">Entrar</a></p>
           </div>
         </div>
       </div>
@@ -129,7 +129,7 @@
             
             <h1>Expedientes</h1>
             <p>Aqui consulta los expedientes de tus pacientes.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Explorar</a></p>
+            <p><a class="btn btn-lg btn-primary" href="consultarhis.php">Explorar</a></p>
           </div>
         </div>
       </div>
@@ -158,7 +158,29 @@
       </div>
       
       <div class="my-3">
-        <button class="btn btn-outline-dark" onclick="location.href='respaldo.php'">respaldo</button>
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#modal-respaldo">
+          Respaldo
+        </button>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-respaldo" tabindex="-1" aria-labelledby="titulo-modal-respaldo" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="titulo-modal-respaldo">Gestión de base de datos</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-0">Genera una copia de seguridad actual de la base de datos. El archivo se guardará en la carpeta RespaldoVeterinaria de tu escritorio.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <form action="../Controlador/controladorrespaldo.php" method="POST">
+              <button type="submit" class="btn btn-primary">Generar respaldo</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -168,41 +190,41 @@
         <img class="rounded-circle" src="../recursos/icon1.jpg" alt="Inventario" width="140" height="140" style="object-fit: cover;">
         <h2>Inventario</h2>
         <p>Revisa en cada instante como esta tu inventario.</p>
-        <p><a class="btn btn-secondary" href="actualizar_inventario.php">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="actualizarInv.php">ir a Inventario &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <img class="rounded-circle" src="../recursos/icon2.jpg" alt="Tutores" width="140" height="140" style="object-fit: cover;">
         <h2>Tutores</h2>
         <p>Administra la información de los tutores de tus pequeños pacientes.</p>
-        <p><a class="btn btn-secondary" href="Usuarios.php">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="consultartutores.php">ir a Tutores &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <img class="rounded-circle" src="../recursos/icon3.jpg" alt="Mascota" width="140" height="140" style="object-fit: cover;">
 
         <h2>Mascota</h2>
         <p>Administra la información de tus pequeños pacientes.</p>
-        <p><a class="btn btn-secondary" href="Mascota.php">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="Mascota.php">ir a Mascota &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <img class="rounded-circle" src="../recursos/icon4.jpg" alt="Expedientes" width="140" height="140" style="object-fit: cover;">
 
         <h2>Expedientes</h2>
         <p>Puedes gestionar los expedientes de tus pacientes de manera eficiente.</p>
-        <p><a class="btn btn-secondary" href="consultarhis.php">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="consultarhis.php">ir a Consultar Historial &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <img class="rounded-circle" src="../recursos/icon5.jpg" alt="Registrar Cita" width="140" height="140" style="object-fit: cover;">
 
-        <h2>Registrar Cita</h2>
+        <h2>Consultar Citas</h2>
         <p>Revisa cuando tienes que ver a tus pacientes.</p>
-        <p><a class="btn btn-secondary" href="ConsultarCitaV.php">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="ConsultarCitaV.php">ir a Consultar Cita &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <img class="rounded-circle" src="../recursos/icon6.jpg" alt="Buscar Historial" width="140" height="140" style="object-fit: cover;">
 
         <h2>Buscar Historial</h2>
         <p>Busca y consulta el historial médico de tus pacientes.</p>
-        <p><a class="btn btn-secondary" href="buscarhist.php">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="buscarhist.php">ir a Buscar Historial &raquo;</a></p>
       </div>
     </div>
 
