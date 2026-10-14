@@ -34,7 +34,7 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="../css/CssGlobal.css?v=20261014-1" rel="stylesheet">
+    <link href="../css/CssGlobal.css?v=20261012-4" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark" id="recibidor">
     

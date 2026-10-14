@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS del Formulario Signin -->
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-1">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 
     <script src="../Controlador/InicioSes.js?v=20261012-4"></script>
 </head>
@@ -24,11 +24,11 @@
 
     <section id="inicio" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" id="registro" class="login-card">
+            <form action="" id="registro" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 fw-normal">Inicio Sesión</h1>
 
-                <div class="form-floating">
+                <div class="form-floating" style="background-color: #8b8a8a;">
                     <input type="email" class="form-control" name="usuarioU" id="correoU" placeholder="nombre@ejemplo.com">
                     <label for="correoU">Ingresa tu correo</label>
                     
@@ -62,8 +62,8 @@
 
 
     <section id="recuperar" class="w-100">
-        <main class="form-signin m-auto">
-            <form action="" class="login-card">
+        <main class="form-signin m-auto" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <h1 class="h3 mb-2 fw-normal">Recuperar de cuenta</h1>
                 <p class="text-muted mb-3">Ingresa tu correo de confirmación</p>
 
@@ -79,7 +79,7 @@
     <!-- Dos pasos -->
     <section id="dospasos" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" class="login-card">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                     <h3><img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt=""></h3>
                     <h1 class="h3 mb-2 fw-normal">Confirmacion de dos pasos</h1>
                     <p class="text-muted mb-3">Ingresa el codigo de dos pasos para confirmar que eres tu</p>
@@ -94,7 +94,7 @@
 <!-- Restablecer -->
     <section id="restablecer" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" class="login-card">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-2 fw-normal">Restablecer contraseña</h1>
                 <p class="text-muted mb-3">Ingresa tu nueva contraseña</p>
@@ -116,8 +116,8 @@
 
 <!-- crear cuenta -->
     <section id="crear" class="w-100">
-        <main class="form-signin m-auto">
-            <form action="" class="login-card">
+        <main class="form-signin m-auto" style="max-width: 440px;">
+            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-2 fw-normal">Crea tu cuenta</h1>
                 <p class="text-muted mb-3">Ingresa tus datos para registrarte</p>

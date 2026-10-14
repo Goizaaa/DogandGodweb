@@ -1,14 +1,13 @@
 ﻿<!DOCTYPE html> 
-<html lang="en"> 
+<html lang="es">
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Registrar Expediente</title> 
-    <link rel="stylesheet" href="../vista/modificar.css"> 
     <script src="../controlador/cntrolRegistrar.js"></script> 
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
 </head> 
-<body> 
+<body class="vista-formularios">
 <header>
     <?php include_once("include/header.php") ?>
 </header>

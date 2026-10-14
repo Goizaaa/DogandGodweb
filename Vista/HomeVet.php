@@ -66,7 +66,7 @@
         line-height: 1;
         letter-spacing: -.05rem;
       }
-      @media (min-width: 60em) {
+      @media (min-width: 40em) {
         .carousel-caption p {
           margin-bottom: 1.25rem;
           font-size: 1.25rem;
@@ -82,9 +82,9 @@
         }
       }
     </style>
-      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-2">
+      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
 </head>
-  <body class="vista-carrousel">
+  <body class="vista-carousel">
     
 <header>
     <!-- Encabezado Dog&God -->
@@ -104,9 +104,9 @@
         <img src="../recursos/citbann.png" alt="Expediente" width="800" height="800">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Citas para hoy.</h1>
-            <p>Revisa tus citas programadas para el día de hoy.</p>
-            <p><a class="btn btn-lg btn-primary" href="ConsultarCitaV.php">Entrar</a></p>
+            <h1 style="color: black; background-color: rgba(121, 104, 104, 0.29);">Citas para hoy.</h1>
+            <p style="color: black; background-color: rgba(121, 104, 104, 0.29);">Revisa tus citas programadas para el día de hoy.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Entrar</a></p>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
 
    
     <div class="text-center mb-5">
-      <h2 style="border: 2px solid black; padding: 10px;">
+      <h2 class="home-titulo">
         Hola Veterinario
       </h2>
       <div class="my-3">
@@ -187,40 +187,40 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon1.jpg" alt="Inventario" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon1.jpg" alt="Inventario" width="140" height="140">
         <h2>Inventario</h2>
         <p>Revisa en cada instante como esta tu inventario.</p>
         <p><a class="btn btn-secondary" href="actualizarInv.php">ir a Inventario &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon2.jpg" alt="Tutores" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon2.jpg" alt="Tutores" width="140" height="140">
         <h2>Tutores</h2>
         <p>Administra la información de los tutores de tus pequeños pacientes.</p>
         <p><a class="btn btn-secondary" href="consultartutores.php">ir a Tutores &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon3.jpg" alt="Mascota" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon3.jpg" alt="Mascota" width="140" height="140">
 
         <h2>Mascota</h2>
         <p>Administra la información de tus pequeños pacientes.</p>
         <p><a class="btn btn-secondary" href="Mascota.php">ir a Mascota &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon4.jpg" alt="Expedientes" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon4.jpg" alt="Expedientes" width="140" height="140">
 
         <h2>Expedientes</h2>
         <p>Puedes gestionar los expedientes de tus pacientes de manera eficiente.</p>
         <p><a class="btn btn-secondary" href="consultarhis.php">ir a Consultar Historial &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon5.jpg" alt="Registrar Cita" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon5.jpg" alt="Registrar Cita" width="140" height="140">
 
         <h2>Consultar Citas</h2>
         <p>Revisa cuando tienes que ver a tus pacientes.</p>
         <p><a class="btn btn-secondary" href="ConsultarCitaV.php">ir a Consultar Cita &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon6.jpg" alt="Buscar Historial" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon6.jpg" alt="Buscar Historial" width="140" height="140">
 
         <h2>Buscar Historial</h2>
         <p>Busca y consulta el historial médico de tus pacientes.</p>
