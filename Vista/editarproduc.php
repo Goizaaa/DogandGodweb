@@ -1,15 +1,12 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
-    <link rel="stylesheet" href="../css/Inventario.css">
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
 </head>
-
-
-
+<body class="vista-inventario">
 <header>
     
         <!--encabezado-->
@@ -18,6 +15,7 @@
 
     </header>
 
+    <main class="producto-edicion">
     <form action="" id="AgregarProducto" class="AgregarProducto">
         <label for="NewProducto"> Nombre del producto: </label>
         <input type="text" name="NewProducto" id="NewProducto">
@@ -58,11 +56,6 @@
 
 
 
-<footer>
-    <p> </p>
-</footer>
-
-<body>
-    
+    </main>
 </body>
 </html>

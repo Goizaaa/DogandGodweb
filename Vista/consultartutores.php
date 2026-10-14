@@ -6,8 +6,9 @@
 
     <title>Consultar Tutores</title>
     <script src="../Controlador/cntrolTutor.js" defer></script>
+    <script src="../Controlador/cntrolRelacion.js?v=20261014-1" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261013-7">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
 </head>
 <body class="vista-tablas">
 
@@ -28,7 +29,7 @@
             </div>
             <div class="tabla-pagina-acciones">
                 <a class="btn-nuevo" href="registrartutor.php">+ Nuevo tutor</a>
-                <a class="btn-nuevo btn-secundario" href="asignarTutor.php">Relacionar mascota con tutor</a>
+                <button class="btn-nuevo btn-secundario" id="abrir-modal-relacion" type="button">Relacionar mascota con tutor</button>
             </div>
         </section>
         <div class="tabla-contenedor">
@@ -50,5 +51,35 @@
             </table>
         </div>
     </main>
+
+    <dialog class="tabla-modal" id="modal-relacion-tutor" aria-labelledby="titulo-modal-relacion">
+        <div class="tabla-modal-cabecera">
+            <div>
+                <p class="tabla-pagina-eyebrow">RELACIONES</p>
+                <h2 id="titulo-modal-relacion">Relacionar mascota con tutor</h2>
+                <p>Selecciona una mascota sin tutor y asígnale una persona responsable.</p>
+            </div>
+            <button class="tabla-modal-cerrar" id="cerrar-modal-relacion" type="button" aria-label="Cerrar ventana">&times;</button>
+        </div>
+        <div class="tabla-modal-cuerpo">
+            <div class="tabla-modal-campo">
+                <label for="selectMascota">Mascota sin tutor</label>
+                <select id="selectMascota" required>
+                    <option value="">Cargando mascotas...</option>
+                </select>
+            </div>
+            <div class="tabla-modal-campo">
+                <label for="selectTutor">Tutor</label>
+                <select id="selectTutor" required>
+                    <option value="">Cargando tutores...</option>
+                </select>
+            </div>
+            <div id="mensaje" class="tabla-modal-mensaje" role="status" aria-live="polite"></div>
+            <div class="tabla-modal-acciones">
+                <button id="btnAsignar" type="button">Asignar tutor</button>
+                <button class="tabla-modal-secundario" id="cancelar-modal-relacion" type="button">Cerrar</button>
+            </div>
+        </div>
+    </dialog>
 </body>
 </html>

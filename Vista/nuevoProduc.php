@@ -1,11 +1,10 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
-    <link rel="stylesheet" href="../css/Inventario.css">
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
 </head>
 <body class="vista-inventario">
 

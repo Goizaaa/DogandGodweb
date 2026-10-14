@@ -13,78 +13,9 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .carousel {
-        margin-bottom: 4rem;
-      }
-      .carousel-caption {
-        bottom: 3rem;
-        z-index: 10;
-      }
-      .carousel-item {
-        height: 36rem;
-        background-color: #777;
-      }
-      .carousel-item > img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        height: 36rem;
-        object-fit: cover;
-      }
-      .marketing .col-lg-4 {
-        margin-bottom: 1.5rem;
-        text-align: center;
-      }
-      .marketing h2 {
-        font-weight: 400;
-      }
-      .marketing .col-lg-4 p {
-        margin-right: .75rem;
-        margin-left: .75rem;
-      }
-      .featurette-divider {
-        margin: 5rem 0;
-      }
-      .featurette-heading {
-        font-weight: 300;
-        line-height: 1;
-        letter-spacing: -.05rem;
-      }
-      @media (min-width: 40em) {
-        .carousel-caption p {
-          margin-bottom: 1.25rem;
-          font-size: 1.25rem;
-          line-height: 1.4;
-        }
-        .featurette-heading {
-          font-size: 50px;
-        }
-      }
-      @media (min-width: 62em) {
-        .featurette-heading {
-          margin-top: 7rem;
-        }
-      }
-    </style>
-      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
 </head>
-  <body class="vista-carrousel">
+  <body class="vista-carousel">
     
 <header>
     <!-- Encabezado Dog&God -->
@@ -104,8 +35,8 @@
         <img src="../recursos/citbann.png" alt="Expediente" width="800" height="800">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1 style="color: black; background-color: rgba(121, 104, 104, 0.29);">Citas para hoy.</h1>
-            <p style="color: black; background-color: rgba(121, 104, 104, 0.29);">Revisa tus citas programadas para el día de hoy.</p>
+            <h1 class="carousel-aviso">Citas para hoy.</h1>
+            <p class="carousel-aviso">Revisa tus citas programadas para el día de hoy.</p>
             <p><a class="btn btn-lg btn-primary" href="#">Entrar</a></p>
           </div>
         </div>
@@ -150,7 +81,7 @@
 
    
     <div class="text-center mb-5">
-      <h2 style="border: 2px solid black; padding: 10px;">
+      <h2 class="home-titulo">
         Hola Veterinario
       </h2>
       <div class="my-3">
@@ -165,40 +96,40 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon1.jpg" alt="Inventario" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon1.jpg" alt="Inventario" width="140" height="140">
         <h2>Inventario</h2>
         <p>Revisa en cada instante como esta tu inventario.</p>
         <p><a class="btn btn-secondary" href="actualizar_inventario.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon2.jpg" alt="Tutores" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon2.jpg" alt="Tutores" width="140" height="140">
         <h2>Tutores</h2>
         <p>Administra la información de los tutores de tus pequeños pacientes.</p>
         <p><a class="btn btn-secondary" href="Usuarios.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon3.jpg" alt="Mascota" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon3.jpg" alt="Mascota" width="140" height="140">
 
         <h2>Mascota</h2>
         <p>Administra la información de tus pequeños pacientes.</p>
         <p><a class="btn btn-secondary" href="Mascota.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon4.jpg" alt="Expedientes" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon4.jpg" alt="Expedientes" width="140" height="140">
 
         <h2>Expedientes</h2>
         <p>Puedes gestionar los expedientes de tus pacientes de manera eficiente.</p>
         <p><a class="btn btn-secondary" href="consultarhis.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon5.jpg" alt="Registrar Cita" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon5.jpg" alt="Registrar Cita" width="140" height="140">
 
         <h2>Registrar Cita</h2>
         <p>Revisa cuando tienes que ver a tus pacientes.</p>
         <p><a class="btn btn-secondary" href="ConsultarCitaV.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
-        <img class="rounded-circle" src="../recursos/icon6.jpg" alt="Buscar Historial" width="140" height="140" style="object-fit: cover;">
+        <img class="rounded-circle icono-home" src="../recursos/icon6.jpg" alt="Buscar Historial" width="140" height="140">
 
         <h2>Buscar Historial</h2>
         <p>Busca y consulta el historial médico de tus pacientes.</p>

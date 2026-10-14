@@ -1,5 +1,5 @@
 ﻿/* ==========================================================================
-   1. INICIO DE SESIÓN (Fusión de InicioSesion.css y signin.css)
+   1. INICIO DE SESIÓN
    ========================================================================== */
 body.vista-inicio-sesion {
   display: block;
@@ -28,6 +28,10 @@ body.vista-inicio-sesion {
   margin: auto; 
   text-align: center; 
 }
+.vista-inicio-sesion .form-signin-registro { max-width: 440px; }
+.vista-inicio-sesion .panel-translucido { padding: 30px; border-radius: 20px; background: rgba(139, 138, 138, .44); }
+.vista-inicio-sesion .panel-autenticacion { padding: 30px; border-radius: 20px; background: rgba(139, 138, 138, .44); }
+.vista-inicio-sesion .campo-principal { background: #8b8a8a; }
 .vista-inicio-sesion #crear .form-signin { 
   max-width: 440px; 
 }
@@ -52,7 +56,7 @@ body.vista-inicio-sesion {
 
 
 /* ==========================================================================
-   2. INVENTARIO (Inventario.css)
+   2. INVENTARIO
    ========================================================================== */
 .vista-inventario button { background-color: #DCF6F4; color: #0CA7DA; border: none; padding: 10px 40px; border-radius: 25px; cursor: pointer; transition: background-color 0.3s ease; height: 80px; font-size: 20px; margin-top: 30px; font-weight: bold; }
 .vista-inventario .botones-inventario { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
@@ -74,7 +78,7 @@ body.vista-inicio-sesion {
 .vista-inventario .input-moneda input[type="number"]::-webkit-outer-spin-button, .vista-inventario .input-moneda input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
 /* ==========================================================================
-   3. BUSCAR CITA (BuscarCita.css)
+   3. BUSCAR CITA
    ========================================================================== */
 .vista-buscar-cita { background-color: #EFF3FF; }
 .vista-buscar-cita h1 { text-align: center; background-color: #0ca4d4; padding: 3%; }
@@ -83,7 +87,7 @@ body.vista-inicio-sesion {
 .vista-buscar-cita form { padding: 22px; }
 
 /* ==========================================================================
-   4. CANCELAR Y CON CITA (CancelarC.css y ConCita.css - fondo blanco)
+   4. CANCELAR Y CON CITA
    ========================================================================== */
 .vista-blanca-cita { background-color: #EFF3FF; }
 .vista-blanca-cita h1 { text-align: center; background-color: #0ca4d4; padding: 3%; }
@@ -97,7 +101,7 @@ body.vista-inicio-sesion {
 .vista-blanca-cita #eliminacion { display: inline-block; width: 45%; vertical-align: top; background-color: #FFFFFF; padding: 40px; border-radius: 20px; }
 
 /* ==========================================================================
-   5. VETERINARIO (CancelCitaVet.css y RegistrarConVet.css - fondo morado)
+   5. VETERINARIO
    ========================================================================== */
 .vista-morada-vet { background-color: #EFF3FF; }
 .vista-morada-vet h1 { text-align: center; background-color: #0ca4d4; padding: 3%; }
@@ -111,14 +115,15 @@ body.vista-inicio-sesion {
 .vista-morada-vet #eliminacion { display: inline-block; width: 45%; vertical-align: top; background-color: #FFFFFF; padding: 40px; border-radius: 20px; }
 
 /* ==========================================================================
-   6. CAROUSEL (carousel.css y carousel.rtl.css)
+   6. CAROUSEL
    ========================================================================== */
 .vista-carousel { padding-top: 3rem; padding-bottom: 3rem; color: #5a5a5a; }
 .vista-carousel .carousel { margin-bottom: 4rem; }
 .vista-carousel .carousel-caption { bottom: 3rem; z-index: 10; }
-.vista-carousel .carousel-item { height: 32rem; }
-.vista-carousel .carousel-item > img { position: absolute; top: 0; left: 0; min-width: 100%; height: 32rem; }
+.vista-carousel .carousel-item { height: 36rem; background-color: #777; }
+.vista-carousel .carousel-item > img { position: absolute; top: 0; left: 0; min-width: 100%; height: 36rem; object-fit: cover; }
 .vista-carousel.rtl .carousel-item > img { left: auto; right: 0; }
+.vista-carousel .bd-placeholder-img { font-size: 1.125rem; text-anchor: middle; user-select: none; }
 .vista-carousel .marketing .col-lg-4 { margin-bottom: 1.5rem; text-align: center; }
 .vista-carousel .marketing h2 { font-weight: 400; }
 .vista-carousel .marketing .col-lg-4 p { margin-right: .75rem; margin-left: .75rem; }
@@ -132,9 +137,15 @@ body.vista-inicio-sesion {
 @media (min-width: 62em) {
   .vista-carousel .featurette-heading { margin-top: 7rem; }
 }
+.vista-carousel .carousel-aviso { color: #111; background: rgba(121, 104, 104, .29); }
+.vista-carousel .home-titulo { padding: 10px; border: 2px solid #26364b; border-radius: 10px; }
+.vista-carousel .icono-home { object-fit: cover; }
+@media (min-width: 768px) {
+  .vista-carousel .bd-placeholder-img-lg { font-size: 3.5rem; }
+}
 
 /* ==========================================================================
-   6. Recibidor (InicioSesion)
+   7. RECIBIDOR
    ========================================================================== */
 
 #recibidor {
@@ -156,6 +167,8 @@ body.vista-inicio-sesion {
 #recibidor .cover-container {
   max-width: 42em;
 }
+#recibidor .bd-placeholder-img { font-size: 1.125rem; text-anchor: middle; user-select: none; }
+@media (min-width: 768px) { #recibidor .bd-placeholder-img-lg { font-size: 3.5rem; } }
 #recibidor .nav-masthead .nav-link {
   padding: .25rem 0;
   font-weight: 700;
@@ -466,6 +479,40 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 .vista-tablas .btn-nuevo:hover { color: #fff; box-shadow: 0 10px 20px rgba(23, 105, 170, .25); transform: translateY(-1px); }
 .vista-tablas .btn-nuevo.btn-secundario { border-color: #cbd9e8; color: #36536e; background: #fff; box-shadow: none; }
 .vista-tablas .btn-nuevo.btn-secundario:hover { color: #1769aa; background: #f3f8fc; }
+.vista-tablas button.btn-nuevo { box-shadow: none; font: inherit; }
+.vista-tablas button.btn-nuevo:hover { color: #1769aa; border-color: #cbd9e8; background: #f3f8fc; box-shadow: none; transform: translateY(-1px); }
+.tabla-modal {
+  width: min(540px, calc(100% - 28px));
+  max-width: none;
+  max-height: min(90vh, 720px);
+  margin: auto;
+  padding: 26px;
+  overflow-y: auto;
+  border: 1px solid #e0e8f0;
+  border-radius: 18px;
+  color: #26364b;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(18, 36, 60, .28);
+}
+.tabla-modal::backdrop { background: rgba(23, 46, 72, .56); backdrop-filter: blur(2px); }
+.tabla-modal-cabecera { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; padding-bottom: 18px; border-bottom: 1px solid #e5edf4; }
+.tabla-modal-cabecera h2 { margin: 0; color: #203b5b; font-size: 1.35rem; }
+.tabla-modal-cabecera p:not(.tabla-pagina-eyebrow) { margin: 7px 0 0; color: #687b8f; line-height: 1.5; }
+.tabla-modal-cerrar { width: 38px; min-width: 38px; min-height: 38px; padding: 0; border: 0; border-radius: 50%; color: #526174; background: #f0f4f8; box-shadow: none; font-size: 1.5rem; line-height: 1; }
+.tabla-modal-cerrar:hover { color: #26364b; background: #e4ebf2; box-shadow: none; transform: none; }
+.tabla-modal-cuerpo { display: grid; gap: 17px; padding-top: 20px; }
+.tabla-modal-campo { display: grid; gap: 7px; }
+.tabla-modal-campo label { color: #40566d; font-size: .9rem; font-weight: 700; }
+.tabla-modal-campo select { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
+.tabla-modal-campo select:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
+.tabla-modal-mensaje { display: none; padding: 11px 13px; border-radius: 9px; color: #8c3942; background: #fff0f1; font-size: .9rem; }
+.tabla-modal-mensaje:not(:empty) { display: block; }
+.tabla-modal-mensaje.es-exito { color: #216747; background: #eaf8f0; }
+.tabla-modal-acciones { display: flex; justify-content: flex-end; gap: 10px; padding-top: 3px; }
+.tabla-modal .tabla-modal-secundario { border: 1px solid #d3deea; color: #42566b; background: #f3f6f9; box-shadow: none; }
+.tabla-modal .tabla-modal-secundario:hover { color: #26364b; background: #e8eef4; box-shadow: none; transform: none; }
+.modal-formulario { width: min(480px, calc(100% - 28px)); max-width: none; padding: 24px; border: 1px solid #dce5ee; border-radius: 14px; color: #26364b; background: #fff; box-shadow: 0 20px 60px rgba(18, 36, 60, .25); text-align: center; }
+.modal-formulario::backdrop { background: rgba(23, 46, 72, .52); backdrop-filter: blur(2px); }
 .tabla-contenedor {
   width: 100%;
   overflow: auto;
@@ -610,4 +657,71 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 @media (max-width: 560px) {
   .tabla-paginacion { align-items: flex-start; flex-direction: column; }
   .tabla-paginacion-controles { width: 100%; justify-content: space-between; }
+  .tabla-modal { padding: 21px; }
+  .tabla-modal-acciones { justify-content: stretch; flex-direction: column; }
+}
+
+/* Formularios y vistas heredadas, ahora centralizadas y limitadas a su página */
+.vista-formularios {
+  min-height: 100vh;
+  color: #26364b;
+  background: linear-gradient(145deg, #f3f7fc 0%, #eaf1f8 55%, #f7f9fc 100%);
+}
+.vista-formularios main {
+  display: flex;
+  width: min(1160px, calc(100% - 40px));
+  align-items: flex-start;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 30px auto 48px;
+}
+.vista-formularios main > aside { flex: 0 0 220px; width: auto; padding: 18px; border-radius: 14px; background: #fff; box-shadow: 0 10px 25px rgba(34, 69, 105, .08); }
+.vista-formularios main > section { flex: 1 1 440px; width: auto; max-width: 780px; margin: 0; padding: 25px; border: 1px solid #e3ebf3; border-radius: 16px; background: #fff; box-shadow: 0 12px 30px rgba(34, 69, 105, .08); }
+.vista-formularios main > section h2 { margin: 0 0 18px; padding: 0; border: 0; color: #203b5b; background: transparent; text-align: left; }
+.vista-formularios .register-form,
+.vista-formularios form#modificar {
+  display: grid;
+  width: min(680px, 100%);
+  flex: 1 1 440px;
+  gap: 12px;
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid #e3ebf3;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(34, 69, 105, .08);
+}
+.vista-formularios form#modificar { flex-basis: 600px; }
+.vista-formularios .register-form label,
+.vista-formularios form#modificar label { margin: 0; color: #40566d; font-size: .9rem; font-weight: 700; }
+.vista-formularios input:not([type="hidden"]),
+.vista-formularios select,
+.vista-formularios textarea {
+  width: 100%;
+  min-height: 42px;
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid #cedae6;
+  border-radius: 9px;
+  color: #26364b;
+  background: #fbfdff;
+  font: inherit;
+  box-sizing: border-box;
+}
+.vista-formularios input:focus,
+.vista-formularios select:focus,
+.vista-formularios textarea:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
+.vista-formularios .confirmar-baja { padding: 18px; border-radius: 12px; color: #526174; background: #f5f8fb; }
+.vista-formularios .confirmar-baja p { margin: 0 0 16px; }
+.vista-formularios #modificar { border-color: #e3ebf3; background: #fff; }
+.vista-formularios #imagen { flex: 1 1 320px; width: auto; max-width: 520px; }
+.vista-formularios #imagen img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.vista-formularios .container { width: min(760px, 100%); padding: 25px; border: 1px solid #e3ebf3; border-radius: 16px; background: #fff; box-shadow: 0 12px 30px rgba(34, 69, 105, .08); }
+@media (max-width: 700px) {
+  .vista-formularios main { width: calc(100% - 24px); margin: 20px auto 32px; }
+  .vista-formularios main > aside { flex-basis: 100%; }
+  .vista-formularios main > section,
+  .vista-formularios .register-form,
+  .vista-formularios form#modificar { flex-basis: 100%; padding: 19px; }
 }

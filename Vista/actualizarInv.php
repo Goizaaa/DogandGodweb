@@ -6,7 +6,7 @@
     <title>Inventario | Dog&amp;God</title>
     <script src="../controlador/cntrlInv.js" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261013-7">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
 </head>
 <body class="vista-tablas vista-inventario">
 
