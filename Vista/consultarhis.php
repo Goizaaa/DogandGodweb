@@ -1,6 +1,6 @@
 ﻿
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -8,13 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Consultar historial </title>
-    <link rel="stylesheet" href="../Vista/modificar.css">
--
-    <script src="../controlador/consultarHistorial.js"></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <script src="../Controlador/consultarHistorial.js" defer></script>
+    <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261013-7">
 </head>
 
-<body>
+<body class="vista-tablas">
 
 <header>
     
@@ -58,7 +57,7 @@
         <section>
             <article id="informacionGeneral">
                 <h2>Información General</h2>
-                <table id="tabla" class="table table-hover">
+                <table id="tabla" class="table table-hover tabla-datos">
                     <thead>
                         <tr>
                             <th>Nombre Mascota</th>
@@ -77,7 +76,7 @@
 
             <article id="consultas">
                 <h2>Consultas realizadas</h2>
-                <table id="tablaConsultas">
+                <table id="tablaConsultas" class="tabla-datos">
                     <thead>
                         <tr>
                             <th>Fecha</th>
@@ -91,7 +90,7 @@
 
             <article id="procedimientos">
                 <h2>Procedimientos</h2>
-                <table id="tablaProcedimientos">
+                <table id="tablaProcedimientos" class="tabla-datos">
                     <thead>
                         <tr>
                             <th>Procedimiento</th>
@@ -104,7 +103,7 @@
 
             <article id="laboratorio">
                 <h2>Resultados de laboratorio</h2>
-                <table id="tablaLaboratorio">
+                <table id="tablaLaboratorio" class="tabla-datos">
                     <thead>
                         <tr>
                             <th>Análisis: </th>
@@ -118,7 +117,7 @@
 
             <article id="radiografias">
                 <h2>Radiografías</h2>
-                <table id="tablaRadiografias">
+                <table id="tablaRadiografias" class="tabla-datos">
                     <thead>
                         <tr>
                             <th>Radiografía</th>

@@ -195,7 +195,7 @@
 
         <h2>Registrar Cita</h2>
         <p>Revisa cuando tienes que ver a tus pacientes.</p>
-        <p><a class="btn btn-secondary" href="ConsultarCita.php">View details &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="ConsultarCitaV.php">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <img class="rounded-circle" src="../recursos/icon6.jpg" alt="Buscar Historial" width="140" height="140" style="object-fit: cover;">

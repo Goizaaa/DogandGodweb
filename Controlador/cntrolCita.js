@@ -13,6 +13,7 @@
     const abrirModalCitaBtn = document.getElementById("abrir-modal-cita");
     const cerrarModalCitaBtn = document.getElementById("cerrar-modal-cita");
     const cancelarModalCitaBtn = document.getElementById("cancelar-modal-cita");
+    const vistaCliente = document.body.dataset.vista === "cliente";
 
     let citas = [];
     let currentDate = new Date();
@@ -142,6 +143,28 @@
         });
     }
 
+    function mostrarHorariosOcupados(date) {
+        const clave = claveFecha(date);
+        eventDateEl.textContent = formatoFecha.format(date);
+        const ocupadas = [...new Set((citasPorFecha().get(clave) || [])
+            .map(cita => String(cita.hora || "").slice(0, 5)))]
+            .filter(hora => horariosAtencion.includes(hora))
+            .sort();
+        eventListEl.replaceChildren();
+        if (!ocupadas.length) {
+            limpiarEventos("No hay horarios ocupados para este día.");
+            return;
+        }
+        const lista = document.createElement("ul");
+        lista.className = "horarios-ocupados-lista";
+        ocupadas.forEach(hora => {
+            const item = document.createElement("li");
+            item.textContent = `${hora} · Ocupado`;
+            lista.appendChild(item);
+        });
+        eventListEl.appendChild(lista);
+    }
+
     function renderCalendar() {
         if (!daysEl || !monthYearEl) return;
         monthYearEl.textContent = formatoMes.format(currentDate);
@@ -162,7 +185,14 @@
             if (fecha.getMonth() !== currentDate.getMonth()) boton.classList.add("other-month");
             if (clave === hoy) boton.classList.add("today");
             if (selectedDate && clave === claveFecha(selectedDate)) boton.classList.add("selected");
-            if (grupos.has(clave)) boton.classList.add("has-events");
+            if (vistaCliente) {
+                const ocupadas = new Set((grupos.get(clave) || [])
+                    .map(cita => String(cita.hora || "").slice(0, 5))
+                    .filter(hora => horariosAtencion.includes(hora)));
+                if (ocupadas.size === horariosAtencion.length) boton.classList.add("fully-booked");
+            } else if (grupos.has(clave)) {
+                boton.classList.add("has-events");
+            }
             if (clave === hoy) boton.setAttribute("aria-current", "date");
             if (selectedDate && clave === claveFecha(selectedDate)) boton.setAttribute("aria-pressed", "true");
             else boton.setAttribute("aria-pressed", "false");
@@ -170,7 +200,8 @@
                 selectedDate = fecha;
                 currentDate = new Date(fecha.getFullYear(), fecha.getMonth(), 1);
                 renderCalendar();
-                mostrarCitas(fecha);
+                if (vistaCliente) mostrarHorariosOcupados(fecha);
+                else mostrarCitas(fecha);
             });
             daysEl.appendChild(boton);
         }
@@ -178,7 +209,7 @@
 
     function cargarCitas() {
         const valores = new FormData();
-        valores.append("opc", "listar");
+        valores.append("opc", vistaCliente ? "disponibilidad" : "listar");
         fetch("../Controlador/ControladorCita.php", { method: "POST", body: valores })
             .then(respuesta => {
                 if (!respuesta.ok) throw new Error(`Error HTTP ${respuesta.status}`);
@@ -196,7 +227,10 @@
                 }
                 actualizarHorariosDisponibles();
                 renderCalendar();
-                if (selectedDate) mostrarCitas(selectedDate);
+                if (selectedDate) {
+                    if (vistaCliente) mostrarHorariosOcupados(selectedDate);
+                    else mostrarCitas(selectedDate);
+                }
             })
             .catch(error => {
                 console.error("Error al cargar citas:", error);
@@ -242,14 +276,14 @@
         currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
         selectedDate = null;
         eventDateEl.textContent = "Selecciona una fecha";
-        limpiarEventos("Selecciona un día para ver las citas agendadas.");
+        limpiarEventos(vistaCliente ? "Selecciona un día para consultar los horarios ocupados." : "Selecciona un día para ver las citas agendadas.");
         renderCalendar();
     });
     if (nextMonthBtn) nextMonthBtn.addEventListener("click", () => {
         currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
         selectedDate = null;
         eventDateEl.textContent = "Selecciona una fecha";
-        limpiarEventos("Selecciona un día para ver las citas agendadas.");
+        limpiarEventos(vistaCliente ? "Selecciona un día para consultar los horarios ocupados." : "Selecciona un día para ver las citas agendadas.");
         renderCalendar();
     });
     if (todayBtn) todayBtn.addEventListener("click", () => {
@@ -257,7 +291,8 @@
         currentDate = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
         selectedDate = hoy;
         renderCalendar();
-        mostrarCitas(hoy);
+        if (vistaCliente) mostrarHorariosOcupados(hoy);
+        else mostrarCitas(hoy);
     });
 
     if (modalAgregarCita && abrirModalCitaBtn) abrirModalCitaBtn.addEventListener("click", () => modalAgregarCita.showModal());
@@ -287,7 +322,7 @@
                 if (!datos.success) throw new Error(datos.message || "No se pudo registrar la cita.");
                 if (!modalAgregarCita) {
                     alert(datos.message || "Cita agendada correctamente.");
-                    window.location.href = "ConsultarCita.php";
+                    window.location.href = "ConsultarCitaV.php";
                     return;
                 }
                 modalAgregarCita.close();

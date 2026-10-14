@@ -7,14 +7,14 @@
 6 Juntar todos los CSS
 7 Juntar codigos del mismo modulo
 
-terminar modulo Citas
+
 convertir formularios en ventanas emergentes
 eliminar archivos
 verificar y agregar modulo de consulta
 mejorar la visualizacion del expediente
 union de base de datos 
 revisar las consultas de busqueda agregando que salgan todos los datos relacionados
-terminar la globalicacion (Titulos, )
+terminar la globalicacion (Titulos,textos,  )
 
 
 
@@ -26,3 +26,5 @@ terminar la globalicacion (Titulos, )
 2 Creacion de lobby y mejoras de Inicio Sesion
 3 implementacion del CssGlobal en todas las pestañas
 4 creacion del calendario en citas
+5 terminar modulo Citas
+6 Globalizacion de Tablas y Paginacion 
