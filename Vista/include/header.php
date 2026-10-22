@@ -5,6 +5,7 @@
         <a href="consultartutores.php">Tutores</a>
         <a href="buscarhist.php">Historiales</a>
         <a href="ConsultarCitaV.php">Citas</a>
+        <a href="registrarConsulta.php">Consultas</a>
         <a href="actualizarInv.php">Inventario</a>
         <a href="consultartutores.php">Configuración</a>
     </div>
