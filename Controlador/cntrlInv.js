@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.querySelector("#tabla-inventario tbody");
     const btnBuscar = document.querySelector("#boton-buscar");
     const buscarProducto = document.querySelector("#BusProducto");
+    const modalEditarProducto = document.querySelector("#modal-editar-producto");
+    const btnAbrirEdicion = document.querySelector("#abrir-modal-editar-producto");
+    const btnCerrarEdicion = document.querySelector("#cerrar-modal-editar-producto");
+    const btnCancelarEdicion = document.querySelector("#cancelar-modal-editar-producto");
+    const modalAgregarProducto = document.querySelector("#modal-agregar-producto");
+    const btnAbrirAgregar = document.querySelector("#abrir-modal-agregar-producto");
+    const btnCerrarAgregar = document.querySelector("#cerrar-modal-agregar-producto");
+    const btnCancelarAgregar = document.querySelector("#cancelar-modal-agregar-producto");
 
     function cargarInventario(e) {
         if (e) e.preventDefault(); // Evita recargar la página
@@ -60,6 +68,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (btnBuscar) {
         btnBuscar.addEventListener("click", cargarInventario);
+    }
+
+    if (btnAbrirEdicion && modalEditarProducto) {
+        btnAbrirEdicion.addEventListener("click", () => modalEditarProducto.showModal());
+    }
+
+    [btnCerrarEdicion, btnCancelarEdicion].forEach(boton => {
+        if (boton && modalEditarProducto) {
+            boton.addEventListener("click", () => modalEditarProducto.close());
+        }
+    });
+
+    if (modalEditarProducto) {
+        modalEditarProducto.addEventListener("click", evento => {
+            if (evento.target === modalEditarProducto) modalEditarProducto.close();
+        });
+    }
+
+    if (btnAbrirAgregar && modalAgregarProducto) {
+        btnAbrirAgregar.addEventListener("click", () => modalAgregarProducto.showModal());
+    }
+
+    [btnCerrarAgregar, btnCancelarAgregar].forEach(boton => {
+        if (boton && modalAgregarProducto) {
+            boton.addEventListener("click", () => modalAgregarProducto.close());
+        }
+    });
+
+    if (modalAgregarProducto) {
+        modalAgregarProducto.addEventListener("click", evento => {
+            if (evento.target === modalAgregarProducto) modalAgregarProducto.close();
+        });
     }
 
     // Cargar la lista al iniciar

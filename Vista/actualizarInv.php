@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario | Dog&amp;God</title>
-    <script src="../controlador/cntrlInv.js" defer></script>
+    <script src="../Controlador/cntrlInv.js?v=20261106-2" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261106-1">
 </head>
 <body class="vista-tablas vista-inventario">
 
@@ -29,8 +29,8 @@
             <p>Busca productos y consulta las existencias registradas.</p>
         </div>
         <div class="tabla-pagina-acciones botones-editar-agregar">
-            <button type="button" class="boton-editar">Editar producto</button>
-            <button type="button" class="boton-agregar">Agregar producto</button>
+            <button type="button" class="boton-editar" id="abrir-modal-editar-producto">Editar producto</button>
+            <button type="button" class="boton-agregar" id="abrir-modal-agregar-producto">Agregar producto</button>
         </div>
     </section>
 
@@ -63,6 +63,124 @@
       </table>
     </div>
 </main>
+
+<dialog class="tabla-modal tabla-modal-editar-producto" id="modal-editar-producto" aria-labelledby="titulo-modal-editar-producto">
+    <div class="tabla-modal-cabecera">
+        <div>
+            <p class="tabla-pagina-eyebrow">GESTIÓN DE PRODUCTOS</p>
+            <h2 id="titulo-modal-editar-producto">Editar producto</h2>
+            <p>Completa los datos del producto que deseas actualizar.</p>
+        </div>
+        <button class="tabla-modal-cerrar" id="cerrar-modal-editar-producto" type="button" aria-label="Cerrar ventana">&times;</button>
+    </div>
+
+    <form action="" id="form-editar-producto" class="tabla-modal-formulario">
+        <div class="tabla-modal-campo">
+            <label for="NewProducto">Nombre del producto</label>
+            <input type="text" name="NewProducto" id="NewProducto">
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="NewCategoria">Categoría del producto</label>
+            <select name="NewCategoria" id="NewCategoria">
+                <option value="NewMedicamento">Medicamento</option>
+                <option value="NewVacuna">Vacuna</option>
+                <option value="NewAlimentos">Alimentos</option>
+                <option value="NewAccesorios">Accesorios</option>
+            </select>
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="NewPrecio">Precio</label>
+            <div class="input-moneda">
+                <span>$</span>
+                <input type="number" step="0.01" min="0" name="NewPrecio" id="NewPrecio" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="NewMarca">Marca</label>
+            <input type="text" name="NewMarca" id="NewMarca">
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="NewCantidad">Cantidad</label>
+            <input type="number" min="0" name="NewCantidad" id="NewCantidad">
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="NewCosto">Costo</label>
+            <div class="input-moneda">
+                <span>$</span>
+                <input type="number" step="0.01" min="0" name="NewCosto" id="NewCosto" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="tabla-modal-acciones">
+            <button class="tabla-modal-guardar" type="button">Guardar cambios</button>
+            <button class="tabla-modal-secundario" id="cancelar-modal-editar-producto" type="button">Cancelar</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog class="tabla-modal tabla-modal-editar-producto" id="modal-agregar-producto" aria-labelledby="titulo-modal-agregar-producto">
+    <div class="tabla-modal-cabecera">
+        <div>
+            <p class="tabla-pagina-eyebrow">GESTIÓN DE PRODUCTOS</p>
+            <h2 id="titulo-modal-agregar-producto">Agregar producto</h2>
+            <p>Completa la información del producto que deseas registrar.</p>
+        </div>
+        <button class="tabla-modal-cerrar" id="cerrar-modal-agregar-producto" type="button" aria-label="Cerrar ventana">&times;</button>
+    </div>
+
+    <form action="" id="form-agregar-producto" class="tabla-modal-formulario">
+        <div class="tabla-modal-campo">
+            <label for="AddProducto">Nombre del producto</label>
+            <input type="text" name="NewProducto" id="AddProducto">
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="AddCategoria">Categoría del producto</label>
+            <select name="NewCategoria" id="AddCategoria">
+                <option value="NewMedicamento">Medicamento</option>
+                <option value="NewVacuna">Vacuna</option>
+                <option value="NewAlimentos">Alimentos</option>
+                <option value="NewAccesorios">Accesorios</option>
+            </select>
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="AddPrecio">Precio</label>
+            <div class="input-moneda">
+                <span>$</span>
+                <input type="number" step="0.01" min="0" name="NewPrecio" id="AddPrecio" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="AddMarca">Marca</label>
+            <input type="text" name="NewMarca" id="AddMarca">
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="AddCantidad">Cantidad</label>
+            <input type="number" min="0" name="NewCantidad" id="AddCantidad">
+        </div>
+
+        <div class="tabla-modal-campo">
+            <label for="AddCosto">Costo</label>
+            <div class="input-moneda">
+                <span>$</span>
+                <input type="number" step="0.01" min="0" name="NewCosto" id="AddCosto" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="tabla-modal-acciones">
+            <button class="tabla-modal-guardar" type="button">Agregar producto</button>
+            <button class="tabla-modal-secundario" id="cancelar-modal-agregar-producto" type="button">Cancelar</button>
+        </div>
+    </form>
+</dialog>
 
     <footer>
         <p>&copy; Dog&amp;God · Inventario</p>
