@@ -35,8 +35,10 @@ class ControLogin {
     }
 
     public function crearCuenta($correo, $password, $nombre, $apellidoP, $apellidoM) {
+        $correoSeguro = addslashes($correo);
+
         // Verificar si el correo ya existe
-        $existe = $this->db->read("usuarios", "correo = '$correo'");
+        $existe = $this->db->read("usuarios", "correo = '$correoSeguro'");
         if (count($existe) > 0) {
             echo json_encode([
                 "status" => false,
@@ -56,9 +58,29 @@ class ControLogin {
         $result = $this->db->create("usuarios", $data);
         
         if ($result) {
+            $usuarios = $this->db->read("usuarios", "correo = '$correoSeguro'");
+            $idUsuario = $usuarios[0]["id_usuario"] ?? null;
+            $tutorEnlazado = $idUsuario !== null;
+            $veterinarioEnlazado = $idUsuario !== null;
+
+            if ($idUsuario !== null) {
+                $tutorEnlazado = $this->db->update(
+                    "tutor",
+                    ["id_usuario" => $idUsuario],
+                    "correo_tutor = '$correoSeguro' AND id_usuario IS NULL"
+                );
+                $veterinarioEnlazado = $this->db->update(
+                    "veterinario",
+                    ["id_usuario" => $idUsuario],
+                    "correo_veterinario = '$correoSeguro' AND id_usuario IS NULL"
+                );
+            }
+
             echo json_encode([
                 "status" => true,
-                "mensaje" => "Cuenta creada correctamente"
+                "mensaje" => $tutorEnlazado && $veterinarioEnlazado
+                    ? "Cuenta creada correctamente"
+                    : "La cuenta se creó, pero no se pudieron enlazar todos los perfiles existentes"
             ]);
         } else {
             echo json_encode([

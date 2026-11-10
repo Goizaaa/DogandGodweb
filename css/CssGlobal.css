@@ -1,6 +1,11 @@
 ﻿/* ==========================================================================
    1. INICIO DE SESIÓN
    ========================================================================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body.vista-inicio-sesion {
   display: flex;
   align-items: center;
@@ -178,7 +183,7 @@ body.vista-inicio-sesion {
 /* ==========================================================================
    6. CAROUSEL
    ========================================================================== */
-.vista-carousel { padding-top: 3rem; padding-bottom: 3rem; color: #5a5a5a; }
+.vista-carousel { padding-top: 0; padding-bottom: 3rem; color: #5a5a5a; }
 .vista-carousel .carousel { margin-bottom: 4rem; }
 .vista-carousel .carousel-caption { bottom: 3rem; z-index: 10; }
 .vista-carousel .carousel-item { height: 36rem; background-color: #777; }
@@ -291,25 +296,54 @@ body.vista-inicio-sesion {
   border-bottom-color: #fff;
 }
 
-.vista-carrousel #myCarousel {
+.vista-carousel #myCarousel {
   overflow: hidden;
   border-radius: 18px;
   box-shadow: 0 14px 36px rgba(19, 39, 65, .2);
+  font-family: var(--bs-font-sans-serif);
 }
-.vista-carrousel #myCarousel .carousel-item > img {
+.vista-carousel #myCarousel .carousel-item > img {
   filter: brightness(.68);
 }
-.vista-carrousel #myCarousel .carousel-caption {
+.vista-carousel #myCarousel .carousel-caption {
   bottom: 3rem;
   z-index: 10;
   color: #fff;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, .95), 0 0 14px rgba(0, 0, 0, .8);
+  font-family: var(--bs-font-sans-serif);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, .98), 0 0 14px rgba(0, 0, 0, .9);
 }
-.vista-carrousel #myCarousel .carousel-caption h1,
-.vista-carrousel #myCarousel .carousel-caption p {
+.vista-carousel #myCarousel .carousel-caption h1,
+.vista-carousel #myCarousel .carousel-caption p {
   color: #fff;
   background: transparent;
   text-shadow: inherit;
+}
+.vista-carousel #myCarousel .carousel-caption h1 {
+  font-weight: 700;
+}
+.vista-carousel #myCarousel .carousel-caption p {
+  font-weight: 500;
+}
+.vista-carousel #myCarousel .carousel-caption .carousel-texto {
+  width: fit-content;
+  max-width: 100%;
+  padding: .2em .55em;
+  border-radius: .45rem;
+  background: transparent;
+  box-shadow: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  backdrop-filter: none;
+}
+.vista-carousel #myCarousel .carousel-caption.text-start .carousel-texto {
+  margin-right: auto;
+}
+.vista-carousel #myCarousel .carousel-caption:not(.text-start):not(.text-end) .carousel-texto {
+  margin-right: auto;
+  margin-left: auto;
+}
+.vista-carousel #myCarousel .carousel-caption.text-end .carousel-texto {
+  margin-left: auto;
 }
 
 /* ==========================================================================
@@ -427,7 +461,7 @@ body.vista-inicio-sesion {
 .vista-consultar-cita .cita-navbar-links { display: flex; align-items: center; gap: 6px; }
 .vista-consultar-cita .cita-navbar-links a { padding: 10px 12px; border-radius: 7px; color: rgba(255,255,255,.9); text-decoration: none; font-size: .95rem; }
 .vista-consultar-cita .cita-navbar-links a:hover, .vista-consultar-cita .cita-navbar-links a.activo { color: #fff; background: rgba(255,255,255,.17); }
-.vista-consultar-cita .consultar-cita-main { width: min(1120px, calc(100% - 40px)); margin: 34px auto; }
+.vista-consultar-cita .consultar-cita-main { width: min(1120px, calc(100% - 40px)); margin: 0 auto 34px; }
 .vista-consultar-cita .consultar-cita-titulo { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
 .vista-consultar-cita .consultar-cita-eyebrow { margin: 0 0 5px; color: #65758b; font-size: .72rem; font-weight: 700; letter-spacing: .12em; }
 .vista-consultar-cita .consultar-cita-titulo h1 { margin: 0; color: #26364b; }
@@ -465,7 +499,7 @@ body.vista-inicio-sesion {
   .vista-consultar-cita .cita-navbar { align-items: flex-start; flex-direction: column; gap: 4px; padding: 12px 18px; }
   .vista-consultar-cita .cita-navbar-links { width: 100%; overflow-x: auto; }
   .vista-consultar-cita .cita-navbar-links a { padding: 8px 10px; white-space: nowrap; }
-  .vista-consultar-cita .consultar-cita-main { width: calc(100% - 24px); margin: 24px auto; }
+  .vista-consultar-cita .consultar-cita-main { width: calc(100% - 24px); margin: 0 auto 24px; }
   .vista-consultar-cita .consultar-cita-titulo { align-items: flex-start; }
   .vista-consultar-cita .weekday { font-size: .75rem; }
 }
@@ -537,7 +571,7 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 
 
 /* Navegación compartida incluida en las vistas PHP */
-.main-navbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 62px; padding: 8px clamp(16px, 5vw, 64px); color: #fff; background: #1769aa; box-shadow: 0 3px 12px rgba(20, 45, 75, .14); }
+.main-navbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 62px; margin: 0; padding: 8px clamp(16px, 5vw, 64px); color: #fff; background: #1769aa; box-shadow: 0 3px 12px rgba(20, 45, 75, .14); }
 .main-navbar-brand { flex: 0 0 auto; color: #fff; font-size: 1.15rem; font-weight: 700; text-decoration: none; }
 .main-navbar-links { display: flex; align-items: center; justify-content: flex-end; gap: 5px; flex-wrap: wrap; }
 .main-navbar-links a { padding: 9px 11px; border-radius: 7px; color: rgba(255,255,255,.92); font-size: .92rem; text-decoration: none; transition: background-color .18s ease, color .18s ease; }
@@ -629,6 +663,11 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 .tabla-modal-campo label { color: #40566d; font-size: .9rem; font-weight: 700; }
 .tabla-modal-campo select { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
 .tabla-modal-campo select:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
+.tabla-modal-campo input { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
+.tabla-modal-campo input:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
+.tabla-modal-form { display: grid; gap: 14px; padding-top: 20px; }
+.tabla-modal-form .tabla-modal-acciones { padding-top: 4px; }
+.tabla-modal-acciones-apiladas { align-items: stretch; flex-direction: column; }
 .tabla-modal-mensaje { display: none; padding: 11px 13px; border-radius: 9px; color: #8c3942; background: #fff0f1; font-size: .9rem; }
 .tabla-modal-mensaje:not(:empty) { display: block; }
 .tabla-modal-mensaje.es-exito { color: #216747; background: #eaf8f0; }

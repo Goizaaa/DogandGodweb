@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const abrirModal = document.getElementById('abrir-modal-relacion');
     const cerrarModal = document.getElementById('cerrar-modal-relacion');
     const cancelarModal = document.getElementById('cancelar-modal-relacion');
+    let tutorPreseleccionado = "";
 
     function mostrarMensaje(texto, exito) {
         if (!mensaje) return;
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.textContent = `${t.nom_tutor} ${t.app_tutor} (${t.correo_tutor})`;
                 selectTutor.appendChild(option);
             });
+            if (tutorPreseleccionado) selectTutor.value = tutorPreseleccionado;
             if (selectTutor.options.length === 1) {
                 selectTutor.options[0].textContent = 'No hay tutores registrados';
             }
@@ -102,7 +104,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (abrirModal && modalRelacion) abrirModal.addEventListener('click', () => modalRelacion.showModal());
+    if (abrirModal && modalRelacion) abrirModal.addEventListener('click', () => {
+        tutorPreseleccionado = "";
+        selectTutor.value = "";
+        modalRelacion.showModal();
+    });
+    window.abrirModalRelacionTutor = correoTutor => {
+        tutorPreseleccionado = correoTutor || "";
+        if (!modalRelacion) return;
+        cargarMascotasSinTutor();
+        cargarTutores();
+        modalRelacion.showModal();
+    };
     [cerrarModal, cancelarModal].forEach(boton => {
         if (boton && modalRelacion) boton.addEventListener('click', () => modalRelacion.close());
     });

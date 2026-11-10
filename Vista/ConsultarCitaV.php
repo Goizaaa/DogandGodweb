@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar citas | Dog&God</title>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../Controlador/cntrolCita.js?v=20261013-5" defer></script>
+    <script src="../Controlador/cntrolCita.js?v=20261020-1" defer></script>
 </head>
 <body class="vista-consultar-cita">
     <header>
@@ -58,7 +58,7 @@
             <form id="frmAgregarCita" class="formulario-agregar-cita">
                 <div class="campo-agregar-cita">
                     <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" name="fecha" required>
+                    <input type="date" id="fecha" name="fecha" min="<?= date('Y-m-d') ?>" required>
                 </div>
                 <div class="campo-agregar-cita">
                     <label for="hora">Hora:</label>

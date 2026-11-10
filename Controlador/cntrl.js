@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded",()=>{
                 tbody.innerHTML = "";   
             }
 
-            if(datos.length === 0) {
+            if(!Array.isArray(datos) || datos.length === 0) {
                 let fila = document.createElement("tr");
                 let celda = document.createElement("td");
                 celda.textContent = "No se encontraron resultados";
-                celda.colSpan = 9;
+                celda.colSpan = 10;
                 celda.style.textAlign = "center";
                 fila.appendChild(celda);
                 tbody.appendChild(fila);
@@ -40,11 +40,11 @@ document.addEventListener("DOMContentLoaded",()=>{
             datos.forEach(obj => {
                 let fila = document.createElement("tr");
 
-                for(let propiedad in obj) {
+                ["id_mascota", "nom_mascota", "especie", "raza", "fecha_adopcion", "peso_inicial", "sexo", "esterilizado", "nom_tutor"].forEach(propiedad => {
                     let celda = document.createElement("td");
-                    celda.textContent = obj[propiedad];
+                    celda.textContent = obj[propiedad] ?? "—";
                     fila.appendChild(celda);
-                }
+                });
 
                 // Botón para ver historial completo
                 let celdaBoton = document.createElement("td");
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             let fila = document.createElement("tr");
             let celda = document.createElement("td");
             celda.textContent = "Error al cargar los datos";
-            celda.colSpan = 9;
+            celda.colSpan = 10;
             celda.style.textAlign = "center";
             fila.appendChild(celda);
             tbody.appendChild(fila);

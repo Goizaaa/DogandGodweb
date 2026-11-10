@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,8 +9,8 @@
 
     <title>Consultar historial </title>
     <script src="../Controlador/consultarHistorial.js" defer></script>
-    <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
+    <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 </head>
 
 <body class="vista-tablas">

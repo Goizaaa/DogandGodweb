@@ -31,6 +31,15 @@ try {
                 break;
             }
 
+            if ($fecha < (new DateTimeImmutable('today'))->format('Y-m-d')) {
+                http_response_code(400);
+                echo json_encode(array(
+                    "success" => false,
+                    "message" => "No puedes agendar una cita en una fecha pasada."
+                ));
+                break;
+            }
+
             $citaExistente = $db->read("cita", "fecha = '$fecha' AND hora LIKE '$hora%'");
             if ($citaExistente && count($citaExistente) > 0) {
                 http_response_code(409);

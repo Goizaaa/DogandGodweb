@@ -27,7 +27,7 @@
                 const opcion = document.createElement("option");
                 opcion.value = cantidad;
                 opcion.textContent = cantidad === "all" ? "Todos" : String(cantidad);
-                if (cantidad === 30) opcion.selected = true;
+                if (cantidad === 10) opcion.selected = true;
                 selector.appendChild(opcion);
             });
             selectorGrupo.appendChild(selector);

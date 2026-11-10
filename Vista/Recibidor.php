@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es" class="h-100">
   <head>
     <meta charset="utf-8">
@@ -34,7 +34,7 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="../css/CssGlobal.css?v=20261012-4" rel="stylesheet">
+    <link href="../css/CssGlobal.css?v=20261022-1" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark" id="recibidor">
     

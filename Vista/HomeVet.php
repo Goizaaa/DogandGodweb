@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -82,7 +82,7 @@
         }
       }
     </style>
-      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+      <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 </head>
   <body class="vista-carousel">
     
@@ -104,8 +104,8 @@
         <img src="../recursos/citbann.png" alt="Expediente" width="800" height="800">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1 style="color: black; background-color: rgba(121, 104, 104, 0.29);">Citas para hoy.</h1>
-            <p style="color: black; background-color: rgba(121, 104, 104, 0.29);">Revisa tus citas programadas para el día de hoy.</p>
+            <h1 class="carousel-texto" style="font-family: var(--bs-font-sans-serif); font-weight: 800; letter-spacing: .02em; -webkit-text-stroke: .6px #000; text-shadow: 1px 2px 3px rgba(0, 0, 0, .55);">Citas para hoy.</h1>
+            <p class="carousel-texto" style="font-family: var(--bs-font-sans-serif); font-weight: 600; -webkit-text-stroke: .6px #000; text-shadow: 1px 2px 3px rgba(0, 0, 0, .55);">Revisa tus citas programadas para el día de hoy.</p>
             <p><a class="btn btn-lg btn-primary" href="#">Entrar</a></p>
           </div>
         </div>
@@ -114,8 +114,8 @@
         <img src="../recursos/invbann.png" alt="Inventario" width="800" height="800">
         <div class="container">
           <div class="carousel-caption">
-            <h1>Revisa tu inventario.</h1>
-            <p>Consulta el estado de tu inventario de medicamentos y productos.</p>
+            <h1 class="carousel-texto" style="font-family: var(--bs-font-sans-serif); font-weight: 800; letter-spacing: .02em; -webkit-text-stroke: .6px #000; text-shadow: 1px 2px 3px rgba(0, 0, 0, .55);">Revisa tu inventario.</h1>
+            <p class="carousel-texto" style="font-family: var(--bs-font-sans-serif); font-weight: 600; -webkit-text-stroke: .6px #000; text-shadow: 1px 2px 3px rgba(0, 0, 0, .55);">Consulta el estado de tu inventario de medicamentos y productos.</p>
             <p><a class="btn btn-lg btn-primary" href="actualizarInv.php">Mirar</a></p>
           </div>
         </div>
@@ -127,8 +127,8 @@
         <div class="container">
           <div class="carousel-caption text-end">
             
-            <h1>Expedientes</h1>
-            <p>Aqui consulta los expedientes de tus pacientes.</p>
+            <h1 class="carousel-texto" style="font-family: var(--bs-font-sans-serif); font-weight: 800; letter-spacing: .02em; -webkit-text-stroke: .6px #000; text-shadow: 1px 2px 3px rgba(0, 0, 0, .55);">Expedientes</h1>
+            <p class="carousel-texto" style="font-family: var(--bs-font-sans-serif); font-weight: 600; -webkit-text-stroke: .6px #000; text-shadow: 1px 2px 3px rgba(0, 0, 0, .55);">Aqui consulta los expedientes de tus pacientes.</p>
             <p><a class="btn btn-lg btn-primary" href="consultarhis.php">Explorar</a></p>
           </div>
         </div>

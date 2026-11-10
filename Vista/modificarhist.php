@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
     <title>Modificar historial</title>
     <script src="../Controlador/modificarHistorial.js"></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261014-3">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 </head>
 <body class="vista-formularios">
 

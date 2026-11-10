@@ -36,6 +36,16 @@
         return `${year}-${month}-${day}`;
     }
 
+    function actualizarFechaMinima() {
+        if (!fechaCitaInput) return;
+        const hoy = claveFecha(new Date());
+        fechaCitaInput.min = hoy;
+        if (fechaCitaInput.value && fechaCitaInput.value < hoy) {
+            fechaCitaInput.value = "";
+            actualizarHorariosDisponibles();
+        }
+    }
+
     function fechaDeCita(fecha) {
         const coincidencia = String(fecha || "").match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
         if (!coincidencia) return null;
@@ -295,7 +305,11 @@
         else mostrarCitas(hoy);
     });
 
-    if (modalAgregarCita && abrirModalCitaBtn) abrirModalCitaBtn.addEventListener("click", () => modalAgregarCita.showModal());
+    actualizarFechaMinima();
+    if (modalAgregarCita && abrirModalCitaBtn) abrirModalCitaBtn.addEventListener("click", () => {
+        actualizarFechaMinima();
+        modalAgregarCita.showModal();
+    });
     if (fechaCitaInput) fechaCitaInput.addEventListener("change", actualizarHorariosDisponibles);
     [cerrarModalCitaBtn, cancelarModalCitaBtn].forEach(boton => {
         if (boton && modalAgregarCita) boton.addEventListener("click", () => modalAgregarCita.close());
@@ -307,6 +321,12 @@
     if (frmAgregarCita) frmAgregarCita.addEventListener("submit", evento => {
         evento.preventDefault();
         const valores = new FormData(frmAgregarCita);
+        const fechaValor = String(valores.get("fecha") || "");
+        const hoy = claveFecha(new Date());
+        if (!fechaValor || fechaValor < hoy) {
+            alert("No puedes agendar una cita en una fecha pasada.");
+            return;
+        }
         const fechaAgendada = fechaDeCita(valores.get("fecha"));
         valores.append("opc", "create");
         fetch("../Controlador/ControladorCita.php", { method: "POST", body: valores })

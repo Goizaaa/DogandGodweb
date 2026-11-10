@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS del Formulario Signin -->
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261012-4">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 
     <script src="../Controlador/InicioSes.js?v=20261012-4"></script>
 </head>
@@ -24,7 +24,7 @@
 
     <section id="inicio" class="w-100">
         <main class="form-signin m-auto">
-            <form action="" id="registro" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
+            <form action="" id="registro" class="login-card">
                 <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 fw-normal">Inicio Sesión</h1>
 

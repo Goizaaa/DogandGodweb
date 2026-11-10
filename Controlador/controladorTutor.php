@@ -7,9 +7,10 @@ $opc = isset($_POST['opc']) ? $_POST['opc'] : '';
 
 switch ($opc) {
     case 'create':
-        $correo = isset($_POST['correo_tutor']) ? $_POST['correo_tutor'] : '';
+        $correo = isset($_POST['correo_tutor']) ? trim($_POST['correo_tutor']) : '';
+        $correoSeguro = addslashes($correo);
         
-        $existe = $db->read("tutor", "correo_tutor = '$correo'");
+        $existe = $db->read("tutor", "correo_tutor = '$correoSeguro'");
         
         if (count($existe) > 0) {
             echo json_encode([
@@ -18,9 +19,13 @@ switch ($opc) {
             ]);
             exit;
         }
+
+        $usuarios = $db->read("usuarios", "correo = '$correoSeguro'");
+        $idUsuario = $usuarios[0]['id_usuario'] ?? null;
         
         $res = $db->create("tutor", array(
-            "correo_tutor" => $_POST['correo_tutor'],
+            "correo_tutor" => $correo,
+            "id_usuario" => $idUsuario,
             "nom_tutor" => $_POST['nom_tutor'],
             "app_tutor" => $_POST['app_tutor'],
             "apm_tutor" => $_POST['apm_tutor'],

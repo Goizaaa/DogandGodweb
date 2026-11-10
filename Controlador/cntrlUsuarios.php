@@ -8,6 +8,21 @@ $opc = $_POST['opc'];
 switch ($opc) {
     case "create":
         $db = new Database();
+        $correoTutor = trim($_POST['correo_tutor'] ?? '');
+
+        if ($correoTutor !== '') {
+            if (!filter_var($correoTutor, FILTER_VALIDATE_EMAIL)) {
+                http_response_code(400);
+                echo json_encode(array("success" => false, "message" => "El correo del tutor no es válido."));
+                break;
+            }
+            $tutorExiste = $db->read("tutor", "correo_tutor = '" . addslashes($correoTutor) . "'");
+            if (!$tutorExiste || count($tutorExiste) === 0) {
+                http_response_code(400);
+                echo json_encode(array("success" => false, "message" => "No se encontró el tutor para relacionar la mascota."));
+                break;
+            }
+        }
 
         //  utimo ifd de la tabla mascota
         $datos = $db->read("mascota", "1 ORDER BY id_mascota DESC LIMIT 1");
@@ -21,7 +36,7 @@ switch ($opc) {
         }
 
         //create
-        $res = $db->create("mascota", array(
+        $datosMascota = array(
             "id_mascota" => $nuevoId,
             "nom_mascota" => $_POST['nom_mascota'],
             "especie" => $_POST['especie'],
@@ -30,11 +45,15 @@ switch ($opc) {
             "peso_inicial" => $_POST['peso_inicial'],
             "sexo" => $_POST['sexo'],
             "esterilizado" => $_POST['esterilizado']
-        ));
+        );
+        if ($correoTutor !== '') $datosMascota["correo_tutor"] = $correoTutor;
+
+        $res = $db->create("mascota", $datosMascota);
 
         echo json_encode(array(
             "success" => $res,
-            "id_mascota" => $nuevoId
+            "id_mascota" => $res ? $nuevoId : null,
+            "message" => $res ? "Mascota registrada y relacionada con su tutor." : "No se pudo registrar la mascota."
         ));
         break;
 }

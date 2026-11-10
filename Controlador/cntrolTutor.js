@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ========== REGISTRAR TUTOR ==========
     const formTutor = document.querySelector("#register-tutor-form");
     
-    if (formTutor) {
+    if (formTutor && formTutor.dataset.flujoModal !== "true") {
         formTutor.addEventListener("submit", (event) => {
             event.preventDefault();
 
@@ -137,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("Error al cargar tutores:", error));
     }
+
+    window.recargarTablaTutores = cargarTutores;
     
     // ========== EDITAR TUTOR ==========
     function editarTutor(tutor) {
