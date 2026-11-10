@@ -661,7 +661,9 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 .tabla-modal-cuerpo { display: grid; gap: 17px; padding-top: 20px; }
 .tabla-modal-campo { display: grid; gap: 7px; }
 .tabla-modal-campo label { color: #40566d; font-size: .9rem; font-weight: 700; }
+.tabla-modal-campo input,
 .tabla-modal-campo select { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
+.tabla-modal-campo input:focus,
 .tabla-modal-campo select:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
 .tabla-modal-campo input { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
 .tabla-modal-campo input:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
@@ -672,6 +674,22 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 .tabla-modal-mensaje:not(:empty) { display: block; }
 .tabla-modal-mensaje.es-exito { color: #216747; background: #eaf8f0; }
 .tabla-modal-acciones { display: flex; justify-content: flex-end; gap: 10px; padding-top: 3px; }
+.tabla-modal-editar-producto { width: min(620px, calc(100% - 28px)); }
+.vista-tablas.vista-inventario .tabla-modal-formulario {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px;
+  max-width: none;
+  margin: 0;
+  padding: 20px 0 0;
+  border-radius: 0;
+  background: transparent;
+}
+.vista-tablas.vista-inventario .tabla-modal-formulario .input-moneda { width: 100%; }
+.vista-tablas.vista-inventario .tabla-modal-acciones { grid-column: 1 / -1; margin-top: 3px; }
+.tabla-modal .tabla-modal-guardar { min-height: 42px; margin: 0; padding: 10px 16px; border: 1px solid #1769aa; border-radius: 9px; color: #fff; background: #1769aa; box-shadow: none; font: inherit; font-size: .92rem; }
+.tabla-modal .tabla-modal-guardar:hover { color: #fff; background: #10568e; box-shadow: none; transform: none; }
 .tabla-modal .tabla-modal-secundario { border: 1px solid #d3deea; color: #42566b; background: #f3f6f9; box-shadow: none; }
 .tabla-modal .tabla-modal-secundario:hover { color: #26364b; background: #e8eef4; box-shadow: none; transform: none; }
 .modal-formulario { width: min(480px, calc(100% - 28px)); max-width: none; padding: 24px; border: 1px solid #dce5ee; border-radius: 14px; color: #26364b; background: #fff; box-shadow: 0 20px 60px rgba(18, 36, 60, .25); text-align: center; }
@@ -822,6 +840,8 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
   .tabla-paginacion-controles { width: 100%; justify-content: space-between; }
   .tabla-modal { padding: 21px; }
   .tabla-modal-acciones { justify-content: stretch; flex-direction: column; }
+  .vista-tablas.vista-inventario .tabla-modal-formulario { grid-template-columns: 1fr; }
+  .vista-tablas.vista-inventario .tabla-modal-acciones { grid-column: auto; }
 }
 
 /* Formularios y vistas heredadas, ahora centralizadas y limitadas a su página */
