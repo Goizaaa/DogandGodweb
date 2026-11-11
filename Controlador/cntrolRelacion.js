@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     cargarMascotasSinTutor();
                     selectTutor.value = "";
+                    if (typeof window.recargarTablaMascotas === "function") window.recargarTablaMascotas();
                 }
             })
             .catch(() => mostrarMensaje("Ocurrió un error al asignar el tutor. Intenta de nuevo.", false))
@@ -107,6 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (abrirModal && modalRelacion) abrirModal.addEventListener('click', () => {
         tutorPreseleccionado = "";
         selectTutor.value = "";
+        cargarMascotasSinTutor();
+        cargarTutores();
         modalRelacion.showModal();
     });
     window.abrirModalRelacionTutor = correoTutor => {

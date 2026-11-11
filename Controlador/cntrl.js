@@ -78,6 +78,8 @@ document.addEventListener("DOMContentLoaded",()=>{
         });
     }
 
+    window.recargarTablaMascotas = cargarHistoriales;
+
     if(btnBuscar) {
         btnBuscar.addEventListener("click", cargarHistoriales);
     }
