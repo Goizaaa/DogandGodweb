@@ -250,35 +250,43 @@
     }
 
     function cancelarCita(idCita, boton) {
-        if (!window.confirm(`¿Deseas cancelar la cita ${idCita}? Esta acción no se puede deshacer.`)) return;
+            Swal.fire({
+                icon: "warning",
+                text: `¿Deseas cancelar la cita ${idCita}? Esta acción no se puede deshacer.`,
+                showCancelButton: true,
+                confirmButtonText: "Sí, cancelar",
+                cancelButtonText: "Conservar cita"
+            }).then(resultado => {
+                if (!resultado.isConfirmed) return;
 
-        boton.disabled = true;
-        boton.textContent = "Cancelando...";
-        const valores = new FormData();
-        valores.append("opc", "delete");
-        valores.append("id_cita", idCita);
+                boton.disabled = true;
+                boton.textContent = "Cancelando...";
+                const valores = new FormData();
+                valores.append("opc", "delete");
+                valores.append("id_cita", idCita);
 
-        fetch("../Controlador/ControladorCita.php", { method: "POST", body: valores })
-            .then(async respuesta => {
-                const texto = await respuesta.text();
-                let datos;
-                try { datos = JSON.parse(texto); }
-                catch { throw new Error("El servidor devolvió una respuesta inesperada."); }
-                if (!respuesta.ok || !datos.success) throw new Error(datos.message || "No se pudo cancelar la cita.");
-                return datos;
-            })
-            .then(datos => {
-                citas = citas.filter(cita => String(cita.id_cita) !== String(idCita));
-                actualizarHorariosDisponibles();
-                renderCalendar();
-                if (selectedDate) mostrarCitas(selectedDate);
-                alert(datos.message || "Cita cancelada correctamente.");
-            })
-            .catch(error => {
-                boton.disabled = false;
-                boton.textContent = "Cancelar cita";
-                alert(error.message || "Ocurrió un error al cancelar la cita.");
-                console.error("Error al cancelar cita:", error);
+                fetch("../Controlador/ControladorCita.php", { method: "POST", body: valores })
+                    .then(async respuesta => {
+                        const texto = await respuesta.text();
+                        let datos;
+                        try { datos = JSON.parse(texto); }
+                        catch { throw new Error("El servidor devolvió una respuesta inesperada."); }
+                        if (!respuesta.ok || !datos.success) throw new Error(datos.message || "No se pudo cancelar la cita.");
+                        return datos;
+                    })
+                    .then(datos => {
+                        citas = citas.filter(cita => String(cita.id_cita) !== String(idCita));
+                        actualizarHorariosDisponibles();
+                        renderCalendar();
+                        if (selectedDate) mostrarCitas(selectedDate);
+                        Swal.fire({ icon: "success", text: datos.message || "Cita cancelada correctamente." });
+                    })
+                    .catch(error => {
+                        boton.disabled = false;
+                        boton.textContent = "Cancelar cita";
+                        Swal.fire({ icon: "error", text: error.message || "Ocurrió un error al cancelar la cita." });
+                        console.error("Error al cancelar cita:", error);
+                    });
             });
     }
 
@@ -324,7 +332,7 @@
         const fechaValor = String(valores.get("fecha") || "");
         const hoy = claveFecha(new Date());
         if (!fechaValor || fechaValor < hoy) {
-            alert("No puedes agendar una cita en una fecha pasada.");
+            Swal.fire({ icon: "error", text: "No puedes agendar una cita en una fecha pasada." });
             return;
         }
         const fechaAgendada = fechaDeCita(valores.get("fecha"));
@@ -341,8 +349,10 @@
             .then(datos => {
                 if (!datos.success) throw new Error(datos.message || "No se pudo registrar la cita.");
                 if (!modalAgregarCita) {
-                    alert(datos.message || "Cita agendada correctamente.");
-                    window.location.href = "ConsultarCitaV.php";
+                    Swal.fire({ icon: "success", text: datos.message || "Cita agendada correctamente." })
+                        .then(() => {
+                            window.location.href = "ConsultarCitaV.php";
+                        });
                     return;
                 }
                 modalAgregarCita.close();
@@ -352,10 +362,10 @@
                     currentDate = new Date(fechaAgendada.getFullYear(), fechaAgendada.getMonth(), 1);
                 }
                 cargarCitas();
-                alert(datos.message || "Cita agendada correctamente.");
+                Swal.fire({ icon: "success", text: datos.message || "Cita agendada correctamente." });
             })
             .catch(error => {
-                alert(error.message || "Ocurrió un error al procesar la solicitud.");
+                Swal.fire({ icon: "error", text: error.message || "Ocurrió un error al procesar la solicitud." });
                 console.error("Error al agendar cita:", error);
             });
     });

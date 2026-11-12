@@ -1,4 +1,5 @@
-﻿<nav class="main-navbar" aria-label="Navegación principal">
+﻿<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<nav class="main-navbar" aria-label="Navegación principal">
     <a class="main-navbar-brand" href="HomeVet.php">Dog&amp;God</a>
     <div class="main-navbar-links">
         <a href="HomeVet.php">Inicio</a>

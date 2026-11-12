@@ -17,14 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 const res = await response.json();
 
                 if (res.status === "success") {
-                    alert("Consulta, diagnóstico y tratamiento agregados con éxito.");
-                    window.location.href = "consultarHistorial.php";
+                    Swal.fire({ icon: "success", text: "Consulta, diagnóstico y tratamiento agregados con éxito." })
+                        .then(() => {
+                            window.location.href = "consultarHistorial.php";
+                        });
                 } else {
-                    alert("Error: " + res.message);
+                    Swal.fire({ icon: "error", text: "Error: " + res.message });
                 }
             } catch (error) {
                 console.error("Error al guardar:", error);
-                alert("Error de conexión al procesar el registro.");
+                Swal.fire({ icon: "error", text: "Error de conexión al procesar el registro." });
             }
         });
     }

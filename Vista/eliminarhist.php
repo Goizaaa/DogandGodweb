@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar historial</title>
-    <script src="../Controlador/eliminarHistorial.js"></script>
+    <script src="../Controlador/eliminarHistorial.js?v=20261112-1"></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 </head>
 <body class="vista-formularios">

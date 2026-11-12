@@ -46,39 +46,67 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(err => console.error("Error al cargar usuarios:", err));
     }
 
-    function editarUsuario(id) {
+    async function editarUsuario(id) {
         const fila = document.querySelector(`.editar[data-id='${id}']`).closest("tr");
         const correoActual = fila.cells[4].innerText;
 
-        const nuevoCorreo = prompt("Nuevo correo electrónico:", correoActual);
-        if (nuevoCorreo === null) return;
+        const correo = await Swal.fire({
+            title: "Nuevo correo electrónico",
+            input: "email",
+            inputValue: correoActual,
+            showCancelButton: true,
+            confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
+            inputValidator: value => !value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+                ? "Ingresa un correo válido."
+                : undefined
+        });
+        if (!correo.isConfirmed) return;
 
-        if (!nuevoCorreo.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nuevoCorreo)) {
-            alert("Correo inválido");
-            return;
-        }
+        const cambioPassword = await Swal.fire({
+            icon: "question",
+            text: "¿Desea cambiar la contraseña?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Cambiar contraseña",
+            denyButtonText: "Mantener actual",
+            cancelButtonText: "Cancelar"
+        });
+        if (cambioPassword.isDismissed) return;
 
         let nuevaPassword = "";
-        const cambiarPass = confirm("¿Desea cambiar la contraseña?");
-        if (cambiarPass) {
-            nuevaPassword = prompt("Nueva contraseña (mínimo 4 caracteres):");
-            if (nuevaPassword === null) return;
-            if (nuevaPassword.length < 4) {
-                alert("La contraseña debe tener al menos 4 caracteres");
-                return;
-            }
-            const confirmar = prompt("Confirme la nueva contraseña:");
-            if (confirmar !== nuevaPassword) {
-                alert("Las contraseñas no coinciden");
-                return;
-            }
+        if (cambioPassword.isConfirmed) {
+            const password = await Swal.fire({
+                title: "Nueva contraseña",
+                input: "password",
+                showCancelButton: true,
+                confirmButtonText: "Continuar",
+                cancelButtonText: "Cancelar",
+                inputValidator: value => value.length < 4
+                    ? "La contraseña debe tener al menos 4 caracteres."
+                    : undefined
+            });
+            if (!password.isConfirmed) return;
+
+            const confirmar = await Swal.fire({
+                title: "Confirmar contraseña",
+                input: "password",
+                showCancelButton: true,
+                confirmButtonText: "Guardar",
+                cancelButtonText: "Cancelar",
+                inputValidator: value => value !== password.value
+                    ? "Las contraseñas no coinciden."
+                    : undefined
+            });
+            if (!confirmar.isConfirmed) return;
+            nuevaPassword = password.value;
         }
 
         const formData = new FormData();
         formData.append("opc", "update");
         formData.append("id_usuario", id);
-        formData.append("correo", nuevoCorreo.trim());
-        if (cambiarPass && nuevaPassword) {
+        formData.append("correo", correo.value.trim());
+        if (nuevaPassword) {
             formData.append("password", nuevaPassword);
         }
 
@@ -88,28 +116,41 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(res => res.json())
         .then(resp => {
-            alert(resp.message);
+            Swal.fire({
+                icon: resp.success ? "success" : "error",
+                text: resp.message
+            });
             if (resp.success) cargarUsuarios();
         })
-        .catch(err => alert("Error: " + err));
+        .catch(err => Swal.fire({ icon: "error", text: "Error: " + err }));
     }
 
-    function eliminarUsuario(id) {
-        if (confirm("¿Estás seguro de eliminar este usuario?")) {
-            const formData = new FormData();
-            formData.append("opc", "delete");
-            formData.append("id_usuario", id);
-            fetch("../Controlador/ControlUsuarios.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(res => res.json())
-            .then(resp => {
-                alert(resp.message);
-                if (resp.success) cargarUsuarios();
-            })
-            .catch(err => alert("Error: " + err));
-        }
+    async function eliminarUsuario(id) {
+        const confirmacion = await Swal.fire({
+            icon: "warning",
+            text: "¿Estás seguro de eliminar este usuario?",
+            showCancelButton: true,
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        });
+        if (!confirmacion.isConfirmed) return;
+
+        const formData = new FormData();
+        formData.append("opc", "delete");
+        formData.append("id_usuario", id);
+        fetch("../Controlador/ControlUsuarios.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(resp => {
+            Swal.fire({
+                icon: resp.success ? "success" : "error",
+                text: resp.message
+            });
+            if (resp.success) cargarUsuarios();
+        })
+        .catch(err => Swal.fire({ icon: "error", text: "Error: " + err }));
     }
 
 

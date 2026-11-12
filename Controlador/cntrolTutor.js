@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (direccion === "") errores.push("La dirección es obligatoria");
 
             if (errores.length > 0) {
-                alert(errores.join("\n"));
+                Swal.fire({ icon: "error", text: errores.join("\n") });
                 return;
             }
 
@@ -44,17 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(response => response.json())
             .then(data => {
-                alert(data.message);
-                if (data.success) {
+                return Swal.fire({
+                    icon: data.success ? "success" : "error",
+                    text: data.message
+                }).then(() => {
+                    if (!data.success) return;
                     formTutor.reset();
                     cargarTutores();
-            window.location.href = "consultartutores.html";
-
-                }
+                    window.location.href = "consultartutores.html";
+                });
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("Error al registrar tutor");
+                Swal.fire({ icon: "error", text: "Error al registrar tutor" });
             });
         });
     }
@@ -141,37 +143,52 @@ document.addEventListener("DOMContentLoaded", () => {
     window.recargarTablaTutores = cargarTutores;
     
     // ========== EDITAR TUTOR ==========
-    function editarTutor(tutor) {
-        let nuevoCorreo = prompt("Nuevo correo electrónico:", tutor.correo_tutor);
-        if (nuevoCorreo === null) return;
-        
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nuevoCorreo)) {
-            alert("Correo no válido");
-            return;
-        }
+    async function editarTutor(tutor) {
+        const correo = await Swal.fire({
+            title: "Nuevo correo electrónico",
+            input: "email",
+            inputValue: tutor.correo_tutor,
+            showCancelButton: true,
+            confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
+            inputValidator: value => !value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+                ? "Ingresa un correo válido."
+                : undefined
+        });
+        if (!correo.isConfirmed) return;
 
-        
-        let nuevoTelefono = prompt("Nuevo teléfono (10 dígitos):", tutor.numtel_tutor);
-        if (nuevoTelefono === null) return;
-        if (!/^\d{10}$/.test(nuevoTelefono)) {
-            alert("El teléfono debe tener 10 dígitos");
-            return;
-        }
-        
-        
-        let nuevaDireccion = prompt("Nueva dirección:", tutor.direccion);
-        if (nuevaDireccion === null) return;
-        if (nuevaDireccion.trim() === "") {
-            alert("La dirección no puede estar vacía");
-            return;
-        }
+        const telefono = await Swal.fire({
+            title: "Nuevo teléfono",
+            input: "tel",
+            inputValue: tutor.numtel_tutor,
+            showCancelButton: true,
+            confirmButtonText: "Continuar",
+            cancelButtonText: "Cancelar",
+            inputValidator: value => !/^\d{10}$/.test(value.trim())
+                ? "El teléfono debe tener 10 dígitos."
+                : undefined
+        });
+        if (!telefono.isConfirmed) return;
+
+        const direccion = await Swal.fire({
+            title: "Nueva dirección",
+            input: "text",
+            inputValue: tutor.direccion,
+            showCancelButton: true,
+            confirmButtonText: "Guardar",
+            cancelButtonText: "Cancelar",
+            inputValidator: value => !value.trim()
+                ? "La dirección no puede estar vacía."
+                : undefined
+        });
+        if (!direccion.isConfirmed) return;
         
         let valores = new FormData();
         valores.append("opc", "update");
         valores.append("correo_original", tutor.correo_tutor);
-        valores.append("correo_tutor", nuevoCorreo);
-        valores.append("numtel_tutor", nuevoTelefono);
-        valores.append("direccion", nuevaDireccion);
+        valores.append("correo_tutor", correo.value.trim());
+        valores.append("numtel_tutor", telefono.value.trim());
+        valores.append("direccion", direccion.value.trim());
         
         fetch("../Controlador/controladorTutor.php", {
             method: "POST",
@@ -179,40 +196,53 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(res => res.json())
         .then(data => {
-            alert(data.message);
+            Swal.fire({
+                icon: data.success ? "success" : "error",
+                text: data.message
+            });
             if (data.success) {
                 cargarTutores();
             }
         })
         .catch(error => {
             console.error("Error:", error);
-            alert("Error al actualizar tutor");
+            Swal.fire({ icon: "error", text: "Error al actualizar tutor" });
         });
     }
     
     // ========== ELIMINAR TUTOR ==========
-    function eliminarTutor(correo, nombre) {
-        if (confirm(`¿Estás seguro de eliminar al tutor "${nombre}" con correo ${correo}?`)) {
-            let valores = new FormData();
-            valores.append("opc", "delete");
-            valores.append("correo_tutor", correo);
-            
-            fetch("../Controlador/controladorTutor.php", {
-                method: "POST",
-                body: valores
-            })
-            .then(res => res.json())
-            .then(data => {
-                alert(data.message);
-                if (data.success) {
-                    cargarTutores();
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("Error al eliminar tutor");
+    async function eliminarTutor(correo, nombre) {
+        const confirmacion = await Swal.fire({
+            icon: "warning",
+            text: `¿Estás seguro de eliminar al tutor "${nombre}" con correo ${correo}?`,
+            showCancelButton: true,
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        });
+        if (!confirmacion.isConfirmed) return;
+
+        let valores = new FormData();
+        valores.append("opc", "delete");
+        valores.append("correo_tutor", correo);
+
+        fetch("../Controlador/controladorTutor.php", {
+            method: "POST",
+            body: valores
+        })
+        .then(res => res.json())
+        .then(data => {
+            Swal.fire({
+                icon: data.success ? "success" : "error",
+                text: data.message
             });
-        }
+            if (data.success) {
+                cargarTutores();
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            Swal.fire({ icon: "error", text: "Error al eliminar tutor" });
+        });
     }
     
     // Cargar tutores al iniciar

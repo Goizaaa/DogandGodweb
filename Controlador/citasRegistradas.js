@@ -43,27 +43,35 @@ document.addEventListener("DOMContentLoaded", () => {
                     cancelar.className = "cita-cancelar-btn";
                     cancelar.textContent = "Cancelar";
                     cancelar.addEventListener("click", () => {
-                        if (!window.confirm(`¿Deseas cancelar la cita ${cita.id_cita}? Esta acción no se puede deshacer.`)) return;
-                        cancelar.disabled = true;
-                        cancelar.textContent = "Cancelando…";
+                        Swal.fire({
+                            icon: "warning",
+                            text: `¿Deseas cancelar la cita ${cita.id_cita}? Esta acción no se puede deshacer.`,
+                            showCancelButton: true,
+                            confirmButtonText: "Sí, cancelar",
+                            cancelButtonText: "Conservar cita"
+                        }).then(confirmacion => {
+                            if (!confirmacion.isConfirmed) return;
+                            cancelar.disabled = true;
+                            cancelar.textContent = "Cancelando…";
 
-                        const datos = new FormData();
-                        datos.append("opc", "delete");
-                        datos.append("id_cita", cita.id_cita);
-                        fetch("../Controlador/ControladorCita.php", { method: "POST", body: datos })
-                            .then(respuesta => respuesta.json().then(resultado => {
-                                if (!respuesta.ok || !resultado.success) throw new Error(resultado.message || "No se pudo cancelar la cita.");
-                                return resultado;
-                            }))
-                            .then(resultado => {
-                                window.alert(resultado.message || "Cita cancelada correctamente.");
-                                cargarCitas();
-                            })
-                            .catch(error => {
-                                cancelar.disabled = false;
-                                cancelar.textContent = "Cancelar";
-                                window.alert(error.message || "Ocurrió un error al cancelar la cita.");
-                            });
+                            const datos = new FormData();
+                            datos.append("opc", "delete");
+                            datos.append("id_cita", cita.id_cita);
+                            fetch("../Controlador/ControladorCita.php", { method: "POST", body: datos })
+                                .then(respuesta => respuesta.json().then(resultado => {
+                                    if (!respuesta.ok || !resultado.success) throw new Error(resultado.message || "No se pudo cancelar la cita.");
+                                    return resultado;
+                                }))
+                                .then(resultado => {
+                                    Swal.fire({ icon: "success", text: resultado.message || "Cita cancelada correctamente." });
+                                    cargarCitas();
+                                })
+                                .catch(error => {
+                                    cancelar.disabled = false;
+                                    cancelar.textContent = "Cancelar";
+                                    Swal.fire({ icon: "error", text: error.message || "Ocurrió un error al cancelar la cita." });
+                                });
+                        });
                     });
                     celdaAcciones.appendChild(cancelar);
                     fila.appendChild(celdaAcciones);

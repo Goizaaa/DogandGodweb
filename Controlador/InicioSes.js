@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             
             if (errores.length > 0) {
-                alert(errores.join("\n"));
+                Swal.fire({ icon: "error", text: errores.join("\n") });
                 return;
             }
             
@@ -99,12 +99,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     crear.style.display = "none";
                     dospasos.style.display = "block";
                 } else {
-                    alert(respuesta.mensaje);
+                    Swal.fire({ icon: "error", text: respuesta.mensaje });
                 }
             })
             .catch(function(error) {
                 console.log(error);
-                alert("Error al verificar el correo.");
+                Swal.fire({ icon: "error", text: "Error al verificar el correo." });
             });
         });
     }
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 crear.style.display = "none";
                 restablecer.style.display = "block";
             } else {
-                alert("Código incorrecto. El código es: 3221");
+                Swal.fire({ icon: "error", text: "Código incorrecto. El código es: 3221" });
             }
         });
     }
@@ -154,12 +154,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             
             if (errores.length > 0) {
-                alert(errores.join("\n"));
+                Swal.fire({ icon: "error", text: errores.join("\n") });
                 return;
             }
             
             if (!usuarioRecuperacion) {
-                alert("No se encontró información. Reinicia el proceso.");
+                Swal.fire({ icon: "error", text: "No se encontró información. Reinicia el proceso." });
                 return;
             }
             
@@ -176,7 +176,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 return res.json();
             })
             .then(function(respuesta) {
-                alert(respuesta.mensaje);
+                Swal.fire({
+                    icon: respuesta.status ? "success" : "error",
+                    text: respuesta.mensaje
+                });
                 
                 if (respuesta.status) {
                     document.getElementById("contraseñaT").value = "";
@@ -194,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(function(error) {
                 console.log(error);
-                alert("Error al actualizar la contraseña.");
+                Swal.fire({ icon: "error", text: "Error al actualizar la contraseña." });
             });
         });
     }
@@ -232,10 +235,8 @@ const $form = document.getElementById('registro');
 
             // Mostrar errores
             if (errors.length > 0) {
-                if ($messages) {
-                    $messages.innerHTML = errors.join('');
-                    $messages.classList.add('show');
-                }
+                if ($messages) $messages.classList.remove('show');
+                Swal.fire({ icon: "error", html: errors.join('') });
             } else {
                 if ($messages) {
                     $messages.classList.remove('show');
@@ -255,10 +256,14 @@ const $form = document.getElementById('registro');
                     return res.json();
                 })
 .then(function (datos) {
-    alert(datos.mensaje);
     if (datos.status) {
         localStorage.setItem("correo_tutor", datos.correo);
-        window.location.href = "../Vista/HomeVet.php";  // Redirige a HomeVet
+        Swal.fire({ icon: "success", text: datos.mensaje })
+            .then(() => {
+                window.location.href = "../Vista/HomeVet.php";
+            });
+    } else {
+        Swal.fire({ icon: "error", text: datos.mensaje });
     }
 })
                 .catch(function (error) {
@@ -313,7 +318,7 @@ const $form = document.getElementById('registro');
 
             // Mostrar errores
             if (errores.length > 0) {
-                alert(errores.join("\n"));
+                Swal.fire({ icon: "error", text: errores.join("\n") });
                 return;
             }
 
@@ -336,7 +341,10 @@ const $form = document.getElementById('registro');
                 return res.json();
             })
             .then(function (datos) {
-                alert(datos.mensaje);
+                Swal.fire({
+                    icon: datos.status ? "success" : "error",
+                    text: datos.mensaje
+                });
 
                 if (datos.status) {
                     // Regresar al formulario de inicio de sesión

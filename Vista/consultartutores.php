@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Consultar Tutores</title>
-    <script src="../Controlador/cntrolTutor.js?v=20261021-1" defer></script>
+    <script src="../Controlador/cntrolTutor.js?v=20261112-1" defer></script>
     <script src="../Controlador/cntrolRelacion.js?v=20261021-1" defer></script>
     <script src="../Controlador/tutorAltaModal.js?v=20261021-1" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>

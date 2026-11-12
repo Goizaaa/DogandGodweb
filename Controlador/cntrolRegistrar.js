@@ -18,18 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(data => {
                 if (data.success) {
-                    alert("Insertado correctamente");
+                    Swal.fire({ icon: "success", text: "Insertado correctamente" })
+                        .then(() => {
+                            localStorage.setItem("id_mascota_editar", data.id_mascota);
+                            window.location.href = "consultarhis.html?id_mascota=" + data.id_mascota;
+                        });
                     fcuenta.reset();
-                    
-                    localStorage.setItem("id_mascota_editar", data.id_mascota);
-                    
-                    window.location.href = "consultarhis.html?id_mascota=" + data.id_mascota;
                 } else {
-                    alert("Error al insertar: " + (data.message || "Motivo desconocido"));
+                    Swal.fire({ icon: "error", text: "Error al insertar: " + (data.message || "Motivo desconocido") });
                 }
             })
             .catch(error => {
-                alert(error.message);
+                Swal.fire({ icon: "error", text: error.message });
             });
         });
     }

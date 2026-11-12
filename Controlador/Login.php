@@ -129,6 +129,20 @@ class Database {
 
 $db = new Database();
 
+function mostrarMensajeLogin(string $mensaje, string $icono): void {
+    $mensajeSeguro = json_encode(
+        $mensaje,
+        JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
+    );
+    $iconoSeguro = json_encode($icono);
+
+    echo '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Inicio de sesión</title>'
+        . '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script></head><body>'
+        . '<script>Swal.fire({icon:' . $iconoSeguro . ',text:' . $mensajeSeguro . '})'
+        . '.then(() => { window.location.href = "../Vista/InicioSesion.php"; });</script>'
+        . '</body></html>';
+    exit;
+}
 
 
 
@@ -154,11 +168,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "correo = '$correo'"
         );
 
-
-
         if (count($buscarUsuario) > 0) {
 
-            echo "El correo ya esta registrado";
+            mostrarMensajeLogin("El correo ya esta registrado", "error");
 
         } else {
 
@@ -182,11 +194,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($crearUsuario) {
 
-                echo "Cuenta creada correctamente";
+                mostrarMensajeLogin("Cuenta creada correctamente", "success");
 
             } else {
 
-                echo "Error al crear la cuenta";
+                mostrarMensajeLogin("Error al crear la cuenta", "error");
             }
         }
     }
@@ -229,16 +241,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 )
             ) {
 
-                echo "Inicio de sesion correcto";
+                mostrarMensajeLogin("Inicio de sesion correcto", "success");
 
             } else {
 
-                echo "Contraseña incorrecta";
+                mostrarMensajeLogin("Contraseña incorrecta", "error");
             }
 
         } else {
 
-            echo "El usuario no existe";
+            mostrarMensajeLogin("El usuario no existe", "error");
         }
     }
 }

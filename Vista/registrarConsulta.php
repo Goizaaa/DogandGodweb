@@ -6,7 +6,7 @@
     <title>Registrar Consulta | Dog&God</title>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../controlador/cntrolConsulta.js?v=20261013-4" defer></script>
+    <script src="../Controlador/cntrolConsult.js?v=20261112-1" defer></script>
 </head>
 <body class="vista-consultar-cita">
     <header>

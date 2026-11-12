@@ -39,16 +39,17 @@ valores.append("id_mascota", idMascota);
         .then(data => {
             console.log(data);
             if (data.success) {
-                alert("Actualizado correctamente");
-                
-                window.location.href = "consultarhis.php?id_mascota=" + idMascota;
+                Swal.fire({ icon: "success", text: "Actualizado correctamente" })
+                    .then(() => {
+                        window.location.href = "consultarhis.php?id_mascota=" + idMascota;
+                    });
             } else {
-                alert("Error al actualizar");
+                Swal.fire({ icon: "error", text: "Error al actualizar" });
             }
         })
         .catch(err => {
             console.error(err);
-            alert("Error en el servidor");
+            Swal.fire({ icon: "error", text: "Error en el servidor" });
         });
     });
 });

@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const idMascota = localStorage.getItem("id_mascota_editar");
 
     if (!idMascota || idMascota === "null" || idMascota === "undefined") {
-        alert("Error: No se ha seleccionado ninguna mascota.");
-        window.location.href = "consultarhis.html";
+        Swal.fire({ icon: "error", text: "Error: No se ha seleccionado ninguna mascota." })
+            .then(() => {
+                window.location.href = "consultarhis.html";
+            });
         return;
     }
 
@@ -58,19 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
             })
 .then(data => {
     if (data.success) {
-        alert("Historial eliminado correctamente");
-        
-        localStorage.removeItem("id_mascota_editar");
-        
-
-        window.location.href = "registhist.html"; 
-        alert("Error al intentar eliminar el registro.");
+        Swal.fire({ icon: "success", text: "Historial eliminado correctamente" })
+            .then(() => {
+                localStorage.removeItem("id_mascota_editar");
+                window.location.href = "registhist.html";
+            });
+    } else {
+        Swal.fire({ icon: "error", text: "Error al intentar eliminar el registro." });
     }
 })
 
             .catch(err => {
                 console.error("Error en la baja:", err);
-                alert("Ocurrió un error en el servidor.");
+                Swal.fire({ icon: "error", text: "Ocurrió un error en el servidor." });
             });
         });
     }

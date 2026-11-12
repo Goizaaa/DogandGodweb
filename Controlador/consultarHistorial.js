@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!idMascota || idMascota === "null" || idMascota === "undefined") {
         console.error("Error: No se encontró ningún 'id_mascota' válido.");
-        alert("Error: Identificador de mascota no encontrado.");
+        Swal.fire({ icon: "error", text: "Error: Identificador de mascota no encontrado." });
         return; 
     }
 

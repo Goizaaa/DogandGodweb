@@ -13,11 +13,6 @@ if ($this->db->connect_error)
 {
     die("Error de conexion");
 }
-else
-{
-    echo "Conexion exitosa";
-}
-
         //%%$this->db->set_charset(DB_CHARSET);
         //echo "Se conectó a la BD"; 
         //$obj = new Conexion();

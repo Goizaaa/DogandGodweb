@@ -11,7 +11,8 @@
     <!-- CSS del Formulario Signin -->
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 
-    <script src="../Controlador/InicioSes.js?v=20261012-4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Controlador/InicioSes.js?v=20261112-1"></script>
 </head>
 
 <body class="text-center vista-inicio-sesion">
