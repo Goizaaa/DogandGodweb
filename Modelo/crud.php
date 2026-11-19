@@ -23,6 +23,10 @@ class Database {
         $this->conn->set_charset(DB_CHARSET);
     }
 
+    public function conexion(): mysqli {
+        return $this->conn;
+    }
+
     public function create($table, $data) {
         $columns = implode(", ", array_keys($data));
         $placeholders = implode(", ", array_fill(0, count($data), "?"));

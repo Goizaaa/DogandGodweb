@@ -1,376 +1,90 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const inicio = document.querySelector("#inicio");
-    const recuperar = document.querySelector("#recuperar");
-    const restablecer = document.querySelector("#restablecer");
-    const dospasos = document.querySelector("#dospasos");
-    const crear = document.querySelector("#crear");
+document.addEventListener('DOMContentLoaded', () => {
+    const secciones = ['inicio', 'recuperar', 'restablecer', 'dospasos', 'crear']
+        .reduce((obj, id) => (obj[id] = document.getElementById(id), obj), {});
+    let propositoCodigo = null;
+    const mostrar = id => Object.entries(secciones).forEach(([key, el]) => { if (el) el.style.display = key === id ? 'block' : 'none'; });
+    const solicitar = async datos => {
+        const form = new FormData();
+        Object.entries(datos).forEach(([key, value]) => form.append(key, value));
+        const response = await fetch('../Controlador/ControLogin.php', { method: 'POST', body: form });
+        return response.json();
+    };
 
-    let usuarioRecuperacion = null;
+    mostrar('inicio');
+    document.getElementById('abrerecuperar')?.addEventListener('click', e => { e.preventDefault(); mostrar('recuperar'); });
+    document.getElementById('abrecrear')?.addEventListener('click', e => { e.preventDefault(); mostrar('crear'); });
 
-    if (inicio && recuperar && restablecer && dospasos && crear) {
-        inicio.style.display = "block";
-        recuperar.style.display = "none";
-        restablecer.style.display = "none";
-        dospasos.style.display = "none";
-        crear.style.display = "none";
-    }
-
-
-    const abreinicio = document.querySelector("#abreinicio");
-    const abrerecuperar = document.querySelector("#abrerecuperar");
-    const abrerestablecer = document.querySelector("#abrerestablecer");
-    const abredospasos = document.querySelector("#abredospasos");
-    const abrecrear = document.querySelector("#abrecrear");
-    const btnConfirmar = document.querySelector("#CONFIRMAR");
-    const btnConfirmarC = document.querySelector("#ConfirC");
-
-    abrerecuperar.addEventListener("click", (event) => {
-        event.preventDefault();
-        recuperar.style.display = "block";
-        inicio.style.display = "none";
-        restablecer.style.display = "none";
-        dospasos.style.display = "none";
-        crear.style.display = "none";
+    document.getElementById('CONFIRMAR')?.addEventListener('click', async e => {
+        e.preventDefault();
+        const correo = document.getElementById('usuarioD').value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) { Swal.fire({ icon: 'error', text: 'Ingresa un correo válido.' }); return; }
+        try {
+            const result = await solicitar({ enviar_codigo_recuperacion: '1', correo });
+            if (!result.status) { Swal.fire({ icon: 'error', text: result.mensaje }); return; }
+            propositoCodigo = 'recuperacion';
+            document.getElementById('usuarioC').value = '';
+            Swal.fire({ icon: 'success', text: result.mensaje });
+            mostrar('dospasos');
+        } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo contactar al servidor.' }); }
     });
 
-    abrecrear.addEventListener("click", (event) => {
-        event.preventDefault();
-        recuperar.style.display = "none";
-        inicio.style.display = "none";
-        restablecer.style.display = "none";
-        dospasos.style.display = "none";
-        crear.style.display = "block";
-    });
-        btnConfirmar.addEventListener("click", (event) => {
-            event.preventDefault();
-        recuperar.style.display = "none";
-        inicio.style.display = "none";
-        restablecer.style.display = "none";
-        dospasos.style.display = "block";
-        crear.style.display = "none";
+    document.getElementById('ConfirC')?.addEventListener('click', async e => {
+        e.preventDefault();
+        const codigo = document.getElementById('usuarioC').value.trim();
+        if (!/^\d{6}$/.test(codigo)) { Swal.fire({ icon: 'error', text: 'Ingresa el código de 6 dígitos.' }); return; }
+        try {
+            const result = await solicitar({ verificar_codigo: '1', codigo });
+            if (!result.status) { Swal.fire({ icon: 'error', text: result.mensaje }); return; }
+            if (propositoCodigo !== 'recuperacion' || result.proposito !== 'recuperacion') { Swal.fire({ icon: 'error', text: 'El código solo sirve para recuperar la contraseña.' }); return; }
+            await Swal.fire({ icon: 'success', text: result.mensaje });
+            mostrar('restablecer');
+        } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo verificar el código.' }); }
     });
 
-        btnConfirmarC.addEventListener("click", (event) => {
-        event.preventDefault();
-        recuperar.style.display = "none";
-        inicio.style.display = "none";
-        restablecer.style.display = "block";
-        dospasos.style.display = "none";
-        crear.style.display = "none";
+    document.getElementById('Restabtn')?.addEventListener('click', async e => {
+        e.preventDefault();
+        const password = document.getElementById('contraseñaT').value;
+        const confirmacion = document.getElementById('contraseñadTR').value;
+        if (password.length < 8) { Swal.fire({ icon: 'error', text: 'La contraseña debe tener al menos 8 caracteres.' }); return; }
+        if (password !== confirmacion) { Swal.fire({ icon: 'error', text: 'Las contraseñas no coinciden.' }); return; }
+        try {
+            const result = await solicitar({ actualizar_password: '1', password });
+            await Swal.fire({ icon: result.status ? 'success' : 'error', text: result.mensaje });
+            if (result.status) { document.getElementById('contraseñaT').value = ''; document.getElementById('contraseñadTR').value = ''; document.getElementById('usuarioC').value = ''; document.getElementById('usuarioD').value = ''; propositoCodigo = null; mostrar('inicio'); }
+        } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo actualizar la contraseña.' }); }
     });
 
-     const btnConfirmarRecuperacion = document.querySelector("#CONFIRMAR");
-     if (btnConfirmarRecuperacion) {
-        btnConfirmarRecuperacion.addEventListener("click", function(event) {
-            event.preventDefault();
-            
-            let correoRecuperacion = document.getElementById("usuarioD").value.trim();
-            let errores = [];
-            
-            if (correoRecuperacion === "") {
-                errores.push("Ingresa tu correo electrónico.");
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correoRecuperacion)) {
-                errores.push("El formato del correo no es válido.");
-            }
-            
-            if (errores.length > 0) {
-                Swal.fire({ icon: "error", text: errores.join("\n") });
-                return;
-            }
-            
-            let datos = new FormData();
-            datos.append("buscar_usuario", true);
-            datos.append("correo", correoRecuperacion);
-            
-            fetch("../Controlador/ControLogin.php", {
-                method: "POST",
-                body: datos
-            })
-            .then(function(res) {
-                return res.json();
-            })
-            .then(function(respuesta) {
-                if (respuesta.status) {
-                    usuarioRecuperacion = respuesta.usuario;
-                    
-                    recuperar.style.display = "none";
-                    inicio.style.display = "none";
-                    restablecer.style.display = "none";
-                    crear.style.display = "none";
-                    dospasos.style.display = "block";
-                } else {
-                    Swal.fire({ icon: "error", text: respuesta.mensaje });
-                }
-            })
-            .catch(function(error) {
-                console.log(error);
-                Swal.fire({ icon: "error", text: "Error al verificar el correo." });
-            });
-        });
-    }
-    const btnConfirmarCodigo = document.querySelector("#ConfirC");
+    const login = document.getElementById('registro');
+    login?.addEventListener('submit', async e => {
+        e.preventDefault();
+        const correo = document.getElementById('correoU').value.trim();
+        const password = document.getElementById('contraU').value;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) || !password) { Swal.fire({ icon: 'error', text: 'Ingresa un correo y una contraseña válidos.' }); return; }
+        try {
+            const result = await solicitar({ login: '1', correo, password });
+            if (!result.status) { Swal.fire({ icon: 'error', text: result.mensaje }); return; }
+            localStorage.setItem('correo_tutor', result.correo || correo);
+            await Swal.fire({ icon: 'success', text: result.mensaje });
+            window.location.href = '../Vista/HomeVet.php';
+        } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo contactar al servidor.' }); }
+    });
 
-    if (btnConfirmarCodigo) {
-        btnConfirmarCodigo.addEventListener("click", function(event) {
-            event.preventDefault();
-            
-            let codigo = document.getElementById("usuarioC").value.trim();
-            
-            if (codigo === "3221") {
-                if (usuarioRecuperacion) {
-                    document.getElementById("correo_original").value = usuarioRecuperacion.correo;
-                    document.getElementById("correo_restablecer").textContent = usuarioRecuperacion.correo;
-                    document.getElementById("nombre_restablecer").textContent = usuarioRecuperacion.nombre;
-                }
-                
-                recuperar.style.display = "none";
-                inicio.style.display = "none";
-                dospasos.style.display = "none";
-                crear.style.display = "none";
-                restablecer.style.display = "block";
-            } else {
-                Swal.fire({ icon: "error", text: "Código incorrecto. El código es: 3221" });
-            }
-        });
-    }
-     const btnRestablecer = document.querySelector("#Restabtn");
-
-    if (btnRestablecer) {
-        btnRestablecer.addEventListener("click", function(event) {
-            event.preventDefault();
-            
-            let nuevaPassword = document.getElementById("contraseñaT").value.trim();
-            let confirmarPassword = document.getElementById("contraseñadTR").value.trim();
-            let errores = [];
-            
-            if (nuevaPassword === "") {
-                errores.push("Ingresa tu nueva contraseña.");
-            } else if (nuevaPassword.length < 4) {
-                errores.push("La contraseña debe tener al menos 4 caracteres.");
-            }
-            
-            if (nuevaPassword !== confirmarPassword) {
-                errores.push("Las contraseñas no coinciden.");
-            }
-            
-            if (errores.length > 0) {
-                Swal.fire({ icon: "error", text: errores.join("\n") });
-                return;
-            }
-            
-            if (!usuarioRecuperacion) {
-                Swal.fire({ icon: "error", text: "No se encontró información. Reinicia el proceso." });
-                return;
-            }
-            
-            let datos = new FormData();
-            datos.append("actualizar_password", true);
-            datos.append("correo", usuarioRecuperacion.correo);
-            datos.append("password", nuevaPassword);
-            
-            fetch("../Controlador/ControLogin.php", {
-                method: "POST",
-                body: datos
-            })
-            .then(function(res) {
-                return res.json();
-            })
-            .then(function(respuesta) {
-                Swal.fire({
-                    icon: respuesta.status ? "success" : "error",
-                    text: respuesta.mensaje
-                });
-                
-                if (respuesta.status) {
-                    document.getElementById("contraseñaT").value = "";
-                    document.getElementById("contraseñadTR").value = "";
-                    document.getElementById("usuarioD").value = "";
-                    document.getElementById("usuarioC").value = "";
-                    usuarioRecuperacion = null;
-                    
-                    recuperar.style.display = "none";
-                    dospasos.style.display = "none";
-                    restablecer.style.display = "none";
-                    crear.style.display = "none";
-                    inicio.style.display = "block";
-                }
-            })
-            .catch(function(error) {
-                console.log(error);
-                Swal.fire({ icon: "error", text: "Error al actualizar la contraseña." });
-            });
-        });
-    }
-
-
-
-const $form = document.getElementById('registro');
-    const $email = document.getElementById('correoU');
-    const $password = document.getElementById('contraU');
-    const $messages = $form ? $form.querySelector('.mensaje') : null;
-
-    if ($form) {
-        $form.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            let email = $email.value.trim();
-            let password = $password.value.trim();
-            let errors = [];
-
-            // Validación de correo
-            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                $email.classList.remove('error');
-            } else {
-                errors.push('El email no es válido.<br>');
-                $email.classList.add('error');
-            }
-
-            // Validación de contraseña
-            if (password.length >= 4) {
-                $password.classList.remove('error');
-            } else {
-                errors.push('La contraseña debe tener al menos 4 caracteres.<br>');
-                $password.classList.add('error');
-            }
-
-            // Mostrar errores
-            if (errors.length > 0) {
-                if ($messages) $messages.classList.remove('show');
-                Swal.fire({ icon: "error", html: errors.join('') });
-            } else {
-                if ($messages) {
-                    $messages.classList.remove('show');
-                }
-
-                let datos = new FormData();
-
-                datos.append("login", true);
-                datos.append("correo", email);
-                datos.append("password", password);
-
-                fetch("../Controlador/ControLogin.php", {
-                    method: "POST",
-                    body: datos
-                })
-                .then(function (res) {
-                    return res.json();
-                })
-.then(function (datos) {
-    if (datos.status) {
-        localStorage.setItem("correo_tutor", datos.correo);
-        Swal.fire({ icon: "success", text: datos.mensaje })
-            .then(() => {
-                window.location.href = "../Vista/HomeVet.php";
-            });
-    } else {
-        Swal.fire({ icon: "error", text: datos.mensaje });
-    }
-})
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }
-        });
-    }
-     const btnCrear = document.getElementById("crearbtn");
-
-    if (btnCrear) {
-        btnCrear.addEventListener("click", function (event) {
-            event.preventDefault();
-            let nombre = document.getElementById("NomU").value.trim();
-            let apellidoPaterno = document.getElementById("aPpU").value.trim();
-            let apellidoMaterno = document.getElementById("aPmU").value.trim();
-            let correo = document.getElementById("usuarioCI").value.trim();
-            let confirmarCorreo = document.getElementById("usuarioaCI").value.trim();
-            let password = document.getElementById("contraseñaCI").value.trim();
-            let confirmarPassword = document.getElementById("contraseñaa").value.trim();
-
-            let errores = [];
-            if (nombre === "") {
-                errores.push("Ingresa tu nombre.");
-            }
-            if (apellidoPaterno === "") {
-                errores.push("Ingresa tu apellido paterno.");
-            }
-            if (apellidoMaterno === "") {
-                errores.push("Ingresa tu apellido materno.");
-            }
-
-            // Validar correo
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
-                errores.push("El correo no es válido.");
-            }
-
-            // Confirmar correo
-            if (correo !== confirmarCorreo) {
-                errores.push("Los correos no coinciden.");
-            }
-
-            // Validar contraseña
-            if (password.length < 4) {
-                errores.push("La contraseña debe tener al menos 4 caracteres.");
-            }
-
-            // Confirmar contraseña
-            if (password !== confirmarPassword) {
-                errores.push("Las contraseñas no coinciden.");
-            }
-
-            // Mostrar errores
-            if (errores.length > 0) {
-                Swal.fire({ icon: "error", text: errores.join("\n") });
-                return;
-            }
-
-
-
-            let datos = new FormData();
-
-            datos.append("crear", true);
-            datos.append("correo", correo);
-            datos.append("password", password);
-            datos.append("nombre", nombre);
-            datos.append("apellido_paterno", apellidoPaterno);
-            datos.append("apellido_materno", apellidoMaterno);
-
-            fetch("../Controlador/ControLogin.php", {
-                method: "POST",
-                body: datos
-            })
-            .then(function (res) {
-                return res.json();
-            })
-            .then(function (datos) {
-                Swal.fire({
-                    icon: datos.status ? "success" : "error",
-                    text: datos.mensaje
-                });
-
-                if (datos.status) {
-                    // Regresar al formulario de inicio de sesión
-
-                    inicio.style.display = "block";
-                    recuperar.style.display = "none";
-                    restablecer.style.display = "none";
-                    dospasos.style.display = "none";
-                    crear.style.display = "none";
-
-                    // Limpiar campos
-                    document.getElementById("NomU").value = "";
-                    document.getElementById("aPpU").value = "";
-                    document.getElementById("aPmU").value = "";
-                    document.getElementById("usuarioCI").value = "";
-                    document.getElementById("usuarioaCI").value = "";
-                    document.getElementById("contraseñaCI").value = "";
-                    document.getElementById("contraseñaa").value = "";
-                                      
-
-                }
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        });
-    }
+    document.getElementById('crearbtn')?.addEventListener('click', async e => {
+        e.preventDefault();
+        const nombre = document.getElementById('NomU').value.trim();
+        const apellidoP = document.getElementById('aPpU').value.trim();
+        const apellidoM = document.getElementById('aPmU').value.trim();
+        const correo = document.getElementById('usuarioCI').value.trim();
+        const correo2 = document.getElementById('usuarioaCI').value.trim();
+        const password = document.getElementById('contraseñaCI').value;
+        const password2 = document.getElementById('contraseñaa').value;
+        if (!nombre || !apellidoP || !apellidoM || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) || correo !== correo2 || password.length < 8 || password !== password2) {
+            Swal.fire({ icon: 'error', text: 'Revisa nombre, apellidos, correos y contraseñas. La contraseña requiere al menos 8 caracteres.' }); return;
+        }
+        try {
+            const result = await solicitar({ crear: '1', correo, password, nombre, apellido_paterno: apellidoP, apellido_materno: apellidoM });
+            await Swal.fire({ icon: result.status ? 'success' : 'error', text: result.mensaje });
+            if (result.status) { login.reset(); mostrar('inicio'); }
+        } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo crear la cuenta.' }); }
+    });
 });

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../Controlador/InicioSes.js?v=20261112-1"></script>
+    <script src="../Controlador/InicioSes.js?v=20261118-4"></script>
 </head>
 
 <body class="text-center vista-inicio-sesion">
@@ -82,10 +82,10 @@
         <main class="form-signin m-auto">
             <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
                     <h3><img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt=""></h3>
-                    <h1 class="h3 mb-2 fw-normal">Confirmacion de dos pasos</h1>
-                    <p class="text-muted mb-3">Ingresa el codigo de dos pasos para confirmar que eres tu</p>
+                    <h1 class="h3 mb-2 fw-normal">Confirmar recuperación de contraseña</h1>
+                    <p class="text-muted mb-3">Ingresa el código de 6 dígitos enviado al correo de tu cuenta para continuar con la recuperación.</p>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="usuarioC" id="usuarioC" placeholder="Código">
+                    <input type="text" class="form-control" name="usuarioC" id="usuarioC" placeholder="Código" inputmode="numeric" autocomplete="one-time-code" maxlength="6">
                     <label for="usuarioC">Código de confirmación</label>
                 </div>
                     <button class="w-100 btn btn-lg btn-primary mb-3" type="button" id="ConfirC">Confirmar</button>

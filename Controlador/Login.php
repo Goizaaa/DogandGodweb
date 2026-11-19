@@ -1,11 +1,12 @@
 <?php
+require_once __DIR__ . '/../Modelo/config.php';
 
 class Database {
 
-    private string $host = "localhost";
-    private string $user = "root";
-    private string $password = "root";
-    private string $dbname = "bdveterinaria";
+    private string $host = DB_HOST;
+    private string $user = DB_USER;
+    private string $password = DB_PASS;
+    private string $dbname = DB_NAME;
 
     private mysqli $conn;
 
@@ -174,18 +175,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
 
-            $passwordSegura = password_hash(
-                $password,
-                PASSWORD_DEFAULT
-            );
-
-
-
             $crearUsuario = $db->create(
                 "usuarios",
                 [
                     "correo" => $correo,
-                    "password" => $passwordSegura,
+                    "password" => $password,
                     "nombre" => $nombre
                 ]
             );
@@ -234,12 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-            if (
-                password_verify(
-                    $password,
-                    $usuario["password"]
-                )
-            ) {
+            if (password_verify($password, $usuario["password"]) || hash_equals((string)$usuario["password"], $password)) {
 
                 mostrarMensajeLogin("Inicio de sesion correcto", "success");
 
