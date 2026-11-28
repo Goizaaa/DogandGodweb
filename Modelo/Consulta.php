@@ -13,31 +13,15 @@ if ($accion === 'guardar_consulta') {
         'frecuencia_card'           => $_POST['frecuencia_card'] ?? null,
         'detalles_diagnosticos'     => $_POST['detalles_diagnosticos'] ?? null,
         'analisis_clinicos'         => $_POST['analisis_clinicos'] ?? null,
-        'nombre_medicamento'        => $_POST['nombre_medicamento'] ?? [],
-        'dosis'                     => $_POST['dosis'] ?? [],
-        'frecuencia_administracion' => $_POST['frecuencia_administracion'] ?? [],
+        'nombre_medicamento'        => $_POST['nombre_medicamento'] ?? '',
+        'dosis'                     => $_POST['dosis'] ?? '',
+        'frecuencia_administracion' => $_POST['frecuencia_administracion'] ?? '',
         'fecha_inicial'             => $_POST['fecha_inicial'] ?? '',
         'fecha_final'               => $_POST['fecha_final'] ?? '',
         'id_cita'                   => $_POST['id_cita'] ?? null
     ];
 
-    foreach (['nombre_medicamento', 'dosis', 'frecuencia_administracion'] as $campo) {
-        if (!is_array($datos[$campo])) {
-            $datos[$campo] = [$datos[$campo]];
-        }
-    }
-
-    $cantidadTratamientos = count($datos['nombre_medicamento']);
-    $tratamientosValidos = $cantidadTratamientos > 0
-        && count($datos['dosis']) === $cantidadTratamientos
-        && count($datos['frecuencia_administracion']) === $cantidadTratamientos;
-    for ($i = 0; $tratamientosValidos && $i < $cantidadTratamientos; $i++) {
-        $tratamientosValidos = trim((string)$datos['nombre_medicamento'][$i]) !== ''
-            && trim((string)$datos['dosis'][$i]) !== ''
-            && trim((string)$datos['frecuencia_administracion'][$i]) !== '';
-    }
-
-    if (empty($datos['fecha']) || empty($datos['peso_consulta']) || !$tratamientosValidos) {
+    if (empty($datos['fecha']) || empty($datos['peso_consulta']) || empty($datos['nombre_medicamento'])) {
         echo json_encode(["status" => "error", "message" => "Por favor completa los campos obligatorios."]);
         exit;
     }
