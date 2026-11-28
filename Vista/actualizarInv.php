@@ -4,15 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario | Dog&amp;God</title>
-<<<<<<< HEAD
-    <script src="../controlador/cntrlInv.js" defer></script>
+    <script src="../Controlador/cntrlInv.js?v=20261106-2" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
-=======
-    <script src="../Controlador/cntrlInv.js?v=20261106-2" defer></script>
-    <script src="../Controlador/paginacionTablas.js?v=20261013-1" defer></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261106-1">
->>>>>>> 1f1432157c121ddda9eb5c8ec9097a6a1f39ea18
 </head>
 <body class="vista-tablas vista-inventario">
 

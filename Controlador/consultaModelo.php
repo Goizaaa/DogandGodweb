@@ -19,7 +19,6 @@ class ConsultaModelo {
 
             $id_diagnostico = "DIAG-" . time();
             $id_consulta = "CONS-" . time();
-            $id_tratamiento = "TRAT-" . time();
 
             // 1. Inserción en 'diagnostico'
             $sqlDiag = "INSERT INTO diagnostico (id_diagnostico, fecha_diagnostico, analisis_clinicos, detalles_diagnosticos) 
@@ -46,19 +45,21 @@ class ConsultaModelo {
                 ':id_cita'   => !empty($datos['id_cita']) ? $datos['id_cita'] : NULL
             ]);
 
-            // 3. Inserción en 'tratamiento'
+            // 3. Inserción de todos los tratamientos asociados al diagnóstico
             $sqlTrat = "INSERT INTO tratamiento (id_tratamiento, frecuencia_administracion, fecha_inicial, fecha_final, nombre_medicamento, dosis, id_diagnostico) 
                         VALUES (:id_trat, :freq_admin, :fecha_ini, :fecha_fin, :medicamento, :dosis, :id_diag)";
             $stmtTrat = $this->db->prepare($sqlTrat);
-            $stmtTrat->execute([
-                ':id_trat'    => $id_tratamiento,
-                ':freq_admin' => substr($datos['frecuencia_administracion'], 0, 100),
-                ':fecha_ini'  => $datos['fecha_inicial'],
-                ':fecha_fin'  => $datos['fecha_final'],
-                ':medicamento' => substr($datos['nombre_medicamento'], 0, 100),
-                ':dosis'      => substr($datos['dosis'], 0, 50),
-                ':id_diag'    => $id_diagnostico
-            ]);
+            foreach ($datos['nombre_medicamento'] as $indice => $medicamento) {
+                $stmtTrat->execute([
+                    ':id_trat'    => 'TRAT-' . date('YmdHis') . '-' . bin2hex(random_bytes(6)),
+                    ':freq_admin' => substr($datos['frecuencia_administracion'][$indice], 0, 100),
+                    ':fecha_ini'  => $datos['fecha_inicial'],
+                    ':fecha_fin'  => $datos['fecha_final'],
+                    ':medicamento' => substr($medicamento, 0, 100),
+                    ':dosis'      => substr($datos['dosis'][$indice], 0, 50),
+                    ':id_diag'    => $id_diagnostico
+                ]);
+            }
 
             $this->db->commit();
             return true;

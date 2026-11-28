@@ -9,8 +9,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnAnterior = document.getElementById("btnPasoAnterior");
     const btnSiguiente = document.getElementById("btnPasoSiguiente");
     const btnGuardar = document.getElementById("btnGuardarConsulta");
+    const btnAgregarTratamiento = document.getElementById("btnAgregarTratamiento");
+    const listaTratamientos = document.getElementById("listaTratamientosConsulta");
+    const plantillaTratamiento = document.getElementById("plantillaTratamientoConsulta");
     const errorPaso = document.getElementById("errorPasoConsulta");
     let pasoActual = 0;
+
+    btnAgregarTratamiento?.addEventListener("click", () => {
+        if (!listaTratamientos || !plantillaTratamiento) return;
+        const numero = listaTratamientos.querySelectorAll("[data-tratamiento]").length + 1;
+        const bloque = document.createElement("div");
+        bloque.innerHTML = plantillaTratamiento.innerHTML.replaceAll("__NUMERO__", String(numero));
+        const nuevoTratamiento = bloque.firstElementChild;
+        if (!nuevoTratamiento) return;
+        listaTratamientos.appendChild(nuevoTratamiento);
+        nuevoTratamiento.querySelector("input")?.focus();
+    });
 
     const mostrarError = mensaje => {
         errorPaso.textContent = mensaje;

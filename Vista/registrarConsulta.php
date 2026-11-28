@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Consulta | Dog&God</title>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261127-1">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261127-2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../Controlador/cntrolConsult.js?v=20261127-1" defer></script>
+    <script src="../Controlador/cntrolConsult.js?v=20261127-2" defer></script>
 </head>
 <body class="vista-consultar-cita vista-registro-consulta">
     <header>
@@ -71,10 +71,28 @@
                         <div><p>PASO 3 DE 4</p><h3 id="titulo-paso-tratamiento">Tratamiento prescrito</h3></div>
                     </div>
                     <div class="consulta-campos-grid consulta-campos-una-columna">
-                        <div class="campo-agregar-cita"><label for="nombre_medicamento">Nombre del Medicamento (*)</label><input type="text" id="nombre_medicamento" name="nombre_medicamento" maxlength="100" placeholder="Ej. Amoxicilina" required></div>
-                        <div class="campo-agregar-cita"><label for="dosis">Dosis (*)</label><input type="text" id="dosis" name="dosis" maxlength="50" placeholder="Ej. 250 mg" required></div>
-                        <div class="campo-agregar-cita"><label for="frecuencia_administracion">Frecuencia de Administración (*)</label><input type="text" id="frecuencia_administracion" name="frecuencia_administracion" maxlength="100" placeholder="Ej. Cada 8 horas por 7 días" required></div>
+                        <div id="listaTratamientosConsulta">
+                            <div class="consulta-tratamiento-item" data-tratamiento="1">
+                                <h4>Tratamiento 1</h4>
+                                <div class="consulta-campos-grid consulta-campos-una-columna">
+                                    <div class="campo-agregar-cita"><label for="nombre_medicamento_1">Nombre del Medicamento (*)</label><input type="text" id="nombre_medicamento_1" name="nombre_medicamento[]" maxlength="100" placeholder="Ej. Amoxicilina" required></div>
+                                    <div class="campo-agregar-cita"><label for="dosis_1">Dosis (*)</label><input type="text" id="dosis_1" name="dosis[]" maxlength="50" placeholder="Ej. 250 mg" required></div>
+                                    <div class="campo-agregar-cita"><label for="frecuencia_administracion_1">Frecuencia de Administración (*)</label><input type="text" id="frecuencia_administracion_1" name="frecuencia_administracion[]" maxlength="100" placeholder="Ej. Cada 8 horas por 7 días" required></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="consultar-cita-agregar btn" type="button" id="btnAgregarTratamiento"><i class="fas fa-plus-circle" aria-hidden="true"></i> Agregar otro tratamiento</button>
                     </div>
+                    <template id="plantillaTratamientoConsulta">
+                        <div class="consulta-tratamiento-item" data-tratamiento="__NUMERO__">
+                            <h4>Tratamiento __NUMERO__</h4>
+                            <div class="consulta-campos-grid consulta-campos-una-columna">
+                                <div class="campo-agregar-cita"><label for="nombre_medicamento___NUMERO__">Nombre del Medicamento (*)</label><input type="text" id="nombre_medicamento___NUMERO__" name="nombre_medicamento[]" maxlength="100" placeholder="Ej. Amoxicilina" required></div>
+                                <div class="campo-agregar-cita"><label for="dosis___NUMERO__">Dosis (*)</label><input type="text" id="dosis___NUMERO__" name="dosis[]" maxlength="50" placeholder="Ej. 250 mg" required></div>
+                                <div class="campo-agregar-cita"><label for="frecuencia_administracion___NUMERO__">Frecuencia de Administración (*)</label><input type="text" id="frecuencia_administracion___NUMERO__" name="frecuencia_administracion[]" maxlength="100" placeholder="Ej. Cada 8 horas por 7 días" required></div>
+                            </div>
+                        </div>
+                    </template>
                 </section>
 
                 <section class="consulta-paso" data-paso="3" aria-labelledby="titulo-paso-vigencia" hidden>
