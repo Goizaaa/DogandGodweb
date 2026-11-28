@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../Controlador/InicioSes.js?v=20261118-4"></script>
+    <script src="../Controlador/InicioSes.js?v=20261119-1"></script>
 </head>
 
 <body class="text-center vista-inicio-sesion">
@@ -77,43 +77,36 @@
         </main>
     </section>
     
-    <!-- Dos pasos -->
-    <section id="dospasos" class="w-100">
-        <main class="form-signin m-auto">
-            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
-                    <h3><img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt=""></h3>
-                    <h1 class="h3 mb-2 fw-normal">Confirmar recuperación de contraseña</h1>
-                    <p class="text-muted mb-3">Ingresa el código de 6 dígitos enviado al correo de tu cuenta para continuar con la recuperación.</p>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="usuarioC" id="usuarioC" placeholder="Código" inputmode="numeric" autocomplete="one-time-code" maxlength="6">
-                    <label for="usuarioC">Código de confirmación</label>
-                </div>
-                    <button class="w-100 btn btn-lg btn-primary mb-3" type="button" id="ConfirC">Confirmar</button>
-            </form>
-        </main>
-    </section>
-<!-- Restablecer -->
-    <section id="restablecer" class="w-100">
-        <main class="form-signin m-auto">
-            <form action="" style="background-color: #8b8a8a70; border-radius: 20px; padding: 30px;">
-                <img class="mb-4" src="../recursos/dog_house_icon_125964.png" alt="" width="72" height="72">
-                <h1 class="h3 mb-2 fw-normal">Restablecer contraseña</h1>
-                <p class="text-muted mb-3">Ingresa tu nueva contraseña</p>
-                <div class="form-floating mb-2">
-                    <input type="password" class="form-control" name="contraseñaT" id="contraseñaT" placeholder="Nueva contraseña">
-                    <label for="contraseñaT">Nueva contraseña</label>
-                </div>
+    <dialog id="modal-recuperacion" class="p-4 border-0 rounded-4 shadow" aria-labelledby="titulo-modal-recuperacion" style="width: min(100% - 2rem, 460px);">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+                <h2 class="h4 mb-1" id="titulo-modal-recuperacion">Recuperar contraseña</h2>
+                <p class="text-muted mb-0" id="instruccion-recuperacion">Ingresa el código de 6 dígitos que enviamos a tu correo.</p>
+            </div>
+            <button type="button" class="btn-close" id="cerrar-modal-recuperacion" aria-label="Cerrar"></button>
+        </div>
+        <div id="mensaje-recuperacion" class="alert mb-3" role="status" aria-live="polite" hidden></div>
 
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" name="contraseñaTR" id="contraseñadTR" placeholder="Confirma tu contraseña">
-                    <label for="contraseñadTR">Confirma tu nueva contraseña</label>
-                </div>
+        <div id="paso-codigo-recuperacion">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="usuarioC" placeholder="Código" inputmode="numeric" autocomplete="one-time-code" maxlength="6">
+                <label for="usuarioC">Código de confirmación</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="button" id="ConfirC">Confirmar código</button>
+        </div>
 
-                <button class="w-100 btn btn-lg btn-primary mb-3" type="button" id="Restabtn">Confirmar</button>
-            </form>
-        </main>
-
-    </section>
+        <div id="paso-nueva-contrasena" hidden>
+            <div class="form-floating mb-2">
+                <input type="password" class="form-control" id="contraseñaT" placeholder="Nueva contraseña" autocomplete="new-password">
+                <label for="contraseñaT">Nueva contraseña</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="contraseñadTR" placeholder="Confirma tu contraseña" autocomplete="new-password">
+                <label for="contraseñadTR">Confirma tu nueva contraseña</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="button" id="Restabtn">Guardar nueva contraseña</button>
+        </div>
+    </dialog>
 
 <!-- crear cuenta -->
     <section id="crear" class="w-100">

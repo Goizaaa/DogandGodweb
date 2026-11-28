@@ -48,7 +48,7 @@ class ControLogin {
         if (!$usuario) { $this->responder(false, 'El correo no está registrado'); return; }
 
         $guardada = (string)$usuario['password'];
-        $coincide = $guardada === $password || trim($guardada) === $password;
+        $coincide = password_verify($password, $guardada) || $guardada === $password || trim($guardada) === $password;
         if (!$coincide) { $this->responder(false, 'Contraseña incorrecta'); return; }
         session_regenerate_id(true);
         $_SESSION['usuario_autenticado'] = $usuario['correo'];
@@ -81,8 +81,9 @@ class ControLogin {
         $rec = $_SESSION['recuperacion_confirmada'] ?? null;
         if (!$rec || time() > $rec['vence']) { unset($_SESSION['recuperacion_confirmada']); $this->responder(false, 'La confirmación venció. Inicia de nuevo la recuperación.'); return; }
         if (strlen($password) < 8) { $this->responder(false, 'La contraseña debe tener al menos 8 caracteres.'); return; }
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $this->db->conexion()->prepare('UPDATE usuarios SET password = ? WHERE correo = ?');
-        $stmt->bind_param('ss', $password, $rec['correo']);
+        $stmt->bind_param('ss', $passwordHash, $rec['correo']);
         $ok = $stmt->execute() && $stmt->affected_rows > 0;
         $stmt->close();
         if ($ok) { unset($_SESSION['recuperacion_confirmada']); $this->responder(true, 'Contraseña actualizada correctamente'); }

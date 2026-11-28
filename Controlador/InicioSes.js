@@ -1,8 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const secciones = ['inicio', 'recuperar', 'restablecer', 'dospasos', 'crear']
+    const secciones = ['inicio', 'recuperar', 'crear']
         .reduce((obj, id) => (obj[id] = document.getElementById(id), obj), {});
     let propositoCodigo = null;
+    const modalRecuperacion = document.getElementById('modal-recuperacion');
+    const pasoCodigo = document.getElementById('paso-codigo-recuperacion');
+    const pasoNuevaContrasena = document.getElementById('paso-nueva-contrasena');
     const mostrar = id => Object.entries(secciones).forEach(([key, el]) => { if (el) el.style.display = key === id ? 'block' : 'none'; });
+    const mostrarMensajeRecuperacion = (mensaje, tipo = 'danger') => {
+        const elemento = document.getElementById('mensaje-recuperacion');
+        elemento.textContent = mensaje;
+        elemento.className = `alert alert-${tipo} mb-3`;
+        elemento.hidden = false;
+    };
+    const mostrarPasoRecuperacion = paso => {
+        pasoCodigo.hidden = paso !== 'codigo';
+        pasoNuevaContrasena.hidden = paso !== 'contrasena';
+        document.getElementById('mensaje-recuperacion').hidden = true;
+        document.getElementById('instruccion-recuperacion').textContent = paso === 'codigo'
+            ? 'Ingresa el código de 6 dígitos que enviamos a tu correo.'
+            : 'Elige una contraseña nueva de al menos 8 caracteres.';
+    };
     const solicitar = async datos => {
         const form = new FormData();
         Object.entries(datos).forEach(([key, value]) => form.append(key, value));
@@ -23,35 +40,54 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!result.status) { Swal.fire({ icon: 'error', text: result.mensaje }); return; }
             propositoCodigo = 'recuperacion';
             document.getElementById('usuarioC').value = '';
-            Swal.fire({ icon: 'success', text: result.mensaje });
-            mostrar('dospasos');
+            await Swal.fire({ icon: 'success', text: result.mensaje });
+            mostrarPasoRecuperacion('codigo');
+            modalRecuperacion.showModal();
         } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo contactar al servidor.' }); }
     });
 
     document.getElementById('ConfirC')?.addEventListener('click', async e => {
         e.preventDefault();
         const codigo = document.getElementById('usuarioC').value.trim();
-        if (!/^\d{6}$/.test(codigo)) { Swal.fire({ icon: 'error', text: 'Ingresa el código de 6 dígitos.' }); return; }
+        if (!/^\d{6}$/.test(codigo)) { mostrarMensajeRecuperacion('Ingresa el código de 6 dígitos.'); return; }
         try {
             const result = await solicitar({ verificar_codigo: '1', codigo });
-            if (!result.status) { Swal.fire({ icon: 'error', text: result.mensaje }); return; }
-            if (propositoCodigo !== 'recuperacion' || result.proposito !== 'recuperacion') { Swal.fire({ icon: 'error', text: 'El código solo sirve para recuperar la contraseña.' }); return; }
-            await Swal.fire({ icon: 'success', text: result.mensaje });
-            mostrar('restablecer');
-        } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo verificar el código.' }); }
+            if (!result.status) { mostrarMensajeRecuperacion(result.mensaje); return; }
+            if (propositoCodigo !== 'recuperacion' || result.proposito !== 'recuperacion') { mostrarMensajeRecuperacion('El código solo sirve para recuperar la contraseña.'); return; }
+            mostrarPasoRecuperacion('contrasena');
+        } catch (_) { mostrarMensajeRecuperacion('No se pudo verificar el código.'); }
     });
 
     document.getElementById('Restabtn')?.addEventListener('click', async e => {
         e.preventDefault();
         const password = document.getElementById('contraseñaT').value;
         const confirmacion = document.getElementById('contraseñadTR').value;
-        if (password.length < 8) { Swal.fire({ icon: 'error', text: 'La contraseña debe tener al menos 8 caracteres.' }); return; }
-        if (password !== confirmacion) { Swal.fire({ icon: 'error', text: 'Las contraseñas no coinciden.' }); return; }
+        if (password.length < 8) { mostrarMensajeRecuperacion('La contraseña debe tener al menos 8 caracteres.'); return; }
+        if (password !== confirmacion) { mostrarMensajeRecuperacion('Las contraseñas no coinciden.'); return; }
         try {
             const result = await solicitar({ actualizar_password: '1', password });
-            await Swal.fire({ icon: result.status ? 'success' : 'error', text: result.mensaje });
-            if (result.status) { document.getElementById('contraseñaT').value = ''; document.getElementById('contraseñadTR').value = ''; document.getElementById('usuarioC').value = ''; document.getElementById('usuarioD').value = ''; propositoCodigo = null; mostrar('inicio'); }
-        } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo actualizar la contraseña.' }); }
+            if (result.status) {
+                document.getElementById('contraseñaT').value = '';
+                document.getElementById('contraseñadTR').value = '';
+                document.getElementById('usuarioC').value = '';
+                document.getElementById('usuarioD').value = '';
+                propositoCodigo = null;
+                modalRecuperacion.close();
+                mostrar('inicio');
+                await Swal.fire({ icon: 'success', text: result.mensaje });
+            } else { mostrarMensajeRecuperacion(result.mensaje); }
+        } catch (_) { mostrarMensajeRecuperacion('No se pudo actualizar la contraseña.'); }
+    });
+
+    document.getElementById('cerrar-modal-recuperacion')?.addEventListener('click', () => modalRecuperacion.close());
+    modalRecuperacion?.addEventListener('click', e => { if (e.target === modalRecuperacion) modalRecuperacion.close(); });
+    modalRecuperacion?.addEventListener('close', () => {
+        propositoCodigo = null;
+        document.getElementById('usuarioC').value = '';
+        document.getElementById('contraseñaT').value = '';
+        document.getElementById('contraseñadTR').value = '';
+        document.getElementById('mensaje-recuperacion').hidden = true;
+        mostrarPasoRecuperacion('codigo');
     });
 
     const login = document.getElementById('registro');
