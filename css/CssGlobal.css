@@ -543,6 +543,10 @@ body.vista-inicio-sesion {
 .consulta-paso-icono { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; border-radius: 14px; color: #1769aa; background: #eaf3fb; font-size: 1.15rem; }
 .consulta-campos-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .consulta-campos-una-columna { grid-template-columns: 1fr; gap: 15px; }
+.consulta-tratamiento-item { padding: 18px; border: 1px solid #dbe5f0; border-radius: 12px; background: #fff; }
+.consulta-tratamiento-item + .consulta-tratamiento-item { margin-top: 16px; }
+.consulta-tratamiento-item h4 { margin: 0 0 15px; color: #1769aa; font-size: 1rem; }
+#btnAgregarTratamiento { justify-self: start; margin-top: 16px; }
 .vista-registro-consulta .consulta-paso .campo-agregar-cita input { min-height: 48px; }
 .consulta-ayuda-final { display: flex; align-items: center; gap: 9px; margin: 24px 0 0; color: #62738a; font-size: .92rem; }
 .consulta-ayuda-final i { color: #1769aa; }
