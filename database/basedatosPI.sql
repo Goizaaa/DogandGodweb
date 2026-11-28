@@ -112,6 +112,10 @@ INSERT INTO `consulta` VALUES ('CONS001','2026-03-10',38,25,'D001','C001',NULL,N
 /*!40000 ALTER TABLE `consulta` ENABLE KEYS */;
 UNLOCK TABLES;
 
+ALTER TABLE `consulta`
+  ADD COLUMN `id_tratamiento` varchar(100) DEFAULT NULL AFTER `datos_ad`,
+  ADD KEY `consulta_tratamiento_FK` (`id_tratamiento`);
+
 --
 -- Table structure for table `diagnostico`
 --

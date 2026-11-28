@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Consultar historial </title>
-    <script src="../Controlador/consultarHistorial.js?v=20261127-2" defer></script>
+    <script src="../Controlador/consultarHistorial.js?v=20261127-3" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261123-1">
 </head>
@@ -82,13 +82,24 @@
             </article>
 
             <article id="consultas">
-                <h2>Consultas realizadas</h2>
+                <div class="historial-seccion-cabecera">
+                    <h2>Consultas realizadas</h2>
+                    <button class="btn-nuevo" type="button" id="btnRegistrarConsulta">Registrar consulta</button>
+                </div>
                 <table id="tablaConsultas" class="tabla-datos">
                     <thead>
                         <tr>
                             <th>Fecha</th>
+                            <th>Peso (kg)</th>
+                            <th>Temperatura (°C)</th>
+                            <th>Frecuencia cardíaca</th>
+                            <th>Análisis clínicos</th>
                             <th>Diagnóstico</th>
-                            <th>Tratamiento</th>
+                            <th>Medicamento</th>
+                            <th>Dosis</th>
+                            <th>Frecuencia de administración</th>
+                            <th>Fecha inicial</th>
+                            <th>Fecha final</th>
                         </tr>
                     </thead>
                      <tbody></tbody>

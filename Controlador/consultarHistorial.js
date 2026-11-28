@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const columnas = {
         general: ["nom_mascota", "nom_tutor", "especie", "raza", "fecha_adopcion", "peso_inicial", "sexo", "esterilizado", "telefono", "alergia", "NumMicrochip"],
-        consultas: ["fecha", "diagnostico", "tratamiento"],
+        consultas: ["fecha", "peso_consulta", "temperatura", "datos_ad", "analisis_clinicos", "detalles_diagnosticos", "nombre_medicamento", "dosis", "frecuencia_administracion", "fecha_inicial", "fecha_final"],
         procedimientos: ["nombre", "descripcion", "fecha"],
         laboratorio: ["nombre", "descripcion", "fecha", "archivo"],
         radiografias: ["nombre", "descripcion", "fecha", "archivo"],
@@ -81,16 +81,21 @@ document.addEventListener("DOMContentLoaded", () => {
         tablaDestino.innerHTML = "";
 
         const valores = new FormData();
-        valores.append("opc", opc);
         valores.append("id_mascota", idMascota);
+        const esConsulta = opc === "consultas";
+        valores.append(esConsulta ? "accion" : "opc", esConsulta ? "listar_consultas" : opc);
 
         try {
-            const respuesta = await fetch("../Controlador/modeloHistorial.php", {
+            const respuesta = await fetch(esConsulta ? "../Controlador/ConsultaControlador.php" : "../Controlador/modeloHistorial.php", {
                 method: "POST",
                 body: valores
             });
-            const datos = await respuesta.json();
+            let datos = await respuesta.json();
             if (!respuesta.ok) throw new Error(datos.message || "Error en la respuesta del servidor");
+            if (esConsulta) {
+                if (datos.status !== "success") throw new Error(datos.message || "No se pudieron cargar las consultas.");
+                datos = datos.data;
+            }
             if (!datos || datos.length === 0) {
                 const fila = document.createElement("tr");
                 const celda = document.createElement("td");
@@ -151,6 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
     llenarTabla("laboratorio", tablaLaboratorio);
     llenarTabla("radiografias", tablaRadiografias);
     llenarTabla("ultrasonido", tablaUltrasonido);
+
+    document.getElementById("btnRegistrarConsulta")?.addEventListener("click", () => {
+        window.location.href = "registrarConsulta.php?id_mascota=" + encodeURIComponent(idMascota);
+    });
 
     modalEditarMascota?.querySelectorAll("[data-cerrar-edicion]").forEach(boton => {
         boton.addEventListener("click", () => modalEditarMascota.close());

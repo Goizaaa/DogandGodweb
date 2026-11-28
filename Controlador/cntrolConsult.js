@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!frmConsulta || !modal) return;
 
+    const idMascota = frmConsulta.elements.id_mascota.value.trim();
     const pasos = Array.from(frmConsulta.querySelectorAll(".consulta-paso"));
     const indicadores = Array.from(modal.querySelectorAll("[data-indicador]"));
     const btnAnterior = document.getElementById("btnPasoAnterior");
@@ -58,12 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnAnterior.addEventListener("click", () => mostrarPaso(pasoActual - 1, -1));
 
-    const salir = () => {
-        if (window.history.length > 1) window.history.back();
-        else window.location.href = "consultarHistorial.php";
+    const regresarAlHistorial = () => {
+        window.location.href = "consultarhis.php?id_mascota=" + encodeURIComponent(idMascota);
     };
-    document.getElementById("cerrarRegistroConsulta")?.addEventListener("click", salir);
-    document.getElementById("cancelarRegistroConsulta")?.addEventListener("click", salir);
+    document.getElementById("cerrarRegistroConsulta")?.addEventListener("click", regresarAlHistorial);
+    document.getElementById("cancelarRegistroConsulta")?.addEventListener("click", regresarAlHistorial);
 
     frmConsulta.addEventListener("submit", async evento => {
         evento.preventDefault();
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("accion", "guardar_consulta");
 
         try {
-            const response = await fetch("../Modelo/Consulta.php", {
+            const response = await fetch("../Controlador/ConsultaControlador.php", {
                 method: "POST",
                 body: formData
             });
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (res.status === "success") {
                 Swal.fire({ icon: "success", text: "Consulta, diagnóstico y tratamiento agregados con éxito." })
                     .then(() => {
-                        window.location.href = "consultarHistorial.php";
+                        regresarAlHistorial();
                     });
             } else {
                 mostrarError(res.message || "No se pudo completar el registro.");

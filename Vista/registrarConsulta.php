@@ -1,3 +1,11 @@
+<?php
+$idMascotaParam = $_GET["id_mascota"] ?? "";
+$idMascota = is_string($idMascotaParam) ? trim($idMascotaParam) : "";
+if (!preg_match('/^[A-Za-z0-9_-]{1,25}$/', $idMascota)) {
+    header("Location: buscarhist.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +14,7 @@
     <title>Registrar Consulta | Dog&God</title>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261127-1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="../Controlador/cntrolConsult.js?v=20261127-1" defer></script>
+    <script src="../Controlador/cntrolConsult.js?v=20261127-3" defer></script>
 </head>
 <body class="vista-consultar-cita vista-registro-consulta">
     <header>
@@ -18,7 +26,7 @@
             <div>
                 <p class="consultar-cita-eyebrow">EXPEDIENTE VETERINARIO</p>
                 <h1>Registrar Consulta Médica</h1>
-                <p class="registro-consulta-intro">Completa la consulta en cuatro pasos. Tu avance se conserva mientras recorres las secciones.</p>
+                <p class="registro-consulta-intro">Paciente: <strong><?= htmlspecialchars($idMascota, ENT_QUOTES, "UTF-8") ?></strong>. Completa la consulta en cuatro pasos.</p>
             </div>
         </div>
 
@@ -40,6 +48,7 @@
 
             <form id="frmAgregarConsulta" class="formulario-agregar-cita" novalidate>
                 <input type="hidden" id="id_cita" name="id_cita" value="">
+                <input type="hidden" id="id_mascota" name="id_mascota" value="<?= htmlspecialchars($idMascota, ENT_QUOTES, "UTF-8") ?>">
 
                 <section class="consulta-paso activo" data-paso="0" aria-labelledby="titulo-paso-consulta">
                     <div class="consulta-paso-titulo">
@@ -48,8 +57,8 @@
                     </div>
                     <div class="consulta-campos-grid">
                         <div class="campo-agregar-cita"><label for="fecha">Fecha de Consulta (*)</label><input type="date" id="fecha" name="fecha" required></div>
-                        <div class="campo-agregar-cita"><label for="peso_consulta">Peso de Consulta (kg) (*)</label><input type="number" step="0.1" min="0" id="peso_consulta" name="peso_consulta" placeholder="Ej. 12" required></div>
-                        <div class="campo-agregar-cita"><label for="temperatura">Temperatura (°C)</label><input type="number" step="0.1" min="0" id="temperatura" name="temperatura" placeholder="Ej. 38"></div>
+                        <div class="campo-agregar-cita"><label for="peso_consulta">Peso de Consulta (kg) (*)</label><input type="number" step="1" min="1" max="9999999999" id="peso_consulta" name="peso_consulta" placeholder="Ej. 12" required></div>
+                        <div class="campo-agregar-cita"><label for="temperatura">Temperatura (°C)</label><input type="number" step="1" min="0" max="999" id="temperatura" name="temperatura" placeholder="Ej. 38"></div>
                         <div class="campo-agregar-cita"><label for="frecuencia_card">Frecuencia Cardíaca (ppm)</label><input type="number" min="0" id="frecuencia_card" name="frecuencia_card" placeholder="Ej. 110"></div>
                     </div>
                 </section>
@@ -60,7 +69,7 @@
                         <div><p>PASO 2 DE 4</p><h3 id="titulo-paso-diagnostico">Diagnóstico</h3></div>
                     </div>
                     <div class="consulta-campos-grid">
-                        <div class="campo-agregar-cita"><label for="detalles_diagnosticos">Detalles del Diagnóstico</label><input type="text" id="detalles_diagnosticos" name="detalles_diagnosticos" maxlength="100" placeholder="Ej. Gastritis aguda"></div>
+                        <div class="campo-agregar-cita"><label for="detalles_diagnosticos">Detalles del Diagnóstico (*)</label><input type="text" id="detalles_diagnosticos" name="detalles_diagnosticos" maxlength="100" placeholder="Ej. Gastritis aguda" required></div>
                         <div class="campo-agregar-cita"><label for="analisis_clinicos">Análisis Clínicos</label><input type="text" id="analisis_clinicos" name="analisis_clinicos" maxlength="100" placeholder="Ej. Hemograma completo"></div>
                     </div>
                 </section>
