@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mascotas</title>
-    <script src="../Controlador/cntrl.js?v=20261110-1" defer></script>
+    <script src="../Controlador/cntrl.js?v=20261127-2" defer></script>
     <script src="../Controlador/cntrolRelacion.js?v=20261123-1" defer></script>
     <script src="../Controlador/mascotaAltaModal.js?v=20261110-1" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
@@ -38,6 +38,8 @@
                         <th>Peso (kg)</th>
                         <th>Sexo</th>
                         <th>Esterilizado</th>
+                        <th>Alergias</th>
+                        <th>Microchip</th>
                         <th>Tutor</th>
                         <th>Acciones</th>
                     </tr>
@@ -61,9 +63,11 @@
             <div class="tabla-modal-campo"><label for="especie">Especie</label><input type="text" name="especie" id="especie" required></div>
             <div class="tabla-modal-campo"><label for="raza">Raza</label><input type="text" name="raza" id="raza" required></div>
             <div class="tabla-modal-campo"><label for="fecNac">Fecha de nacimiento aproximada</label><input type="date" name="fecha_adopcion" id="fecNac" required></div>
-            <div class="tabla-modal-campo"><label for="peso">Peso (kg)</label><input type="number" name="peso_inicial" id="peso" min="0" step="0.01" required></div>
+            <div class="tabla-modal-campo"><label for="peso">Peso (kg)</label><input type="number" name="peso_inicial" id="peso" min="0" max="9999999999" step="1" required></div>
             <div class="tabla-modal-campo"><label for="mascota">Sexo</label><select id="mascota" name="sexo"><option value="Hembra">Hembra</option><option value="Macho">Macho</option></select></div>
             <div class="tabla-modal-campo"><label for="esterilizado">Esterilizado</label><select id="esterilizado" name="esterilizado"><option value="1">Sí</option><option value="0">No</option></select></div>
+            <div class="tabla-modal-campo"><label for="alergia">Alergias (opcional)</label><input type="text" name="alergia" id="alergia" maxlength="50"></div>
+            <div class="tabla-modal-campo"><label for="microchip">Número de microchip (opcional)</label><input type="text" name="NumMicrochip" id="microchip" maxlength="15"></div>
             <div class="tabla-modal-mensaje" id="mensaje-nueva-mascota" role="status" aria-live="polite"></div>
             <div class="tabla-modal-acciones">
                 <button type="submit" id="btn-registrar-mascota">Registrar mascota</button>

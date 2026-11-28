@@ -52,6 +52,7 @@ class ControLogin {
         if (!$coincide) { $this->responder(false, 'Contraseña incorrecta'); return; }
         session_regenerate_id(true);
         $_SESSION['usuario_autenticado'] = $usuario['correo'];
+        $_SESSION['id_rol'] = (int)$usuario['id_rol'];
         unset($_SESSION['codigo_seguridad'], $_SESSION['recuperacion_confirmada']);
         $this->responder(true, 'Inicio de sesión correcto', ['correo' => $usuario['correo']]);
     }
@@ -90,17 +91,36 @@ class ControLogin {
         else { $this->responder(false, 'No se pudo actualizar la contraseña'); }
     }
 
-    public function crearCuenta(string $correo, string $password, string $nombre, string $apellidoP, string $apellidoM): void {
+    public function crearCuenta(string $correo, string $password, string $nombre, string $apellidoP, string $apellidoM, string $sexo): void {
         $correo = trim($correo);
+        $nombre = trim($nombre);
+        $apellidoP = trim($apellidoP);
+        $apellidoM = trim($apellidoM);
+        if (!filter_var($correo, FILTER_VALIDATE_EMAIL) || strlen($correo) > 100) {
+            $this->responder(false, 'Ingresa un correo válido de máximo 100 caracteres'); return;
+        }
+        if ($nombre === '' || strlen($nombre) > 100 || strlen($apellidoP) > 100 || strlen($apellidoM) > 100) {
+            $this->responder(false, 'Revisa el nombre y los apellidos'); return;
+        }
+        if (strlen($password) < 8) { $this->responder(false, 'La contraseña debe tener al menos 8 caracteres'); return; }
+        if (!in_array($sexo, ['Femenino', 'Masculino'], true)) {
+            $this->responder(false, 'Selecciona un sexo válido'); return;
+        }
         if ($this->usuarioPorCorreo($correo)) { $this->responder(false, 'El correo ya existe'); return; }
 
         try {
+            $roles = $this->db->read('roles', "nombre = 'tutor'");
+            if (count($roles) === 0) {
+                $this->responder(false, 'No se encontró el rol de tutor para crear la cuenta'); return;
+            }
             $ok = $this->db->create('usuarios', [
                 'correo' => $correo,
-                'password' => $password,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
                 'nombre' => $nombre,
                 'apellido_paterno' => $apellidoP,
-                'apellido_materno' => $apellidoM
+                'apellido_materno' => $apellidoM === '' ? null : $apellidoM,
+                'id_rol' => (string)$roles[0]['id_rol'],
+                'sexo' => $sexo
             ]);
         } catch (Throwable $e) {
             // Puede ocurrir una carrera: otro intento insertó el correo después de la comprobación.
@@ -136,6 +156,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif (isset($_POST['enviar_codigo_recuperacion'])) $controller->enviarCodigoRecuperacion(trim($_POST['correo'] ?? ''));
     elseif (isset($_POST['verificar_codigo'])) $controller->verificarCodigo(trim($_POST['codigo'] ?? ''));
     elseif (isset($_POST['actualizar_password'])) $controller->actualizarPassword((string)($_POST['password'] ?? ''));
-    elseif (isset($_POST['crear'])) $controller->crearCuenta(trim($_POST['correo'] ?? ''), (string)($_POST['password'] ?? ''), trim($_POST['nombre'] ?? ''), trim($_POST['apellido_paterno'] ?? ''), trim($_POST['apellido_materno'] ?? ''));
+    elseif (isset($_POST['crear'])) $controller->crearCuenta(trim($_POST['correo'] ?? ''), (string)($_POST['password'] ?? ''), trim($_POST['nombre'] ?? ''), trim($_POST['apellido_paterno'] ?? ''), trim($_POST['apellido_materno'] ?? ''), trim($_POST['sexo'] ?? ''));
     else { header('Content-Type: application/json; charset=utf-8'); echo json_encode(['status'=>false, 'mensaje'=>'Solicitud no válida']); }
 }

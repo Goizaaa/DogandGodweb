@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../Controlador/InicioSes.js?v=20261119-1"></script>
+    <script src="../Controlador/InicioSes.js?v=20261127-1"></script>
 </head>
 
 <body class="text-center vista-inicio-sesion">
@@ -132,6 +132,14 @@
                             <label for="aPmU">Apellido Materno</label>
                         </div>
                     </div>
+                </div>
+                <div class="form-floating mb-2">
+                    <select class="form-select" name="sexo" id="sexoU" required>
+                        <option value="" selected disabled>Selecciona una opción</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                    </select>
+                    <label for="sexoU">Sexo</label>
                 </div>
                 <div class="form-floating mb-2">
                     <input type="email" class="form-control" name="usuarioCI" id="usuarioCI" placeholder="correo@ejemplo.com">
