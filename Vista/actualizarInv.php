@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario | Dog&amp;God</title>
-    <script src="../Controlador/cntrlInv.js?v=20261106-2" defer></script>
+    <script src="../Controlador/cntrlInv.js?v=20261127-1" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
-    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
+    <link rel="stylesheet" href="../css/CssGlobal.css?v=20261127-1">
 </head>
 <body class="vista-tablas vista-inventario">
 
@@ -29,7 +29,6 @@
             <p>Busca productos y consulta las existencias registradas.</p>
         </div>
         <div class="tabla-pagina-acciones botones-editar-agregar">
-            <button type="button" class="boton-editar" id="abrir-modal-editar-producto">Editar producto</button>
             <button type="button" class="boton-agregar" id="abrir-modal-agregar-producto">Agregar producto</button>
         </div>
     </section>
@@ -55,6 +54,7 @@
                 <th>Marca</th>
                 <th>Cantidad</th>
                 <th>Costo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -75,18 +75,21 @@
     </div>
 
     <form action="" id="form-editar-producto" class="tabla-modal-formulario">
+        <input type="hidden" name="id_producto" id="EditIdProducto">
         <div class="tabla-modal-campo">
             <label for="NewProducto">Nombre del producto</label>
-            <input type="text" name="NewProducto" id="NewProducto">
+            <input type="text" name="NewProducto" id="NewProducto" required>
         </div>
 
         <div class="tabla-modal-campo">
             <label for="NewCategoria">Categoría del producto</label>
-            <select name="NewCategoria" id="NewCategoria">
-                <option value="NewMedicamento">Medicamento</option>
-                <option value="NewVacuna">Vacuna</option>
-                <option value="NewAlimentos">Alimentos</option>
-                <option value="NewAccesorios">Accesorios</option>
+            <select name="NewCategoria" id="NewCategoria" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="Alimento">Alimento</option>
+                <option value="Medicamento">Medicamento</option>
+                <option value="Accesorio">Accesorio</option>
+                <option value="Higiene">Higiene</option>
+                <option value="Suplemento">Suplemento</option>
             </select>
         </div>
 
@@ -94,30 +97,30 @@
             <label for="NewPrecio">Precio</label>
             <div class="input-moneda">
                 <span>$</span>
-                <input type="number" step="0.01" min="0" name="NewPrecio" id="NewPrecio" placeholder="0.00">
+                <input type="number" step="0.01" min="0" name="NewPrecio" id="NewPrecio" placeholder="0.00" required>
             </div>
         </div>
 
         <div class="tabla-modal-campo">
             <label for="NewMarca">Marca</label>
-            <input type="text" name="NewMarca" id="NewMarca">
+            <input type="text" name="NewMarca" id="NewMarca" required>
         </div>
 
         <div class="tabla-modal-campo">
             <label for="NewCantidad">Cantidad</label>
-            <input type="number" min="0" name="NewCantidad" id="NewCantidad">
+            <input type="number" min="0" step="1" name="NewCantidad" id="NewCantidad" required>
         </div>
 
         <div class="tabla-modal-campo">
             <label for="NewCosto">Costo</label>
             <div class="input-moneda">
                 <span>$</span>
-                <input type="number" step="0.01" min="0" name="NewCosto" id="NewCosto" placeholder="0.00">
+                <input type="number" step="0.01" min="0" name="NewCosto" id="NewCosto" placeholder="0.00" required>
             </div>
         </div>
 
         <div class="tabla-modal-acciones">
-            <button class="tabla-modal-guardar" type="button">Guardar cambios</button>
+            <button class="tabla-modal-guardar" type="submit">Guardar cambios</button>
             <button class="tabla-modal-secundario" id="cancelar-modal-editar-producto" type="button">Cancelar</button>
         </div>
     </form>

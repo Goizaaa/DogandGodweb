@@ -755,6 +755,11 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 }
 .vista-tablas.vista-inventario .tabla-modal-formulario .input-moneda { width: 100%; }
 .vista-tablas.vista-inventario .tabla-modal-acciones { grid-column: 1 / -1; margin-top: 3px; }
+.vista-inventario .inventario-acciones-fila { white-space: nowrap; }
+.vista-inventario .inventario-accion { min-height: 34px; margin-right: 7px; padding: 6px 10px; border: 1px solid #1769aa; border-radius: 8px; color: #1769aa; background: #fff; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; }
+.vista-inventario .inventario-accion:hover { color: #fff; background: #1769aa; }
+.vista-inventario .inventario-accion-eliminar { border-color: #b63d52; color: #b63d52; }
+.vista-inventario .inventario-accion-eliminar:hover { color: #fff; background: #b63d52; }
 .tabla-modal .tabla-modal-guardar { min-height: 42px; margin: 0; padding: 10px 16px; border: 1px solid #1769aa; border-radius: 9px; color: #fff; background: #1769aa; box-shadow: none; font: inherit; font-size: .92rem; }
 .tabla-modal .tabla-modal-guardar:hover { color: #fff; background: #10568e; box-shadow: none; transform: none; }
 .tabla-modal .tabla-modal-guardar:disabled { cursor: wait; opacity: .7; }
