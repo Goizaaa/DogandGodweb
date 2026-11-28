@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Consultar Tutores</title>
-    <script src="../Controlador/cntrolTutor.js?v=20261112-1" defer></script>
-    <script src="../Controlador/cntrolRelacion.js?v=20261021-1" defer></script>
+    <script src="../Controlador/cntrolTutor.js?v=20261123-1" defer></script>
+    <script src="../Controlador/cntrolRelacion.js?v=20261123-1" defer></script>
     <script src="../Controlador/tutorAltaModal.js?v=20261021-1" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
@@ -42,7 +42,6 @@
                             <th>Apellido Paterno</th>
                             <th>Apellido Materno</th>
                             <th>Teléfono</th>
-                            <th>Sexo</th>
                             <th>Dirección</th>
                             <th>Acciones</th>
                         </tr>
@@ -68,7 +67,6 @@
             <div class="tabla-modal-campo"><label for="appTutor">Apellido paterno</label><input type="text" name="app_tutor" id="appTutor" required></div>
             <div class="tabla-modal-campo"><label for="apmTutor">Apellido materno</label><input type="text" name="apm_tutor" id="apmTutor" required></div>
             <div class="tabla-modal-campo"><label for="numtelTutor">Teléfono</label><input type="tel" name="numtel_tutor" id="numtelTutor" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required></div>
-            <div class="tabla-modal-campo"><label for="sexoTutor">Sexo</label><select id="sexoTutor" name="sexo"><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option><option value="Otro">Otro</option></select></div>
             <div class="tabla-modal-campo"><label for="direccionTutor">Dirección</label><input type="text" name="direccion" id="direccionTutor" required></div>
             <div class="tabla-modal-mensaje" id="mensaje-nuevo-tutor" role="status" aria-live="polite"></div>
             <div class="tabla-modal-acciones">

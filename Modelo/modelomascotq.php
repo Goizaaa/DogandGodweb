@@ -16,9 +16,10 @@ $sql = "SELECT
             m.peso_inicial,
             m.sexo,
             IF(m.esterilizado = 1, 'Sí', 'No') AS esterilizado,
-            COALESCE(CONCAT(t.nom_tutor, ' ', t.app_tutor, ' ', t.apm_tutor), 'Sin tutor') AS nom_tutor
+            COALESCE(NULLIF(TRIM(CONCAT_WS(' ', u.nombre, u.apellido_paterno, u.apellido_materno)), ''), 'Sin tutor') AS nom_tutor
         FROM mascota m
         LEFT JOIN tutor t ON m.correo_tutor = t.correo_tutor
+        LEFT JOIN usuarios u ON t.id_usuario = u.id_usuario
         ORDER BY m.id_mascota ASC";
 
 $result = $db->readCustom($sql);

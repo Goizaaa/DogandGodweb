@@ -619,6 +619,8 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 .vista-tablas .tabla-pagina-cabecera p:not(.tabla-pagina-eyebrow) { margin: 7px 0 0; color: #65758b; }
 .vista-tablas .tabla-pagina-eyebrow { margin: 0 0 5px; color: #1683a8; font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
 .vista-tablas .tabla-pagina-acciones { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+.vista-tablas .historial-seccion-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.vista-tablas .historial-seccion-cabecera h2 { margin: 0; }
 .vista-tablas .btn-nuevo {
   display: inline-flex;
   min-height: 42px;
@@ -662,9 +664,12 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 .tabla-modal-campo { display: grid; gap: 7px; }
 .tabla-modal-campo label { color: #40566d; font-size: .9rem; font-weight: 700; }
 .tabla-modal-campo input,
-.tabla-modal-campo select { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
+.tabla-modal-campo select,
+.tabla-modal-campo textarea { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
 .tabla-modal-campo input:focus,
-.tabla-modal-campo select:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
+.tabla-modal-campo select:focus,
+.tabla-modal-campo textarea:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
+.tabla-modal-campo textarea { min-height: 90px; resize: vertical; }
 .tabla-modal-campo input { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #cbd8e5; border-radius: 9px; color: #2f455b; background: #fbfdff; font: inherit; }
 .tabla-modal-campo input:focus { border-color: #449ac2; outline: 3px solid rgba(68, 154, 194, .15); }
 .tabla-modal-form { display: grid; gap: 14px; padding-top: 20px; }
@@ -690,6 +695,7 @@ body :is(#btnNo, #btnCancelarModal, .btn-secondary, .btn-outline-dark):hover:not
 .vista-tablas.vista-inventario .tabla-modal-acciones { grid-column: 1 / -1; margin-top: 3px; }
 .tabla-modal .tabla-modal-guardar { min-height: 42px; margin: 0; padding: 10px 16px; border: 1px solid #1769aa; border-radius: 9px; color: #fff; background: #1769aa; box-shadow: none; font: inherit; font-size: .92rem; }
 .tabla-modal .tabla-modal-guardar:hover { color: #fff; background: #10568e; box-shadow: none; transform: none; }
+.tabla-modal .tabla-modal-guardar:disabled { cursor: wait; opacity: .7; }
 .tabla-modal .tabla-modal-secundario { border: 1px solid #d3deea; color: #42566b; background: #f3f6f9; box-shadow: none; }
 .tabla-modal .tabla-modal-secundario:hover { color: #26364b; background: #e8eef4; box-shadow: none; transform: none; }
 .modal-formulario { width: min(480px, calc(100% - 28px)); max-width: none; padding: 24px; border: 1px solid #dce5ee; border-radius: 14px; color: #26364b; background: #fff; box-shadow: 0 20px 60px rgba(18, 36, 60, .25); text-align: center; }

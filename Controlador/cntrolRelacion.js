@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
             (Array.isArray(data) ? data : []).forEach(t => {
                 let option = document.createElement('option');
                 option.value = t.correo_tutor;
-                option.textContent = `${t.nom_tutor} ${t.app_tutor} (${t.correo_tutor})`;
+                const nombreTutor = [t.nom_tutor, t.app_tutor, t.apm_tutor].filter(Boolean).join(" ");
+                option.textContent = `${nombreTutor || "Tutor sin nombre"} (${t.correo_tutor})`;
                 selectTutor.appendChild(option);
             });
             if (tutorPreseleccionado) selectTutor.value = tutorPreseleccionado;

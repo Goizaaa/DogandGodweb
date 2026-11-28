@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mascotas</title>
     <script src="../Controlador/cntrl.js?v=20261110-1" defer></script>
-    <script src="../Controlador/cntrolRelacion.js?v=20261110-1" defer></script>
+    <script src="../Controlador/cntrolRelacion.js?v=20261123-1" defer></script>
     <script src="../Controlador/mascotaAltaModal.js?v=20261110-1" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">

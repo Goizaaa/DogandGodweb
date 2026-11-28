@@ -86,24 +86,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 fila.appendChild(celdaCorreo);
                 
                 let celdaNombre = document.createElement("td");
-                celdaNombre.textContent = tutor.nom_tutor;
+                celdaNombre.textContent = tutor.nom_tutor || "—";
                 fila.appendChild(celdaNombre);
                 
                 let celdaApp = document.createElement("td");
-                celdaApp.textContent = tutor.app_tutor;
+                celdaApp.textContent = tutor.app_tutor || "—";
                 fila.appendChild(celdaApp);
                 
                 let celdaApm = document.createElement("td");
-                celdaApm.textContent = tutor.apm_tutor;
+                celdaApm.textContent = tutor.apm_tutor || "—";
                 fila.appendChild(celdaApm);
                 
                 let celdaTelefono = document.createElement("td");
                 celdaTelefono.textContent = tutor.numtel_tutor;
                 fila.appendChild(celdaTelefono);
-                
-                let celdaSexo = document.createElement("td");
-                celdaSexo.textContent = tutor.sexo || "No especificado";
-                fila.appendChild(celdaSexo);
                 
                 let celdaDireccion = document.createElement("td");
                 celdaDireccion.textContent = tutor.direccion;
@@ -127,7 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 btnEliminar.style.padding = "5px 10px";
                 btnEliminar.style.borderRadius = "4px";
                 btnEliminar.onclick = function() {
-                    eliminarTutor(tutor.correo_tutor, tutor.nom_tutor);
+                    eliminarTutor(tutor.correo_tutor, [
+                        tutor.nom_tutor,
+                        tutor.app_tutor,
+                        tutor.apm_tutor
+                    ].filter(Boolean).join(" "));
                 };
                 
                 celdaAcciones.appendChild(btnEditar);

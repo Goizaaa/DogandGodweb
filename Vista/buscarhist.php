@@ -47,6 +47,7 @@
                         <th>Especie</th>
                         <th>Raza</th>
                         <th>Fecha Adopcion</th>
+                        <th>Peso (kg)</th>
                         <th>Sexo</th>
                         <th>Esterilizado</th>
                         <th>Nombre Tutor</th>

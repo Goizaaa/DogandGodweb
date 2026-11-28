@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Tutor</title>
-    <script src="../Controlador/cntrolTutor.js?v=20261112-1"></script>
+    <script src="../Controlador/cntrolTutor.js?v=20261123-1"></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 </head>
 <body class="vista-formularios">
@@ -27,13 +27,6 @@
 
             <label>Teléfono:</label>
             <input type="text" name="numtel_tutor" id="numtelTutor" required>
-
-            <label>Sexo:</label>
-            <select id="sexoTutor" name="sexo">
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-                <option value="Otro">Otro</option>
-            </select>
 
             <label>Dirección:</label>
             <input type="text" name="direccion" id="direccionTutor" required>
