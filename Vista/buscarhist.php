@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar historial | Dog&amp;God</title>
-    <script src="../Controlador/cntrl.js" defer></script>
+    <script src="../Controlador/cntrl.js?v=20261127-2" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 </head>
@@ -50,6 +50,8 @@
                         <th>Peso (kg)</th>
                         <th>Sexo</th>
                         <th>Esterilizado</th>
+                        <th>Alergias</th>
+                        <th>Microchip</th>
                         <th>Nombre Tutor</th>
                         <th>Acciones</th>
                     </tr>

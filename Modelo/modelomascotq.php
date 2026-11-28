@@ -16,6 +16,8 @@ $sql = "SELECT
             m.peso_inicial,
             m.sexo,
             IF(m.esterilizado = 1, 'Sí', 'No') AS esterilizado,
+            COALESCE(NULLIF(m.alergia, ''), 'No registrada') AS alergia,
+            COALESCE(NULLIF(m.NumMicrochip, ''), 'No registrado') AS NumMicrochip,
             COALESCE(NULLIF(TRIM(CONCAT_WS(' ', u.nombre, u.apellido_paterno, u.apellido_materno)), ''), 'Sin tutor') AS nom_tutor
         FROM mascota m
         LEFT JOIN tutor t ON m.correo_tutor = t.correo_tutor

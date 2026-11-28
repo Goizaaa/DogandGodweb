@@ -99,9 +99,11 @@
             <div class="tabla-modal-campo"><label for="especie">Especie</label><input type="text" name="especie" id="especie" required></div>
             <div class="tabla-modal-campo"><label for="raza">Raza</label><input type="text" name="raza" id="raza" required></div>
             <div class="tabla-modal-campo"><label for="fecNac">Fecha de nacimiento aproximada</label><input type="date" name="fecha_adopcion" id="fecNac" required></div>
-            <div class="tabla-modal-campo"><label for="peso">Peso (kg)</label><input type="number" name="peso_inicial" id="peso" min="0" step="0.01" required></div>
+            <div class="tabla-modal-campo"><label for="peso">Peso (kg)</label><input type="number" name="peso_inicial" id="peso" min="0" max="9999999999" step="1" required></div>
             <div class="tabla-modal-campo"><label for="mascota">Sexo</label><select id="mascota" name="sexo"><option value="Hembra">Hembra</option><option value="Macho">Macho</option></select></div>
             <div class="tabla-modal-campo"><label for="esterilizado">Esterilizado</label><select id="esterilizado" name="esterilizado"><option value="1">Sí</option><option value="0">No</option></select></div>
+            <div class="tabla-modal-campo"><label for="alergia">Alergias (opcional)</label><input type="text" name="alergia" id="alergia" maxlength="50"></div>
+            <div class="tabla-modal-campo"><label for="microchip">Número de microchip (opcional)</label><input type="text" name="NumMicrochip" id="microchip" maxlength="15"></div>
             <input type="hidden" name="correo_tutor" id="correo-tutor-mascota">
             <div class="tabla-modal-mensaje" id="mensaje-nueva-mascota" role="status" aria-live="polite"></div>
             <div class="tabla-modal-acciones">

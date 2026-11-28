@@ -110,15 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const nombre = document.getElementById('NomU').value.trim();
         const apellidoP = document.getElementById('aPpU').value.trim();
         const apellidoM = document.getElementById('aPmU').value.trim();
+        const sexo = document.getElementById('sexoU').value;
         const correo = document.getElementById('usuarioCI').value.trim();
         const correo2 = document.getElementById('usuarioaCI').value.trim();
         const password = document.getElementById('contraseñaCI').value;
         const password2 = document.getElementById('contraseñaa').value;
-        if (!nombre || !apellidoP || !apellidoM || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) || correo !== correo2 || password.length < 8 || password !== password2) {
-            Swal.fire({ icon: 'error', text: 'Revisa nombre, apellidos, correos y contraseñas. La contraseña requiere al menos 8 caracteres.' }); return;
+        if (!nombre || !apellidoP || !sexo || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) || correo !== correo2 || password.length < 8 || password !== password2) {
+            Swal.fire({ icon: 'error', text: 'Revisa nombre, apellido paterno, sexo, correos y contraseñas. La contraseña requiere al menos 8 caracteres.' }); return;
         }
         try {
-            const result = await solicitar({ crear: '1', correo, password, nombre, apellido_paterno: apellidoP, apellido_materno: apellidoM });
+            const result = await solicitar({ crear: '1', correo, password, nombre, apellido_paterno: apellidoP, apellido_materno: apellidoM, sexo });
             await Swal.fire({ icon: result.status ? 'success' : 'error', text: result.mensaje });
             if (result.status) { login.reset(); mostrar('inicio'); }
         } catch (_) { Swal.fire({ icon: 'error', text: 'No se pudo crear la cuenta.' }); }

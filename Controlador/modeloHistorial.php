@@ -81,11 +81,15 @@ try {
                         m.especie,
                         m.raza,
                         m.fecha_adopcion,
+                        m.peso_inicial,
                         m.sexo,
+                        m.esterilizado AS esterilizado_valor,
                         IF(m.esterilizado = 1, 'Sí', 'No') AS esterilizado,
                         t.numtel_tutor AS telefono,
                         COALESCE(NULLIF(m.alergia, ''), 'No registrada') AS alergia,
-                        COALESCE(NULLIF(m.NumMicrochip, ''), 'No registrado') AS NumMicrochip
+                        m.alergia AS alergia_valor,
+                        COALESCE(NULLIF(m.NumMicrochip, ''), 'No registrado') AS NumMicrochip,
+                        m.NumMicrochip AS NumMicrochip_valor
                     FROM mascota m
                     LEFT JOIN tutor t ON m.correo_tutor = t.correo_tutor
                     LEFT JOIN usuarios u ON t.id_usuario = u.id_usuario
@@ -172,12 +176,41 @@ try {
             responderHistorial(array("success" => true, "message" => "Registro agregado correctamente."));
 
         case "update":
-            $peso = isset($_POST["peso_inicial"]) ? $_POST["peso_inicial"] : "";
-            $esterilizado = isset($_POST["esterilizado"]) ? $_POST["esterilizado"] : "";
-            $stmt = $conexion->prepare("UPDATE mascota SET peso_inicial = ?, esterilizado = ? WHERE id_mascota = ?");
-            $stmt->bind_param("sss", $peso, $esterilizado, $id);
+            $peso = trim($_POST["peso_inicial"] ?? "");
+            $esterilizado = $_POST["esterilizado"] ?? "";
+            $alergia = trim($_POST["alergia"] ?? "");
+            $microchip = trim($_POST["NumMicrochip"] ?? "");
+            $actualizarAlergia = array_key_exists("alergia", $_POST) ? 1 : 0;
+            $actualizarMicrochip = array_key_exists("NumMicrochip", $_POST) ? 1 : 0;
+
+            if ($id === "" || longitudHistorial($id) > 25) {
+                responderHistorial(array("success" => false, "message" => "Identificador de mascota no válido."), 400);
+            }
+            if (!preg_match("/^\\d{1,10}$/", $peso)
+                || !in_array($esterilizado, array("0", "1"), true)
+                || longitudHistorial($alergia) > 50
+                || longitudHistorial($microchip) > 15) {
+                responderHistorial(array("success" => false, "message" => "Revisa el peso, esterilización, alergias y número de microchip."), 400);
+            }
+
+            $stmt = $conexion->prepare("SELECT id_mascota FROM mascota WHERE id_mascota = ?");
+            $stmt->bind_param("s", $id);
             $stmt->execute();
-            responderHistorial(array("success" => $stmt->affected_rows >= 0));
+            if (!$stmt->get_result()->fetch_assoc()) {
+                responderHistorial(array("success" => false, "message" => "No se encontró la mascota."), 404);
+            }
+
+            $esterilizado = (int)$esterilizado;
+            $alergia = $actualizarAlergia && $alergia === "" ? null : $alergia;
+            $microchip = $actualizarMicrochip && $microchip === "" ? null : $microchip;
+            $stmt = $conexion->prepare("UPDATE mascota
+                SET peso_inicial = ?, esterilizado = ?,
+                    alergia = IF(?, ?, alergia),
+                    NumMicrochip = IF(?, ?, NumMicrochip)
+                WHERE id_mascota = ?");
+            $stmt->bind_param("siisiss", $peso, $esterilizado, $actualizarAlergia, $alergia, $actualizarMicrochip, $microchip, $id);
+            $stmt->execute();
+            responderHistorial(array("success" => true, "message" => "Datos de la mascota actualizados correctamente."));
 
         case "delete":
             $stmt = $conexion->prepare("DELETE FROM mascota WHERE id_mascota = ?");
@@ -197,6 +230,8 @@ try {
                         m.peso_inicial,
                         m.sexo,
                         IF(m.esterilizado = 1, 'Sí', 'No') AS esterilizado,
+                        COALESCE(NULLIF(m.alergia, ''), 'No registrada') AS alergia,
+                        COALESCE(NULLIF(m.NumMicrochip, ''), 'No registrado') AS NumMicrochip,
                         COALESCE(NULLIF(TRIM(CONCAT_WS(' ', u.nombre, u.apellido_paterno, u.apellido_materno)), ''), 'Sin tutor') AS nom_tutor
                     FROM mascota m
                     LEFT JOIN tutor t ON m.correo_tutor = t.correo_tutor

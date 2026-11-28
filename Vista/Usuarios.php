@@ -1,10 +1,17 @@
+<?php
+session_start();
+if ((int)($_SESSION['id_rol'] ?? 0) !== 3) {
+    header('Location: InicioSesion.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios | Dog&amp;God</title>
-    <script src="../Controlador/Usuari.js?v=20261112-1" defer></script>
+    <script src="../Controlador/Usuari.js?v=20261127-1" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261022-1">
 </head>
@@ -29,7 +36,8 @@
                 <th>Apellido Paterno</th>
                 <th>Apellido Materno</th>
                 <th>Correo</th>
-                <th>Contraseña</th>
+                <th>Rol</th>
+                <th>Sexo</th>
                 <th>Acciones</th>
             </tr>
             </thead>

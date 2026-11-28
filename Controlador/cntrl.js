@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 let fila = document.createElement("tr");
                 let celda = document.createElement("td");
                 celda.textContent = "No se encontraron resultados";
-                celda.colSpan = 10;
+                celda.colSpan = 12;
                 celda.style.textAlign = "center";
                 fila.appendChild(celda);
                 tbody.appendChild(fila);
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             datos.forEach(obj => {
                 let fila = document.createElement("tr");
 
-                ["id_mascota", "nom_mascota", "especie", "raza", "fecha_adopcion", "peso_inicial", "sexo", "esterilizado", "nom_tutor"].forEach(propiedad => {
+                ["id_mascota", "nom_mascota", "especie", "raza", "fecha_adopcion", "peso_inicial", "sexo", "esterilizado", "alergia", "NumMicrochip", "nom_tutor"].forEach(propiedad => {
                     let celda = document.createElement("td");
                     celda.textContent = obj[propiedad] ?? "—";
                     fila.appendChild(celda);
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             let fila = document.createElement("tr");
             let celda = document.createElement("td");
             celda.textContent = "Error al cargar los datos";
-            celda.colSpan = 10;
+            celda.colSpan = 12;
             celda.style.textAlign = "center";
             fila.appendChild(celda);
             tbody.appendChild(fila);

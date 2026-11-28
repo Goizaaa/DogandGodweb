@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Consultar historial </title>
-    <script src="../Controlador/consultarHistorial.js?v=20261123-1" defer></script>
+    <script src="../Controlador/consultarHistorial.js?v=20261127-2" defer></script>
     <script src="../Controlador/paginacionTablas.js?v=20261013-2" defer></script>
     <link rel="stylesheet" href="../css/CssGlobal.css?v=20261123-1">
 </head>
@@ -68,11 +68,13 @@
                             <th>Especie</th>
                             <th>Raza</th>
                             <th>Fecha Nacimiento</th>
+                            <th>Peso (kg)</th>
                             <th>Sexo</th>
                             <th>Esterilizado</th>
                             <th>Teléfono</th>
                             <th>Alergias</th>
                             <th>Microchip</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody></tbody> 
@@ -165,6 +167,42 @@
         </section>
         <input type="hidden" id="id_mascota" name="id_mascota">
     </main>
+
+    <dialog class="tabla-modal" id="modalEditarMascota" aria-labelledby="tituloModalEditarMascota">
+        <div class="tabla-modal-cabecera">
+            <div>
+                <h2 id="tituloModalEditarMascota">Modificar datos de la mascota</h2>
+                <p>Actualiza el peso, la esterilización, las alergias o el número de microchip.</p>
+            </div>
+            <button class="tabla-modal-cerrar" type="button" data-cerrar-edicion aria-label="Cerrar">&times;</button>
+        </div>
+        <form class="tabla-modal-form" id="formEditarMascota">
+            <div class="tabla-modal-campo">
+                <label for="editarPeso">Peso (kg)</label>
+                <input id="editarPeso" name="peso_inicial" type="number" min="0" max="9999999999" step="1" required>
+            </div>
+            <div class="tabla-modal-campo">
+                <label for="editarEsterilizado">Esterilizado</label>
+                <select id="editarEsterilizado" name="esterilizado" required>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="tabla-modal-campo">
+                <label for="editarAlergia">Alergias (opcional)</label>
+                <input id="editarAlergia" name="alergia" type="text" maxlength="50">
+            </div>
+            <div class="tabla-modal-campo">
+                <label for="editarMicrochip">Número de microchip (opcional)</label>
+                <input id="editarMicrochip" name="NumMicrochip" type="text" maxlength="15">
+            </div>
+            <div class="tabla-modal-mensaje" id="mensaje-editar-mascota" role="status" aria-live="polite"></div>
+            <div class="tabla-modal-acciones">
+                <button class="tabla-modal-secundario" type="button" data-cerrar-edicion>Cancelar</button>
+                <button class="tabla-modal-guardar" type="submit">Guardar cambios</button>
+            </div>
+        </form>
+    </dialog>
 
     <dialog class="tabla-modal" id="modalProcedimientos" aria-labelledby="tituloModalProcedimientos">
         <div class="tabla-modal-cabecera">
