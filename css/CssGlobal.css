@@ -516,6 +516,64 @@ body.vista-inicio-sesion {
   .vista-consultar-cita .modal-agregar-cita { padding: 20px; }
 }
 
+/* Flujo por pasos para registrar una consulta en el expediente */
+.vista-registro-consulta { min-height: 100vh; background: linear-gradient(145deg, #f3f7fc, #eaf1f8 55%, #f7f9fc); }
+.vista-registro-consulta .consultar-cita-main { margin-top: 34px; }
+.vista-registro-consulta .consultar-cita-titulo { padding: 22px 26px; border: 1px solid #fff; border-radius: 16px; background: rgba(255,255,255,.84); box-shadow: 0 10px 28px rgba(34,54,82,.07); }
+.registro-consulta-intro { margin: 9px 0 0; color: #68778a; }
+.vista-registro-consulta .modal-flujo-consulta { width: min(850px, calc(100% - 32px)); max-height: min(88vh, 820px); padding: clamp(20px, 3vw, 34px); overflow-y: auto; }
+.vista-registro-consulta .modal-flujo-consulta[open] { animation: consulta-modal-aparece .25s ease-out both; }
+.vista-registro-consulta .modal-flujo-consulta::backdrop { background: rgba(18,36,60,.62); backdrop-filter: blur(4px); }
+.vista-registro-consulta .modal-agregar-cita-heading { align-items: center; margin-bottom: 18px; }
+.consulta-progreso { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 26px; padding: 0; list-style: none; }
+.consulta-progreso li { position: relative; display: flex; min-width: 0; align-items: center; gap: 9px; color: #8692a2; }
+.consulta-progreso li:not(:last-child)::after { position: absolute; top: 17px; left: 42px; right: 4px; height: 2px; background: #e2e8f0; content: ""; }
+.consulta-progreso li.completado:not(:last-child)::after { background: #1769aa; }
+.consulta-progreso li span { z-index: 1; display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center; border: 2px solid #d9e1eb; border-radius: 50%; background: #fff; font-weight: 700; }
+.consulta-progreso li small { overflow: hidden; color: inherit; font-size: .85rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.consulta-progreso li.activo { color: #1769aa; }
+.consulta-progreso li.activo span, .consulta-progreso li.completado span { border-color: #1769aa; color: #fff; background: #1769aa; }
+.consulta-progreso li.completado { color: #1769aa; }
+.vista-registro-consulta .formulario-agregar-cita { gap: 0; }
+.consulta-paso { min-height: 310px; padding: 22px; border: 1px solid #e5ebf3; border-radius: 14px; background: linear-gradient(135deg, #fff, #f9fbfe); }
+.consulta-paso[hidden] { display: none !important; }
+.consulta-paso-titulo { display: flex; align-items: center; gap: 14px; margin-bottom: 25px; }
+.consulta-paso-titulo h3 { margin: 0; color: #26364b; font-size: 1.35rem; }
+.consulta-paso-titulo p { margin: 0 0 4px; color: #738197; font-size: .7rem; font-weight: 700; letter-spacing: .12em; }
+.consulta-paso-icono { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; border-radius: 14px; color: #1769aa; background: #eaf3fb; font-size: 1.15rem; }
+.consulta-campos-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.consulta-campos-una-columna { grid-template-columns: 1fr; gap: 15px; }
+.vista-registro-consulta .consulta-paso .campo-agregar-cita input { min-height: 48px; }
+.consulta-ayuda-final { display: flex; align-items: center; gap: 9px; margin: 24px 0 0; color: #62738a; font-size: .92rem; }
+.consulta-ayuda-final i { color: #1769aa; }
+.consulta-error-paso { min-height: 1.3em; margin: 10px 2px 0; color: #b63d52; font-size: .9rem; font-weight: 600; }
+.vista-registro-consulta .consulta-acciones { justify-content: flex-end; align-items: center; margin-top: 8px; }
+.vista-registro-consulta .consulta-acciones [hidden] { display: none !important; }
+.vista-registro-consulta .consulta-acciones #cancelarRegistroConsulta { margin-right: auto; }
+.consulta-paso.entra-desde-derecha { animation: consulta-paso-derecha .28s ease both; }
+.consulta-paso.entra-desde-izquierda { animation: consulta-paso-izquierda .28s ease both; }
+@keyframes consulta-modal-aparece { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes consulta-paso-derecha { from { opacity: 0; transform: translateX(22px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes consulta-paso-izquierda { from { opacity: 0; transform: translateX(-22px); } to { opacity: 1; transform: translateX(0); } }
+@media (max-width: 600px) {
+  .vista-registro-consulta .consultar-cita-main { margin-top: 18px; }
+  .vista-registro-consulta .consultar-cita-titulo { padding: 18px; }
+  .vista-registro-consulta .modal-flujo-consulta { width: calc(100% - 20px); max-height: 92vh; padding: 17px; }
+  .consulta-progreso { gap: 3px; margin-bottom: 17px; }
+  .consulta-progreso li { justify-content: center; }
+  .consulta-progreso li:not(:last-child)::after { left: calc(50% + 20px); right: calc(-50% + 20px); }
+  .consulta-progreso li span { width: 32px; height: 32px; flex-basis: 32px; }
+  .consulta-progreso li small { display: none; }
+  .consulta-paso { min-height: 0; padding: 17px; }
+  .consulta-campos-grid { grid-template-columns: 1fr; gap: 14px; }
+  .consulta-paso-titulo { margin-bottom: 18px; }
+  .vista-registro-consulta .consulta-acciones { justify-content: stretch; }
+  .vista-registro-consulta .consulta-acciones button { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vista-registro-consulta .modal-flujo-consulta[open], .consulta-paso.entra-desde-derecha, .consulta-paso.entra-desde-izquierda { animation-duration: .01ms; }
+}
+
 /* ==========================================================================
    8. SISTEMA COMÚN DE BOTONES
    ========================================================================== */

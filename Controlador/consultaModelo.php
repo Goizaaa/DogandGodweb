@@ -1,11 +1,16 @@
 <?php
-require_once "../config/conexion.php";
+require_once "../Modelo/config.php";
 
 class ConsultaModelo {
     private $db;
 
     public function __construct() {
-        $this->db = Conexion::conectar();
+        $this->db = new PDO(
+            "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET,
+            DB_USER,
+            DB_PASS,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
     }
 
     public function registrarConsultaCompleta($datos) {

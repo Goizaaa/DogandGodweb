@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once "../Modelo/ConsultaModelo.php";
+require_once "../Controlador/consultaModelo.php";
 
 $accion = $_REQUEST['accion'] ?? '';
 $modelo = new ConsultaModelo();
